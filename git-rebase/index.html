@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <title>Demonstrate git rebase problems</title>
+
+    <script src="js/libs/jquery-2.1.4.min.js"></script>
+    <script src="js/libs/jquery-ui.min.js"></script>
+    <script src="js/libs/prettify.js"></script>
+    <script src="js/main.js"></script>
+
+    <link rel="stylesheet" href="styles/jquery-ui.css">
+    <link rel="stylesheet" href="styles/prettify.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+<svg style="display: none">
+    <style>
+        text {
+            font-family: monospace;
+            font-size: 12px;
+            text-anchor: middle;
+            fill: #404040;
+        }
+
+        .commit-circle {
+            fill: #b3e3ff;
+            stroke: #404040;
+            stroke-width: 2.5;
+            stroke-miterlimit: 10;
+        }
+
+        .commit-circle.head {
+            fill: #55c8ff;
+        }
+
+        .commit-circle.grey {
+            stroke: #ccc;
+            fill: #f0f0f0;
+        }
+
+        .info-box {
+            fill: #b3e3ff;
+            stroke: #404040;
+            stroke-width: 2.5;
+            stroke-miterlimit: 10;
+        }
+
+        .commit-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .path {
+            stroke: #404040;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .path.grey {
+            stroke: #ccc;
+        }
+    </style>
+    <defs>
+        <circle id="commit-circle" cx="0" cy="0" r="15"></circle>
+        <path id="path-branch-down" d="M0,0 L20,0 C55,0 20,50 55,50 L75,50"></path>
+        <path id="path-branch-up" d="M0,0 L20,0 C55,0 20,-50 55,-50 L75,-50"></path>
+        <path id="path-branch" d="M0,0 L75,0"></path>
+        <path id="path-branch-short" d="M0,0 L50,0"></path>
+        <rect id="info-box" x="-32" y="-12" width="64" height="24"></rect>
+        <path id="arrow-down" d="M-5,7 L0,12 L5,7 M0,12 L0,0"></path>
+        <path id="arrow-up" d="M-5,-7 L0,-12 L5,-7 M0,-12 L0,0"></path>
+    </defs>
+</svg>
+
+<div class="container">
+    <article class="main">
+        <h1>Work in progress...</h1>
+
+        <h2>Why rebasing will break the code in your history</h2>
+
+        <p>
+            Let’s dive directly into the problem. First, we create the simple javascript file main.js. You can always
+            copy&paste and execute each version of the file in your browser to test the result as well.
+        </p>
+
+        <div class="file">
+            <div class="header">
+                <pre class="name">main.js</pre>
+                <pre class="version">A</pre>
+            </div>
+            <div class="content">
+<pre class="code commit-A">
+var s = 'youtube.com/watch?v=Zvhw9BSURGg';
+console.log(s);
+// Some other code</pre>
+            </div>
+        </div>
+
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="untracked">[master]</span>$</span>git add . && git commit -m 'Initial commit'
+<span class="output">[master (root-commit) A] [master] Initial commit
+ 1 file changed, 3 insertions(+)
+ create mode 100644 main.js</span></pre>
+        </div>
+
+        <figure class="graph commit-A">
+            <svg width="350" height="190" viewBox="0 0 350 190">
+                <use class="A commit-circle" xlink:href="#commit-circle" x="50" y="70"></use>
+                <text class="commit-label" x="50" y="75">A</text>
+
+                <use xlink:href="#info-box" class="info-box" x="50" y="15"></use>
+                <text x="50" y="20">master</text>
+                <use xlink:href="#arrow-down" class="path" x="50" y="35"></use>
+            </svg>
+        </figure>
+
+        <p>
+            Now we switch to a new branch called feature, onto which we are going to rebase the master branch at some
+            point later, and add a new commit. Notice that we're using the variable <span class="pln">s</span>.
+        </p>
+
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="clean">[master]</span>$</span>git checkout -b feature
+<span class="output">Switched to a new branch 'feature'</span></pre>
+        </div>
+
+        <div class="file">
+            <div class="header">
+                <pre class="name">main.js</pre>
+                <pre class="version">B</pre>
+            </div>
+            <div class="content">
+<pre class="code commit-B">
+var s = 'youtube.com/watch?v=Zvhw9BSURGg';
+console.log(s);
+// Some other code
+var videoId = s.substring(s.lastIndexOf('=') + 1);</pre>
+            </div>
+        </div>
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="modified">[feature]</span>$</span>git commit -am '[feature] Get video id'
+<span class="output">[feature B] [feature] Get video id
+ 1 file changed, 1 insertion(+)</span></pre>
+        </div>
+
+        <figure class="graph commit-B">
+            <svg width="350" height="190" viewBox="0 0 350 190">
+                <use class="A-B path" xlink:href="#path-branch-down" x="50" y="70"></use>
+
+                <use class="A commit-circle" xlink:href="#commit-circle" x="50" y="70"></use>
+                <text class="commit-label" x="50" y="75">A</text>
+                <use class="B commit-circle head" xlink:href="#commit-circle" x="125" y="120"></use>
+                <text class="commit-label" x="125" y="125">B</text>
+
+                <use xlink:href="#info-box" class="info-box" x="50" y="15"></use>
+                <text x="50" y="20">master</text>
+                <use xlink:href="#arrow-down" x="50" y="35"></use>
+
+                <use xlink:href="#info-box" class="info-box" x="125" y="175"></use>
+                <text x="125" y="180">feature</text>
+                <use xlink:href="#arrow-up" x="125" y="155"></use>
+            </svg>
+        </figure>
+
+        <p>Just to have multiple commits on the feature branch, we add another commit to it.</p>
+
+        <div class="file">
+            <div class="header">
+                <pre class="name">main.js</pre>
+                <pre class="version">C</pre>
+            </div>
+            <div class="content">
+<pre class="code commit-C">
+var s = 'youtube.com/watch?v=Zvhw9BSURGg';
+console.log(s);
+// Some other code
+var videoId = s.substring(s.lastIndexOf('=') + 1);
+console.log(videoId);</pre>
+            </div>
+        </div>
+
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="modified">[feature]</span>$</span>git commit -am '[feature] Log video id'
+<span class="output">[feature C] [feature] Log video id
+ 1 file changed, 1 insertion(+)</span></pre>
+        </div>
+
+        <figure class="graph commit-C">
+            <svg width="350" height="190" viewBox="0 0 350 190">
+                <use class="A-B path" xlink:href="#path-branch-down" x="50" y="70"></use>
+                <use class="B-C path" xlink:href="#path-branch-short" x="125" y="120"></use>
+
+                <use class="A commit-circle" xlink:href="#commit-circle" x="50" y="70"></use>
+                <text class="commit-label" x="50" y="75">A</text>
+                <use class="B commit-circle" xlink:href="#commit-circle" x="125" y="120"></use>
+                <text class="commit-label" x="125" y="125">B</text>
+                <use class="C commit-circle head" xlink:href="#commit-circle" x="175" y="120"></use>
+                <text class="commit-label" x="175" y="125">C</text>
+
+                <use xlink:href="#info-box" class="info-box" x="50" y="15"></use>
+                <text x="50" y="20">master</text>
+                <use xlink:href="#arrow-down" x="50" y="35"></use>
+
+                <use xlink:href="#info-box" class="info-box" x="175" y="175"></use>
+                <text x="175" y="180">feature</text>
+                <use xlink:href="#arrow-up" x="175" y="155"></use>
+            </svg>
+        </figure>
+
+        <p>
+            Meanwhile someone has pushed a new commit to the master and renamed the variable <span class="pln">s</span>
+            to <span class="pln">videoUrl</span>. So we checkout the master branch and pull the changes.
+        </p>
+
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="clean">[feature]</span>$</span>git checkout master && git pull
+<span class="output">Switched to branch 'master'
+...
+   A..D  master     -> origin/master
+Fast-forwarded master to D.</span></pre>
+        </div>
+
+        <div class="file">
+            <div class="header">
+                <pre class="name">main.js</pre>
+                <pre class="version">D</pre>
+            </div>
+            <div class="content">
+<pre class="code commit-D">
+var <span class="insertion">videoUrl</span> = 'youtube.com/watch?v=Zvhw9BSURGg';
+console.log(<span class="insertion">videoUrl</span>);
+// Some other code</pre>
+            </div>
+        </div>
+
+        <figure class="graph commit-D">
+            <svg width="350" height="190" viewBox="0 0 350 190">
+                <use class="A-D path" xlink:href="#path-branch" x="50" y="70"></use>
+                <use class="A-B path" xlink:href="#path-branch-down" x="50" y="70"></use>
+                <use class="B-C path" xlink:href="#path-branch-short" x="125" y="120"></use>
+
+                <use class="A commit-circle" xlink:href="#commit-circle" x="50" y="70"></use>
+                <text class="commit-label" x="50" y="75">A</text>
+                <use class="B commit-circle" xlink:href="#commit-circle" x="125" y="120"></use>
+                <text class="commit-label" x="125" y="125">B</text>
+                <use class="C commit-circle" xlink:href="#commit-circle" x="175" y="120"></use>
+                <text class="commit-label" x="175" y="125">C</text>
+                <use class="D commit-circle head" xlink:href="#commit-circle" x="125" y="70"></use>
+                <text class="commit-label" x="125" y="75">D</text>
+
+                <use xlink:href="#info-box" class="info-box" x="125" y="15"></use>
+                <text x="125" y="20">master</text>
+                <use xlink:href="#arrow-down" x="125" y="35"></use>
+
+                <use xlink:href="#info-box" class="info-box" x="175" y="175"></use>
+                <text x="175" y="180">feature</text>
+                <use xlink:href="#arrow-up" x="175" y="155"></use>
+            </svg>
+        </figure>
+
+        <p>
+            To keep our previously implemented feature up-to-date with the master branch, we decide to rebase it.
+        </p>
+
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="clean">[master]</span>$</span>git checkout feature && git rebase master
+<span class="output">Switched to branch 'feature'
+First, rewinding head to replay your work on top of it...
+...
+Auto-merging main.js</span></pre>
+        </div>
+
+        <figure class="graph commit-a000000">
+            <svg width="350" height="190" viewBox="0 0 350 190">
+                <use class="A-B path grey" xlink:href="#path-branch-down" x="50" y="70"></use>
+                <use class="B-C path grey" xlink:href="#path-branch-short" x="125" y="120"></use>
+                <use class="A-D path" xlink:href="#path-branch" x="50" y="70"></use>
+                <use class="D-Bs path" xlink:href="#path-branch-short" x="125" y="70"></use>
+                <use class="D-Bs path" xlink:href="#path-branch-down" x="175" y="70"></use>
+                <use class="Bs-Cs path" xlink:href="#path-branch-short" x="250" y="120"></use>
+
+                <use class="A commit-circle" xlink:href="#commit-circle" x="50" y="70"></use>
+                <text class="commit-label" x="50" y="75">A</text>
+                <use class="B commit-circle grey" xlink:href="#commit-circle" x="125" y="120"></use>
+                <text class="commit-label" x="125" y="125">B</text>
+                <use class="C commit-circle grey" xlink:href="#commit-circle" x="175" y="120"></use>
+                <text class="commit-label" x="175" y="125">C</text>
+                <use class="D commit-circle" xlink:href="#commit-circle" x="125" y="70"></use>
+                <text class="commit-label" x="125" y="75">D</text>
+
+                <use class="Bs commit-circle" xlink:href="#commit-circle" x="250" y="120"></use>
+                <text class="commit-label" x="250" y="125">B'</text>
+                <use class="Cs commit-circle head" xlink:href="#commit-circle" x="300" y="120"></use>
+                <text class="commit-label" x="300" y="125">C'</text>
+
+                <use xlink:href="#info-box" class="info-box" x="125" y="15"></use>
+                <text x="125" y="20">master</text>
+                <use xlink:href="#arrow-down" x="125" y="35"></use>
+
+                <use xlink:href="#info-box" class="info-box" x="300" y="175"></use>
+                <text x="300" y="180">feature</text>
+                <use xlink:href="#arrow-up" x="300" y="155"></use>
+            </svg>
+        </figure>
+
+        <div class="info-box">
+            <div class="image-container">
+                <figure>
+                    <img class="info-icon" src="icons/info.svg" alt="">
+                </figure>
+            </div>
+            <div class="text-container">
+                <p>
+                    A changeset consists of additions, deletions and also a few lines of surrounding code. If the
+                    surrounding code has been modified, git tries to auto-merge the files.<br>
+                    If there would have been more code between the changes (e.g. a multi-line comment), the commits
+                    would have been applied directly.
+                </p>
+            </div>
+        </div>
+
+        <div class="file">
+            <div class="header">
+                <pre class="name">main.js</pre>
+                <pre class="version">C'</pre>
+            </div>
+            <div class="content">
+<pre class="code commit-Cs">
+var videoUrl = 'youtube.com/watch?v=Zvhw9BSURGg';
+console.log(videoUrl);
+// Some other code
+var videoId = <span class="error-code">s</span>.substring(<span class="error-code">s</span>.lastIndexOf('=') + 1); <img class="error-icon" src="icons/error.svg" alt="//"><span class="nocode error-info">s is not defined</span>
+console.log(videoId);</pre>
+            </div>
+        </div>
+
+        <p>
+            Oh no! Our code is broken!<br>
+            git does a great job at merging text but doesn’t know anything about code. The line
+            <span class="com">// Some other code</span>
+            separates the commit changes in both branches nicely and the feature branch was rebased without merge
+            conflicts.
+        </p>
+        <br>
+
+        <p>
+            If we just fix the latest commit or even worse, create a
+            <span style="font-family: monospace; font-size: 12px">"Fix rebase errors"</span>-commit, commit
+            <span class="commit-circle">B'</span> still remains broken in the history.
+        </p>
+
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="clean">[feature]</span>$</span>git checkout B'
+<span class="output">Note: checking out B'...</span></pre>
+        </div>
+
+        <div class="file">
+            <div class="header">
+                <pre class="name">main.js</pre>
+                <pre class="version">B'</pre>
+            </div>
+            <div class="content">
+
+<pre class="code commit-Bs">
+var videoUrl = 'youtube.com/watch?v=Zvhw9BSURGg';
+console.log(videoUrl);
+// Some other code
+var videoId = <span class="error-code">s</span>.substring(<span class="error-code">s</span>.lastIndexOf('=') + 1); <img class="error-icon" src="icons/error.svg" alt="//"><span class="nocode error-info">s is not defined</span></pre>
+            </div>
+        </div>
+
+        <h1>TODO:</h1>
+        <ul>
+            <li>TL;TR</li>
+            <li>Summary, when you can rebase and when you shouldn't</li>
+            <li>Problems with fixing the root problems after a rebase (Spoiler: don't do that)</li>
+            <li>Pros and Cons of a linear history.</li>
+        </ul>
+
+        <!--
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="clean">[feature]</span>$</span>git rebase -i @~2
+<span class="output">Stopped at B' [feature] Get video id</span></pre>
+        </div>
+
+        <div class="file">
+            <div class="header">
+                <pre class="name">main.js</pre>
+                <pre class="version">D</pre>
+            </div>
+            <div class="content">
+
+<pre class="code commit-D">
+var videoUrl = 'youtube.com/watch?v=Zvhw9BSURGg';
+console.log(videoUrl);
+// Some other code
+var videoId = <span class="insertion">videoUrl</span>.substring(<span class="insertion">videoUrl</span>.lastIndexOf('=') + 1);</pre>
+            </div>
+        </div>
+
+        <div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="modified">[rebasing...]</span>$</span>git add . && git rebase --continue
+<span class="output">[detached HEAD B"] [feature] Get video id
+...
+error: could not apply C"... [feature] Log video id</span>
+<span class="prompt"><span class="modified">[rebasing... ⚡1]</span>$</span></pre>
+        </div>
+
+        <div class="file">
+            <div class="header">
+                <pre class="name">main.js</pre>
+                <pre class="version">D</pre>
+            </div>
+            <div class="content">
+
+<pre class="code commit-D">
+var videoUrl = 'youtube.com/watch?v=Zvhw9BSURGg';
+console.log(videoUrl);
+// Some other code
+<<<<<<< HEAD
+var videoId = videoUrl.substring(videoUrl.lastIndexOf('=') + 1);
+=======
+var videoId = s.substring(s.lastIndexOf('=') + 1);
+console.log(videoId);
+>>>>>>> <span class="nocode">C"... [feature] Log video id</span></pre>
+            </div>
+        </div>
+
+        <p>
+            The auto-merge process failed → Merge conflicts.
+        </p>
+
+        <h2>Conclusion</h2>
+
+        <p>Don't rebase</p>
+        -->
+    </article>
+</div>
+
+<!--<a href='#' class='tooltip' data-hash='Cs'>Cs</a>-->
+<!--<a href='#' class='tooltip' data-hash='cafebabe'>cafebabe</a>-->
+
+<!-- tooltip -->
+<!--
+<div id='tooltip' style="position: absolute;">
+    <div class="tabs">
+        <a class='tab header diff' href='.tab.diff.content'>Diff</a>
+        <a class='tab header code' href='.tab.code.content'>Code</a>
+    </div>
+
+    <p class='tab diff content'></p>
+
+    <p class='tab code content'></p>
+</div>
+-->
+
+<!-- js -->
+<script>
+    window.exports = {
+        main: main
+    };
+    main();
+</script>
+
+<!-- commits -->
+<!--
+<div class='commit Cs'>
+    <div class='d'>
+<pre class="prettyprint lang-js">
+Author: Johannes Lüftenegger <jlueftenegger@student.tugraz.at>
+Date:   2015-08-31 17:04:03 +0200
+
+    hotfix: removed toast in RenameSoundDialog.java
+
+diff --git a/catroid/src/org/catrobat/catroid/ui/dialogs/RenameSoundDialog.java b/catroid/src/org/catrobat/catroid/ui/dialogs/RenameSoundDialog.java
+index ae535db..a4e6281 100644
+--- a/catroid/src/org/catrobat/catroid/ui/dialogs/RenameSoundDialog.java
++++ b/catroid/src/org/catrobat/catroid/ui/dialogs/RenameSoundDialog.java
+@@ -30,7 +30,6 @@ import android.widget.Button;
+
+ import org.catrobat.catroid.R;
+ import org.catrobat.catroid.ui.ScriptActivity;
+-import org.catrobat.catroid.utils.ToastUtil;
+ import org.catrobat.catroid.utils.Utils;
+
+ public class RenameSoundDialog extends TextDialog {
+@@ -95,7 +94,6 @@ public class RenameSoundDialog extends TextDialog {
+             @Override
+             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                 if (s.length() == 0 || (s.length() == 1 && s.charAt(0) == '.')) {
+<span class="remove">-                    ToastUtil.showError(getActivity(), R.string.notification_invalid_text_entered);</span>
+                     buttonPositive.setEnabled(false);
+                 } else {
+                     buttonPositive.setEnabled(true);
+</pre>
+    </div>
+    <div class='c'>
+<pre class="prettyprint lang-js">
+var s = 'Hello World!';
+console.log(s);
+</pre>
+    </div>
+</div>
+
+<div class='commit cafebabe'>
+    <div class='d'>
+        cafebabe<br>
+        and more diff
+    </div>
+    <div class='c'>
+        Some code<br>
+        And miore code
+    </div>
+</div>
+-->
+</body>
+</html>

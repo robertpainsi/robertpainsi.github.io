@@ -1,0 +1,318 @@
+/* style.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: whitesmoke;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+figure {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+p {
+    margin: 0 0;
+    color: #4d4d4d;
+    max-width: 592px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.terminal,
+.file,
+.info-box,
+p,
+h2 {
+    max-width: 592px;
+    width: 100% !important;
+    clear: left !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+figure img {
+    max-width: 100%;
+}
+
+figure.graph {
+    display: block;
+    margin: auto;
+}
+
+figure.graph.commit-A {
+    width: 100px;
+    height: 90px;
+}
+
+figure.graph.commit-B {
+    width: 175px;
+}
+
+figure.graph.commit-C,
+figure.graph.commit-D {
+    width: 250px;
+}
+
+figure.graph.commit-a000000,
+figure.graph.commit-bbbbbbb,
+figure.graph.commit-Bs {
+    width: 350px;
+}
+
+.container {
+    position: relative;
+    padding: 8px 8px;
+}
+
+.main {
+    position: relative;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        /*padding: 20px 30px;*/
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    /*.file,*/
+    /*.terminal,*/
+    /*p {*/
+    /*float: left;*/
+    /*width: auto;*/
+    /*}*/
+    /*figure.graph {*/
+    /*float: right;*/
+    /*margin-right: -350px;*/
+    /*margin-top: 9px;*/
+    /*width: 350px !important;*/
+    /*}*/
+    /*.container {*/
+    /*/!*padding: 40px 60px;*!/*/
+    /*width: 900px;*/
+    /*margin: auto;*/
+    /*}*/
+    /*.main {*/
+    /*padding-right: 290px;*/
+    /*}*/
+}
+
+/* file */
+.file {
+    margin: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.file .header {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom: 1px solid #ddd;
+    background: #f7f7f7;
+    padding: 0.24em 0.8em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.file .header .name {
+    margin: 0;
+}
+
+.file .header .version {
+    margin: 0;
+    opacity: 0.3;
+}
+
+/* file versions */
+.file .commit-A .line .line-code,
+.file .commit-B .line:nth-child(4) .line-code,
+.file .commit-C .line:nth-child(5) .line-code {
+    background: rgba(0, 255, 0, 0.24);
+}
+
+span.commit-circle {
+    padding-top: 3px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid #404040;
+    background: #b3e3ff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* code */
+span.com,
+span.pln {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.code {
+    border: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    opacity: 0;
+}
+
+.code.done {
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+}
+
+.code .line {
+    display: flex;
+}
+
+.code .line-number {
+    display: inline-block;
+    border-right: 1px solid #eee;
+    padding: 0.04em 0.3em 0.04em 0.7em;
+    color: rgba(0, 0, 0, 0.3);
+    text-align: right;
+}
+
+.code .line-code {
+    display: inline-block;
+    padding: 0.04em 0.4em;
+    flex-grow: 100;
+}
+
+.code span.insertion {
+    background: rgba(0, 255, 0, 0.2);
+}
+
+.code img.error-icon {
+    height: 1em;
+    vertical-align: middle;
+    padding-right: 0.2em;
+}
+
+.code .error-info {
+    color: red;
+}
+
+.code .error-code {
+    border-bottom: 2px dotted red;
+    display: inline-block;
+    position: relative;
+}
+
+.code .error-code:after {
+    content: '';
+    height: 5px;
+    width: 100%;
+    border-bottom: 2px dotted red;
+    position: absolute;
+    bottom: -3px;
+    left: -2px;
+}
+
+/* terminal */
+div.terminal {
+    background: #2b2b2b;
+    color: #a9b7c6;
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 3px;
+    overflow-x: auto;
+}
+
+pre.terminal {
+    margin: 0;
+}
+
+pre.terminal .prompt {
+    color: #f57900;
+}
+
+pre.terminal .prompt:after {
+    content: "\00a0";
+}
+
+pre.terminal .prompt .clean {
+    color: #8ae234;
+}
+
+pre.terminal .prompt .modified {
+    color: #ef2929;
+}
+
+pre.terminal .prompt .untracked {
+    color: #fce94f;
+}
+
+pre.terminal .output {
+    color: #959992;
+}
+
+.info-box {
+    margin: 0.5em;
+    background: #d8ecf5;
+    color: #5694b1;
+    border: 1px solid #aed7ea;
+    border-radius: 3px;
+    overflow-x: auto;
+    display: flex;
+    align-items: stretch;
+}
+
+.info-box .image-container {
+    padding: 0.24em;
+    background: #aed7ea;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+img.info-icon {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.info-box .text-container {
+    width: 100%;
+    padding: 0.5em;
+}
+
+.info-box .text-container p {
+    font-size: 1em;
+    font-family: monospace;
+    color: #5694b1;
+}
+
+#tooltip {
+    background: #ffffff;
+    display: none;
+    border: 1px solid black;
+}
+
+.commit {
+    display: none;
+}
+
+.tab.header {
+    display: inline-block;
+}
+
+.tab.content {
+    display: none;
+}
+
+.tab.content.active {
+    display: block;
+}
