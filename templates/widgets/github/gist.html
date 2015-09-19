@@ -1,0 +1,34 @@
+<link rel="import" href="/templates/resource-bundle.html">
+
+<script>
+    webcomponentsUtils.importScope(function(importDocument) {
+        var callbackId = 0;
+        function loadGist(element, id, file) {
+            var callbackName = 'gist_callback' + callbackId++;
+            window[callbackName] = function(gistData) {
+                delete window[callbackName];
+                var html = '<link rel="stylesheet" href="' + htmlUtils.escapeHtml(gistData.stylesheet) + '">';
+                html += gistData.div;
+                element.innerHTML = html;
+                script.parentNode.removeChild(script);
+            };
+            var script = document.createElement('script');
+            script.setAttribute('src', 'https://gist.github.com/' + id + '.json?file=' + file + '&callback=' + callbackName);
+            script.onload = element.onload;
+            script.onerror = element.onerror;
+            document.body.appendChild(script);
+        }
+
+        webcomponentsUtils.registerElement('github-gist', function() {
+            this.attachedCallback = function() {
+                var idAttribute = this.attributes.getNamedItem('id');
+                var fileAttribute = this.attributes.getNamedItem('file');
+                if (idAttribute) {
+                    var id = idAttribute.value;
+                    var file = (fileAttribute) ? fileAttribute.value : '';
+                    loadGist(this, id, file);
+                }
+            };
+        });
+    });
+</script>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+
+    <script src="/templates/webcomponents-lite.min.js"></script>
+    <link rel="import" href="/templates/pages/flatt-page/page.html">
+
+    <style>
+        /** Fill height */
+        /*html, body {*/
+            /*height: 100%;*/
+            /*background: red;*/
+        /*}*/
+
+        /*.flatt-page,*/
+        /*.flatt-page-main,*/
+        /*.flatt-page-main-article-container {*/
+            /*display: flex;*/
+            /*flex-flow: column nowrap;*/
+        /*}*/
+
+        /*.flatt-page-main,*/
+        /*.flatt-page-main-article-container,*/
+        /*.flatt-page-main-article {*/
+            /*flex: 1;*/
+        /*}*/
+
+        /*@media (min-width: 1120px) {*/
+            /*.flatt-page-main {*/
+                /*flex-flow: row wrap;*/
+            /*}*/
+        /*}*/
+
+        /*.flatt-page,*/
+        /*.flatt-page-main,*/
+        /*.flatt-page-main-article-container {*/
+            /*min-height: 100%;*/
+        /*}*/
+
+        /*@media all and (-ms-high-contrast: none) {*/
+            /*html, body {*/
+                /*background: green;*/
+            /*}*/
+
+            /*.flatt-page,*/
+            /*.flatt-page-main,*/
+            /*.flatt-page-main-article-container {*/
+                /*min-height: 100%;*/
+                /*height: 100%;*/
+            /*}*/
+        /*}*/
+    </style>
+</head>
+<body>
+
+<flatt-page>
+    <div class="content"></div>
+</flatt-page>
+
+<script>
+    var match = location.search.match(/n=(.+)/);
+    if (match) {
+        var container = document.querySelector('.content');
+        var n = parseInt(match[1]);
+        for (var i = 0; i < n; i++) {
+            var foo = document.createElement('h1');
+            foo.innerHTML = 'Example of Hello World!';
+            container.appendChild(foo);
+        }
+    }
+</script>
+</body>
+</html>

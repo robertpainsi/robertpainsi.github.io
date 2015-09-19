@@ -1,0 +1,34 @@
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-right {
+    text-align: center;
+}
+
+.footnote {
+    font-size: 0.8em;
+}
+
+.octicon {
+    font-size: inherit;
+}
+
+.loading {
+    height: 28px;
+    width: 28px;
+    animation: rotate 1s infinite linear;
+    border: 6px solid #0275d8;
+    border-right-color: transparent;
+    border-radius: 50%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

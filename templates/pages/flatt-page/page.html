@@ -1,0 +1,456 @@
+<link rel="import" href="/templates/resource-bundle.html">
+
+<link rel="import" href="/templates/pages/flatt-page/menu.html">
+
+<link rel="import" href="/templates/widgets/github/github.html">
+<link rel="import" href="/templates/widgets/github/gist.html">
+<link rel="import" href="/templates/widgets/social/social.html">
+
+<style>
+    * {
+        /*outline: 1px dashed #ff9999;*/
+    }
+
+    /**
+     * Page
+     */
+    .flatt-page {
+        width: 100%;
+    }
+
+    .flatt-page-container {
+        max-width: 800px;
+    }
+
+    @media (min-width: 1136px) {
+        .flatt-page-container {
+            max-width: 1440px;
+        }
+    }
+
+    /**
+     * Header
+     */
+    .flatt-page-header-container {
+        background-color: #eceeef;
+        width: 100%;
+        padding: 16px;
+    }
+
+    @media (min-width: 1136px) {
+        .flatt-page-header-container {
+            margin-bottom: 24px;
+        }
+    }
+
+    .flatt-page-header {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flatt-page-header-title {
+        margin-right: 20px;
+        margin-bottom: 0;
+        flex-grow: 9999;
+    }
+
+    .flatt-page-header-description {
+        width: 100%;
+        padding-left: 12px;
+    }
+
+    /**
+     * Header Menu
+     */
+    .flatt-page-header-menu {
+        display: flex;
+        flex-grow: 1;
+        align-items: flex-start;
+        min-width: 220px;
+        padding: 2px;
+    }
+
+    .flatt-page-header-menu > .btn-group {
+        flex-grow: 1;
+    }
+
+    .flatt-page-header-menu-item github-all {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flatt-page-header-dropdown-menu-social {
+        min-width: inherit;
+        text-align: center;
+    }
+
+    .flatt-page-header-menu-item-overview-btn-close {
+        float: right;
+    }
+
+    /**
+     * Main
+     */
+    .flatt-page-main {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /**
+     * Main Navigation
+     */
+    .flatt-page-main-nav-container {
+        width: 100%;
+        background-color: #eceeef;
+    }
+
+    .flatt-page-main-nav {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 4px 15px;
+        position: sticky;
+        top: 24px;
+    }
+
+    @media (min-width: 1136px) {
+        .flatt-page-main-nav-container {
+            max-width: 320px;
+            background-color: inherit;
+        }
+
+        .flatt-page-main-nav {
+            background-color: #eceeef;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+    }
+
+    .flatt-page-main-nav-title {
+        display: block;
+        text-align: left;
+    }
+
+    @media (max-width: 1135px) {
+        .flatt-page-main-nav-title:after {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 0;
+            vertical-align: middle;
+            margin-left: .5em;
+
+            border-top: 0;
+            border-bottom: .3em solid;
+            border-right: .3em solid transparent;
+            border-left: .3em solid transparent;
+        }
+
+        .flatt-page-main-nav-title.collapsed:after {
+            border-top: .3em solid;
+            border-bottom: 0;
+            border-right: .3em solid transparent;
+            border-left: .3em solid transparent;
+        }
+    }
+
+    @media (min-width: 1136px) {
+        .flatt-page-main-nav-title {
+            pointer-events: none;
+            padding: 0;
+        }
+    }
+
+    .flatt-page-main-nav-index-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    @media (min-width: 1136px) {
+        .flatt-page-main-nav-index-container {
+            padding: 0;
+        }
+    }
+
+    .flatt-page-main-nav-index ol {
+        list-style-type: none;
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+
+    .flatt-page-main-nav-index > ol > li {
+        padding-left: 0 !important;
+    }
+
+    .flatt-page-main-nav-index ol > li {
+        padding: 10px 0 0 16px;
+    }
+
+    .flatt-page-main-nav-index ol > li > * {
+        display: block;
+    }
+
+    @media (min-width: 1136px) {
+        .flatt-page-main-nav-index-container {
+            display: block;
+        }
+
+        .flatt-page-main-nav-index ol > li {
+            font-size: 13px
+        }
+    }
+
+    /**
+     * Main Article
+     */
+    .flatt-page-main-article-container {
+        width: 100%;
+        max-width: 800px;
+    }
+
+    @media (min-width: 1136px) {
+        .flatt-page-main-article-container {
+            margin-left: 0;
+        }
+    }
+
+    .flatt-page-main-article-container > * {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .flatt-page-main-article {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+    }
+
+    @media (min-width: 1136px) {
+        .flatt-page-main-article {
+            padding-top: 0;
+        }
+    }
+
+    /**
+     * Main Footer
+     */
+    .flatt-page-main-footer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .flatt-page-main-footer > * {
+        text-align: center;
+    }
+</style>
+
+<template id="t">
+    <div class="flatt-page">
+        <div class="flatt-page-header-container">
+            <header class="flatt-page-header flatt-page-container center">
+                <div class="flatt-page-header-menu">
+                    <div class="flatt-page-header-menu-item btn-group">
+                        <a class="btn btn-block dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+                            <span class="fa fa-fw octicon octicon-mark-github"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <github-all user="robertpainsi" repository="robertpainsi.github.io"></github-all>
+                        </div>
+                    </div>
+                    <div class="flatt-page-header-menu-item btn-group">
+                        <a class="btn btn-block dropdown-toggle" href="javascript:;" data-toggle="dropdown">
+                            <i class="fa fa-share-alt fa-fw"></i>
+                        </a>
+                        <div class="flatt-page-header-dropdown-menu-social dropdown-menu">
+                            <social-share-all></social-share-all>
+                        </div>
+                    </div>
+                    <div class="flatt-page-header-menu-item btn-group">
+                        <a href="javascript:;"
+                           class="flatt-page-header-menu-item-overview btn btn-block dropdown-toggle"
+                           data-toggle="modal" data-target=".bd-example-modal-lg">
+                            <i class="fa fa-bars fa-fw"></i>
+                        </a>
+                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                             aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div>
+                                        <a href="javascript:;"
+                                           class="btn flatt-page-header-menu-item-overview-btn-close"
+                                           data-dismiss="modal">
+                                            <i class="fa fa-times fa-fw"></i>
+                                        </a>
+                                    </div>
+                                    <flatt-page-menu></flatt-page-menu>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="flatt-page-header-title">
+                    <a href="/">#code&nbsp;<span class="octicon octicon-squirrel"></span></a>
+                </h1>
+                <span class="flatt-page-header-description lead">
+                <i class="fa fa-male"></i>
+                <a href="https://github.com/robertpainsi">Robert&nbsp;Painsi</a> •&nbsp;Software&nbsp;developer
+            </span>
+            </header>
+        </div>
+        <main class="flatt-page-main">
+            <div class="flatt-page-main-nav-container">
+                <nav class="flatt-page-main-nav center">
+                    <a href="#IN-THIS-ARTICLE" class="flatt-page-main-nav-title btn collapsed" data-toggle="collapse">
+                        IN THIS ARTICLE
+                    </a>
+                    <div id="IN-THIS-ARTICLE" class="flatt-page-main-nav-index-container bar collapse">
+                        <nav class="flatt-page-main-nav-index"></nav>
+                    </div>
+                </nav>
+            </div>
+            <div class="flatt-page-main-article-container center">
+                <article class="flatt-page-main-article"></article>
+                <div>
+                    <hr>
+                </div>
+                <footer class="flatt-page-main-footer">
+                    <github-all user="robertpainsi" repository="robertpainsi.github.io"></github-all>
+                    <social-share-all></social-share-all>
+                </footer>
+            </div>
+        </main>
+    </div>
+</template>
+
+<script>
+    var flattPage = {};
+    webcomponentsUtils.importScope(function(importDoc) {
+        history.scrollRestoration = 'manual';
+
+        flattPage.updateIndex = function() {
+            var headerTags = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
+            var getAllHeaders = function(startElement, result) {
+                if (!result) {
+                    result = [];
+                }
+                for (var i = 0; i < startElement.children.length; i++) {
+                    var e = startElement.children[i];
+                    if (headerTags.includes(e.tagName) && !e.classList.contains('hide-in-index')) {
+                        result.push(e);
+                    }
+                    if (e.children.length) {
+                        getAllHeaders(e, result);
+                    }
+                }
+                return result;
+            };
+
+            var convertHeadersToTreeStructure = function(headers) {
+                var root = createNode(null);
+                var currentRoot = root;
+                for (var i = 0; i < headers.length; i++) {
+                    var h = headers[i];
+                    var currentNode = createNode(h);
+                    if (!root.children.length || h.tagName > currentRoot.element.tagName) {
+                        currentRoot.add(currentNode);
+                    } else {
+                        while (currentRoot.parent && h.tagName <= currentRoot.element.tagName) {
+                            currentRoot = currentRoot.parent;
+                        }
+                        currentRoot.add(currentNode);
+                    }
+                    currentRoot = currentNode;
+                }
+                return root;
+            };
+
+            var createNode = function() {
+                function Node(element) {
+                    this.element = element;
+                    this.parent = null;
+                    this.children = [];
+                }
+
+                Node.prototype.add = function(node) {
+                    node.parent = this;
+                    this.children.push(node);
+                };
+
+                return function(node) {
+                    return new Node(node);
+                }
+            }();
+
+            var createIndexElements = function(node, parentListNode) {
+                if (!parentListNode) {
+                    var ol = document.createElement('ol');
+                    for (var i = 0; i < node.children.length; i++) {
+                        var c = node.children[i];
+                        createIndexElements(c, ol)
+                    }
+                    return ol;
+                } else {
+                    var text = node.element.innerHTML;
+                    var id = encodeURIComponent(text.replace(/ /g, '-'));
+                    node.element.id = id;
+
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.href = '#' + id;
+                    a.innerText = text;
+                    li.appendChild(a);
+
+                    if (node.children.length) {
+                        var ol = document.createElement('ol');
+                        for (var i = 0; i < node.children.length; i++) {
+                            var c = node.children[i];
+                            createIndexElements(c, ol);
+                        }
+                        li.appendChild(ol);
+                    }
+                    parentListNode.appendChild(li);
+                }
+            };
+
+            return function(e, fromElement) {
+                e = e || document.querySelector('.flatt-page-main-nav-index');
+                fromElement = fromElement || document.querySelector('.flatt-page-main-article');
+
+                var headers = getAllHeaders(fromElement);
+                var root = convertHeadersToTreeStructure(headers);
+                while (e.firstChild) {
+                    e.removeChild(e.firstChild);
+                }
+                e.appendChild(createIndexElements(root));
+            }
+        }();
+
+        webcomponentsUtils.registerElement('flatt-page', function() {
+            var template = importDoc.getElementById('t');
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(template);
+                clone.querySelector('.flatt-page-header-menu-item-overview').addEventListener('click', function() {
+                    document.body.scrollTop = 0;
+                });
+                flattPage.updateIndex(clone.querySelector('.flatt-page-main-nav-index'), this);
+                webcomponentsUtils.prependChildren(this.childNodes, clone.querySelector('.flatt-page-main-article'));
+                this.appendChild(clone);
+
+                if (htmlUtils.getAttributeValue(this, 'scroll') !== 'false') {
+                    setTimeout(function() {
+                        htmlUtils.scrollTo();
+                    }, 0);
+                }
+            };
+        });
+    });
+</script>

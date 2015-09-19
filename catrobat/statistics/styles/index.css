@@ -1,0 +1,11 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+
+.last_updated_container {
+    font-size: 0.8em;
+    align-self: flex-end;
+    margin-bottom: 8px;
+}

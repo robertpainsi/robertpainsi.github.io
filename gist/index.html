@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>#code squirrel - GitHub Gist</title>
+
+    <script src="/templates/webcomponents-lite.min.js"></script>
+    <link rel="import" href="/templates/resource-bundle.html">
+    <link rel="import" href="/templates/pages/flatt-page/page.html">
+
+    <style>
+        #github-gist-container.loading {
+            width: 42px;
+            height: 42px;
+            margin-top: 3em;
+            margin-bottom: 3em;
+        }
+
+        .gist .gist-file:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        code {
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+
+<flatt-page scroll="false">
+    <h2 class="page-title">GitHub gist</h2>
+
+    <div class="loading center"></div>
+    <div id="github-gist-container"></div>
+</flatt-page>
+
+<script>
+    document.addEventListener('WebComponentsReady', function() {
+        function parseSearch(search) {
+            switch (search) {
+                case '?reopen-github-pull-request-after-force-push':
+                    return {
+                        id: '205d46bd8c4bfa90542edaa3c6adab12',
+                        file: 'reopen-pull-request-after-force-push.md'
+                    };
+                default:
+                    return {
+                        id: htmlUtils.getParameterByName('id', search),
+                        file: htmlUtils.getParameterByName('file', search)
+                    };
+            }
+        }
+
+        var gistContainer = document.getElementById('github-gist-container');
+        var searchQuery = parseSearch(location.search);
+        var id = searchQuery.id;
+        var file = searchQuery.file;
+        if (id) {
+            if (!id.includes('/')) {
+                id = 'robertpainsi/' + id;
+            }
+            var gist = document.createElement('github-gist');
+            gist.setAttribute('id', id);
+            gist.setAttribute('file', file || '');
+            gist.onload = function() {
+                htmlUtils.removeClassFromElements('loading');
+                gistContainer.appendChild(htmlUtils.toElement(
+                    '<div><a class="small" href="https://gist.github.com/' + id + '#new_comment_field">Comment on this gist</a></div>'
+                ));
+            };
+            gist.onerror = function() {
+                gistNotFound(gist);
+            };
+            gistContainer.appendChild(gist);
+        } else {
+            gistNotFound(gistContainer);
+        }
+
+        function gistNotFound(e) {
+            htmlUtils.removeClassFromElements('loading');
+            e.innerHTML = '<span class="gist gist-not-found">404 Gist not found 😞</span>';
+        }
+    });
+</script>
+</body>
+</html>

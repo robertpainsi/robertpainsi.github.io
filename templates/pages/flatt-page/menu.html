@@ -1,0 +1,109 @@
+<link rel="import" href="/templates/resource-bundle.html">
+
+<style>
+    .flatt-page-menu {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .flatt-page-menu-item {
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-bottom: 24px;
+        display: flex;
+        align-items: center
+    }
+
+    @media (min-width: 975px) {
+        .flatt-page-menu {
+            flex-flow: row;
+            flex-wrap: wrap;
+        }
+
+        .flatt-page-menu-item {
+            max-width: 367px;
+        }
+
+        .flatt-page-menu-item:nth-child(2n + 1) {
+            margin-right: 8px;
+        }
+
+        .flatt-page-menu-item:nth-child(2n) {
+            margin-left: 8px;
+        }
+    }
+
+    .flatt-page-menu-item-img-container {
+        min-width: 46px;
+        max-width: 46px;
+        margin-right: 10px;
+    }
+
+    .flatt-page-menu-item-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .flatt-page-menu-item-title {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+</style>
+
+<template id="t">
+    <div class="flatt-page-menu"></div>
+</template>
+
+<template id="t-item">
+    <div class="flatt-page-menu-item">
+        <div class="flatt-page-menu-item-img-container">
+            <img src="#" class="flatt-page-menu-item-img">
+        </div>
+        <div style="display: inline-block; vertical-align: middle;">
+            <a href="#" class="flatt-page-menu-item-title-link">
+                <h2 class="flatt-page-menu-item-title">Title</h2>
+            </a>
+            <span class="flatt-page-menu-item-description">Description</span>
+        </div>
+    </div>
+</template>
+
+<script>
+    webcomponentsUtils.importScope(function(importDocument) {
+        var catroidIcon = {
+            src: '/templates/images/catroid-icon-39x46.png'
+        };
+
+        var menuConfig = {
+            items: [
+                {
+                    url: '/catrobat/statistics/',
+                    title: 'Catrobat statistics',
+                    description: 'Statistics about programs, users and features.',
+                    icon: catroidIcon
+                }
+            ]
+        };
+
+        webcomponentsUtils.registerElement('flatt-page-menu', function() {
+            var template = importDocument.getElementById('t');
+            var itemTemplate = importDocument.getElementById('t-item');
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(template);
+
+                var menuElement = clone.querySelector('.flatt-page-menu');
+                menuConfig.items.forEach(function(item) {
+                    var itemElement = webcomponentsUtils.cloneTemplate(itemTemplate);
+                    itemElement.querySelector('.flatt-page-menu-item-img').src = item.icon.src;
+                    itemElement.querySelector('.flatt-page-menu-item-title').innerText = item.title;
+                    itemElement.querySelector('.flatt-page-menu-item-title-link').href = item.url;
+                    itemElement.querySelector('.flatt-page-menu-item-description').innerHTML = item.description;
+                    menuElement.appendChild(itemElement);
+                });
+
+                this.appendChild(clone);
+            };
+        });
+    });
+</script>

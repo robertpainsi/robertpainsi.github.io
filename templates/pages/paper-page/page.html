@@ -1,0 +1,50 @@
+<link rel="import" href="../../resource-bundle.html">
+<link rel="import" href="menu.html">
+<link rel="import" href="../../widgets/github/github.html">
+
+<style>
+    .w-paper-page {
+        padding: 8px 12px 4px 12px;
+    }
+
+    @media (min-width: 800px) {
+        body {
+            background-color: #eee;
+        }
+
+        .w-paper-page {
+            background-color: #fff;
+            max-width: 800px;
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 2px;
+            margin: 20px auto;
+            padding: 8px 19px;
+        }
+    }
+</style>
+
+<template id="t">
+    <div class="w-paper-page">
+        <paper-menu user="robertpainsi" repository="robertpainsi.github.io"></paper-menu>
+        <div class="w-paper-page-article"></div>
+        <div align="center">
+            <github-all user="robertpainsi" repository="robertpainsi.github.io"></github-all><br>
+            <social-share-all></social-share-all>
+        </div>
+    </div>
+</template>
+
+<script>
+    webcomponentsUtils.importScope(function(importDoc) {
+        webcomponentsUtils.registerElement('paper-page', function() {
+            var template = importDoc.getElementById('t');
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(template);
+                webcomponentsUtils.passAllAttributes(this, clone.querySelector('paper-menu'));
+                webcomponentsUtils.passAllAttributes(this, clone.querySelector('social-share-all'));
+                webcomponentsUtils.appendChildren(this.childNodes, clone.querySelector('.w-paper-page-article'));
+                this.appendChild(clone);
+            };
+        });
+    });
+</script>

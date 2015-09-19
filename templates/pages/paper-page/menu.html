@@ -1,0 +1,137 @@
+<link rel="import" href="../../resource-bundle.html">
+<link rel="import" href="../flatt-page/menu.html">
+<link rel="import" href="../../widgets/github/github.html">
+<link rel="import" href="../../widgets/social/social.html">
+
+<style>
+    .w-paper-menu {
+        text-align: right;
+    }
+
+    .w-paper-menu-overlay {
+        visibility: hidden;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        overflow-y: hidden;
+        text-align: right;
+        transition: 0.25s ease-in;
+    }
+
+    .w-paper-menu-overlay.active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .w-paper-menu-overlay-content {
+        max-width: 782px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .w-paper-menu-btn-close {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    @media (min-width: 800px) {
+        .w-paper-menu-btn-close {
+            margin-top: 28px;
+        }
+    }
+
+    .w-paper-menu-btn {
+        font-size: 1em;
+    }
+
+    .w-paper-menu .dropdown-toggle::after {
+        display: none
+    }
+
+    .w-paper-menu .dropdown-menu {
+        left: 50%;
+        right: auto;
+        text-align: center;
+        transform: translate(-50%, 0);
+        min-width: inherit;
+    }
+
+    .w-paper-menu .dropdown-menu .btn {
+        width: 100%;
+    }
+
+    .w-paper-menu .w-github-btn {
+        text-align: left;
+    }
+</style>
+
+<template id="t">
+    <div class="w-paper-menu">
+        <div class="btn-group">
+            <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="octicon octicon-mark-github"></span>
+            </a>
+            <div class="w-paper-menu-dropdown w-paper-menu-dropdown-github dropdown-menu">
+                <github-all></github-all>
+            </div>
+        </div>
+        <div class="btn-group">
+            <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-share-alt fa-fw"></i>
+            </a>
+            <div class="w-paper-menu-dropdown w-paper-menu-dropdown-share dropdown-menu">
+                <social-share-all></social-share-all>
+            </div>
+        </div>
+        <a href="javascript:;" class="w-paper-menu-btn w-paper-menu-btn-menu btn btn-default">
+            <i class="fa fa-bars fa-fw"></i>
+        </a>
+    </div>
+</template>
+
+<template id="t-overlay">
+    <div class="w-paper-menu-overlay">
+        <div class="w-paper-menu-overlay-content">
+            <a href="javascript:;" class="w-paper-menu-btn-close btn btn-default">
+                <i class="fa fa-times fa-fw"></i>
+            </a>
+            <root-menu></root-menu>
+        </div>
+    </div>
+</template>
+
+<script>
+    webcomponentsUtils.importScope(function(importDocument) {
+        webcomponentsUtils.registerElement('paper-menu', function() {
+            var overlay;
+            var showOverlay = function() {
+                if (!overlay) {
+                    overlay = webcomponentsUtils.addTemplate(document.body, importDocument.getElementById('t-overlay'));
+                    overlay.querySelector('.w-paper-menu-btn-close').addEventListener("click", function() {
+                        overlay.classList.remove('active');
+                    });
+                }
+                setTimeout(function() {
+                    overlay.classList.add('active');
+                }, 50);
+            };
+
+            var template = importDocument.getElementById('t');
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(template);
+                for (var e of clone.querySelectorAll('.w-paper-menu-dropdown')) {
+                    webcomponentsUtils.passAllAttributes(this, e.children);
+                }
+                clone.querySelector('.w-paper-menu-btn-menu').addEventListener("click", showOverlay);
+                this.appendChild(clone);
+            };
+        });
+    });
+</script>

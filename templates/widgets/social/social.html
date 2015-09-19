@@ -1,0 +1,113 @@
+<link rel="import" href="/templates/resource-bundle.html">
+
+<style>
+    .w-social-share-btn .fa-google-plus {
+        color: #dd4b39;
+    }
+
+    .w-social-share-btn i.fa-facebook {
+        color: #3b5998;
+    }
+
+    .w-social-share-btn i.fa-twitter {
+        color: #00aced;
+    }
+
+    .w-social-share-btn i.fa-linkedin {
+        color: #007bb6;
+    }
+
+    .w-social-share-btn i.fa-envelope {
+        color: #3a3f43;
+    }
+</style>
+
+<template id="t">
+    <a href="javascript:;" class="w-social-share-btn btn btn-default">
+        <i class="w-social-share-btn-icon fa fa-lg"></i>
+    </a>
+</template>
+
+<template id="t-all">
+    <social-share-google-plus></social-share-google-plus>
+    <social-share-facebook></social-share-facebook>
+    <social-share-twitter></social-share-twitter>
+    <social-share-mail></social-share-mail>
+</template>
+
+<script>
+    webcomponentsUtils.importScope(function(importDocument) {
+        var shareConfig = {
+            tags: [
+                {
+                    tagName: 'social-share-google-plus',
+                    icon: 'fa-google-plus',
+                    link: 'https://plus.google.com/share?url={{URL}}'
+                },
+                {
+                    tagName: 'social-share-facebook',
+                    icon: 'fa-facebook',
+                    link: 'https://www.facebook.com/sharer/sharer.php?u={{URL}}&t={{HEADER}}'
+                },
+                {
+                    tagName: 'social-share-twitter',
+                    icon: 'fa-twitter',
+                    link: 'https://twitter.com/intent/tweet?url={{URL}}&text={{HEADER}}'
+                },
+                {
+                    tagName: 'social-share-linkedin',
+                    icon: 'fa-linkedin',
+                    link: 'http://www.linkedin.com/shareArticle?mini=true&url={{URL}}&title={{HEADER}}&summary={{DESCRIPTION}}'
+                },
+                {
+                    tagName: 'social-share-mail',
+                    icon: 'fa-envelope',
+                    link: 'mailto:?subject={{HEADER}}&body={{URL}}%0A{{DESCRIPTION}}'
+                }
+            ]
+        };
+
+        var fillTemplateWithData = function(template, data) {
+            return template
+                .replace(/\{\{URL\}\}/g, encodeURIComponent(data.url || ''))
+                .replace(/\{\{HEADER\}\}/g, encodeURIComponent(data.header || ''))
+                .replace(/\{\{DESCRIPTION\}\}/g, encodeURIComponent(data.description || ''));
+        };
+
+        var template = importDocument.getElementById('t');
+        shareConfig.tags.forEach(function(config) {
+            webcomponentsUtils.registerElement(config.tagName, function() {
+                this.attachedCallback = function() {
+                    var clone = webcomponentsUtils.cloneTemplate(template);
+
+                    clone.querySelector('.w-social-share-btn-icon').classList.add(config.icon);
+                    var button = clone.querySelector('.w-social-share-btn');
+                    var that = this;
+                    var updateButtonUrl = function() {
+                        button.href = fillTemplateWithData(config.link, {
+                            url: that.getAttribute('url') || window.location.href,
+                            header: that.getAttribute('header'),
+                            description: that.getAttribute('description')
+                        });
+                    };
+                    ['mouseover', 'activate', 'click'].forEach(function(event) {
+                        button.addEventListener(event, updateButtonUrl);
+                    });
+
+                    this.appendChild(clone);
+                };
+            });
+        });
+
+        var allTemplate = importDocument.getElementById('t-all');
+        webcomponentsUtils.registerElement('social-share-all', function() {
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(allTemplate);
+                for (var i = 0; i < clone.children.length; i++) {
+                    webcomponentsUtils.passAllAttributes(this, clone.children[i]);
+                }
+                this.appendChild(clone);
+            };
+        });
+    });
+</script>
