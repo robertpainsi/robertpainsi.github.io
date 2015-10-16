@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scratch block usage</title>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $.ajax({
+            url: "https://scratch.mit.edu/statistics/data/monthly/",
+            jsonp: "callback",
+            dataType: "json",
+            data: {
+                format: "json"
+            },
+            success: function(response) {
+                var categories = response.block_distribution.children.filter(function(category) {
+                    return category.children.length;
+                });
+
+                var blocks = [];
+                categories.forEach(function(category) {
+                    category.children.forEach(function(block) {
+                        block.category = category;
+                        block.name = block.name
+                                .replace(/%[^\s]+/g, 'X')
+                                .replace('@turnRight', '↻')
+                                .replace('@turnLeft', '↺')
+                                .replace('@greenFlag', '⚑')
+                        ;
+                    });
+                    blocks = blocks.concat(category.children);
+                });
+
+                blocks.sort(function(a, b) {
+                    return b.count - a.count;
+                });
+
+                $(document).ready(function() {
+                    var $chart = $('#chart');
+                    var rows = []
+                    blocks.forEach(function(block) {
+                        var name = block.name;
+                        var color = block.color;
+                        var percent = Math.round(block.percent * 100 * 10) / 10;
+                        var relativePercent = block.percent * 100 / blocks[0].percent;
+                        var count = block.count;
+                        rows.push(`<tr align="right">
+                                <td class="shrink" style="color: #${color}; white-space: nowrap">${name}</td>
+                                <td class="expand" style="width: 99%; background: linear-gradient(90deg, #${color} ${relativePercent}%, white ${relativePercent}%);">
+                                <span style="float: left">${percent}%</span><span style="float: right">${count}</span>
+                                </td></tr>`);
+                    });
+                    $chart.append(rows);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+<div align="right">
+    <a href="https://github.com/robertpainsi/robertpainsi.github.io/blob/master/block-usage/index.html">Source</a>
+</div>
+<br>
+<table id="chart" style="width: 100%"></table>
+</body>
+</html>
