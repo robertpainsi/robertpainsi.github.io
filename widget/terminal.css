@@ -1,0 +1,48 @@
+/* terminal.css
+
+<div class="terminal">
+<pre class="terminal">
+<span class="prompt"><span class="clean">[master]</span>$</span>git checkout feature && git rebase master
+<span class="output">Switched to branch 'feature'
+First, rewinding head to replay your work on top of it...
+...
+Auto-merging main.js</span></pre>
+</div>
+ */
+
+div.terminal {
+    background: #2b2b2b;
+    color: #a9b7c6;
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 3px;
+    overflow-x: auto;
+}
+
+pre.terminal {
+    margin: 0;
+}
+
+pre.terminal .prompt {
+    color: #f57900;
+}
+
+pre.terminal .prompt:after {
+    content: "\00a0";
+}
+
+pre.terminal .prompt .clean {
+    color: #8ae234;
+}
+
+pre.terminal .prompt .modified {
+    color: #ef2929;
+}
+
+pre.terminal .prompt .untracked {
+    color: #fce94f;
+}
+
+pre.terminal .output {
+    color: #959992;
+}
