@@ -1,0 +1,3 @@
+[submodule "comcheck-web"]
+	path = comcheck-web
+	url = https://github.com/robertpainsi/comcheck-web.git
