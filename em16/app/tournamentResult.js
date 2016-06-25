@@ -24,5 +24,6 @@ const result = new Tournament();
 
 result.setScore(switzerland, 4, poland, 5);
 result.setScore(wales, 1, northernIreland, 0);
+result.setScore(croatia, 0, portugal, 1);
 
 export default result;
