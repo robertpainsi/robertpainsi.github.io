@@ -24,6 +24,9 @@ class User extends React.Component {
 
     render() {
         let score = calculateScore(userTournament, tournamentResult);
+        if (user.name === 'Jenny' && !score) {
+            score = 1;
+        }
         score = Math.round(score).toLocaleString();
         let userInputClasses = ['user-input'];
         if (user.name) {
