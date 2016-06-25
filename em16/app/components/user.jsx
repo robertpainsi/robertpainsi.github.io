@@ -31,19 +31,14 @@ class User extends React.Component {
         }
         return (
             <div className="user">
-                <table>
-                    <tbody>
-                    <tr>
-                        <td align="right"><span>User:&nbsp;</span></td>
-                        <td><input className={userInputClasses.join(' ')} placeholder="Enter name"
-                                   onChange={this.enterName} value={user.name}/></td>
-                    </tr>
-                    <tr>
-                        <td><span>Score:&nbsp;</span></td>
-                        <td><span>{score}</span></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div style={{'display': 'inline-block', 'textAlign': 'left'}}>
+                    <input className={userInputClasses.join(' ')} placeholder="Enter name..." onChange={this.enterName}
+                           value={user.name}/>
+                    <div style={{'verticalAlign': 'bottom'}}>
+                        <img style={{'marginRight': '4px', 'paddingBottom': '4px'}} src="img/star.png"/>
+                        <span>{score}</span>
+                    </div>
+                </div>
             </div>
         );
     }

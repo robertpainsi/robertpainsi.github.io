@@ -12,14 +12,54 @@ input {
 }
 
 .user {
-    margin: auto;
-    width: 50%;
-    font-size: 24px;
-    padding: 12px 12px 12px 24px;
+    text-align: center;
+    background: #144965;
+    color: white;
+    font-size: 21px;
+    line-height: 32px;
+    padding: 12px 12px 14px 24px;
+    width: 100%;
+}
+
+.user-input {
+    line-height: 18px;
+    transition: all 0.2s ease;
+    outline: none;
+    margin-right: 4px;
+    margin-left: 27px;
+    background: none;
+    border: 2px solid transparent;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+}
+
+.user-input:focus {
+    border: 2px solid transparent;
+    border-bottom: 1px solid white;
+    border-radius: 0;
 }
 
 .user-input.valid {
     border: 2px solid transparent;
+    background: none;
+}
+
+*::-webkit-input-placeholder {
+    color: #1a658b;
+}
+
+*:-moz-placeholder {
+    color: #1a658b;
+    opacity: 1;
+}
+
+*::-moz-placeholder {
+    color: #1a658b;
+    opacity: 1;
+}
+
+*:-ms-input-placeholder {
+    color: #1a658b;
 }
 
 .tournament {
@@ -43,7 +83,7 @@ input {
     border: 1px solid #dddddd;
     border-right-color: #b8b8b8;
     border-bottom-color: #b8b8b8;
-    margin-bottom: 8px;
+    margin-top: 10px;
     margin-left: 24px;
 }
 
