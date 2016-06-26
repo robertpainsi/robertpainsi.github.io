@@ -2,6 +2,8 @@
 
 import React from "react";
 import Nation from "./nation.jsx";
+
+import {unknown} from '../nation';
 import hash from "../hash";
 
 class MatchInput extends React.Component {
@@ -50,9 +52,25 @@ class Match extends React.Component {
             }
         };
 
+        let overlay;
+        let contentClasses = [];
+        if (match.firstNation === unknown || match.secondNation === unknown) {
+            overlay = <div className="locked-overlay"></div>;
+            contentClasses.push('locked');
+
+            let lockedMatch = {
+                match: unknown,
+                getScore: () => '',
+                setScore: () => undefind
+            };
+            firstMatch = lockedMatch;
+            secondMatch = lockedMatch;
+        }
+
         return (
             <div className="match">
-                <table style={{'width': '100%'}}>
+                {overlay}
+                <table className={contentClasses.join(' ')} style={{'width': '100%'}}>
                     <tbody>
                     <tr>
                         <td><Nation nation={match.firstNation}/></td>

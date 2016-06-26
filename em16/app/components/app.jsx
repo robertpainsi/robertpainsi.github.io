@@ -18,7 +18,7 @@ class App extends React.Component {
                     <User/>
                 </div>
                 <div className="tournament">
-                    <div className="round">
+                    <div className="round round-eighth">
                         <Match match={user.tournament.get(1)}/>
                         <Match match={user.tournament.get(2)}/>
                         <Match match={user.tournament.get(3)}/>
@@ -28,7 +28,7 @@ class App extends React.Component {
                         <Match match={user.tournament.get(7)}/>
                         <Match match={user.tournament.get(8)}/>
                     </div>
-                    <div className="round round-four">
+                    <div className="round round-quarter">
                         <Match match={user.tournament.get(9)}/>
                         <div className="match invisible"></div>
                         <Match match={user.tournament.get(10)}/>
@@ -44,7 +44,7 @@ class App extends React.Component {
                         <div className="match invisible"></div>
                         <Match match={user.tournament.get(14)}/>
                     </div>
-                    <div className="round">
+                    <div className="round round-final">
                         <Match match={user.tournament.get(15)}/>
                     </div>
                 </div>
