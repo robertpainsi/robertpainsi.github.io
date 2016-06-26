@@ -13,23 +13,17 @@ export default function (userTournament, actualTournament) {
 
         let intermediateScore = 0;
 
-        if (i > 8) {
-            if (userMatch.firstNation === actualMatch.firstNation) {
-                intermediateScore += 1;
-            }
-
-            if (userMatch.secondNation === actualMatch.secondNation) {
-                intermediateScore += 1;
-            }
-        }
-
-        if (userMatch.firstNation === actualMatch.firstNation && userMatch.secondNation === actualMatch.secondNation) {
-            if (userMatch.firstScore == actualMatch.firstScore && userMatch.secondScore == actualMatch.secondScore) {
-                intermediateScore += 5;
-            } else if (userMatch.firstScore < userMatch.secondScore && actualMatch.firstScore < actualMatch.secondScore) {
+        if (userMatch.firstScore == actualMatch.firstScore && userMatch.secondScore == actualMatch.secondScore) {
+            intermediateScore += 8;
+        } else {
+            if (userMatch.firstScore < userMatch.secondScore && actualMatch.firstScore < actualMatch.secondScore) {
                 intermediateScore += 3;
             } else if (userMatch.firstScore > userMatch.secondScore && actualMatch.firstScore > actualMatch.secondScore) {
                 intermediateScore += 3;
+            }
+
+            if (userMatch.firstScore == actualMatch.firstScore || userMatch.secondScore == actualMatch.secondScore) {
+                intermediateScore += 1;
             }
         }
 
