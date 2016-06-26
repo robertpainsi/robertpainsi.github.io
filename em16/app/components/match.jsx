@@ -75,11 +75,13 @@ class Match extends React.Component {
         let actualScoreVisibilityClass;
         if (actualMatch.firstScore === undefined || actualMatch.secondScore === undefined) {
             actualScoreVisibilityClass = 'invisible';
+        } else {
+            matchClasses.push('over');
         }
 
         return (
             <div>
-                <div className="match">
+                <div className={matchClasses.join(' ')}>
                     {lockOverlay}
                     <Nation nation={match.firstNation}/>
                     <div className="score">

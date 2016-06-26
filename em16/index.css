@@ -115,6 +115,10 @@ input::-webkit-inner-spin-button {
     width: 640px;
 }
 
+.match.over {
+    opacity: 0.6;
+}
+
 .match-input {
     font-size: 24px;
     font-weight: bold;
