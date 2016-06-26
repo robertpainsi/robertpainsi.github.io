@@ -2,8 +2,7 @@
 
 import React from "react";
 import Nation from "./nation.jsx";
-
-import {unknown} from '../nation';
+import {unknown} from "../nation";
 import hash from "../hash";
 
 class MatchInput extends React.Component {
@@ -16,7 +15,7 @@ class MatchInput extends React.Component {
         }
 
         let classes = ['match-input'];
-        if (score !== 0 && !score || match.firstScore == match.secondScore) {
+        if (match !== unknown && ((score !== 0 && !score) || match.firstScore == match.secondScore)) {
             classes.push('invalid');
         }
         let onChange = function (e) {
