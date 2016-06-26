@@ -1,6 +1,6 @@
 'use strict';
 
-import {InitialMatch, EvaluatedMatch} from "./match";
+import Match from "./match";
 import {
     belgium,
     croatia,
@@ -17,31 +17,32 @@ import {
     slovakia,
     spain,
     switzerland,
-    wales
+    wales,
+    unknown
 } from "./nation";
 
 class Tournament {
     constructor() {
         this.matchs = new Map();
 
-        let match1 = new InitialMatch(switzerland, poland);
-        let match2 = new InitialMatch(croatia, portugal);
-        let match3 = new InitialMatch(wales, northernIreland);
-        let match4 = new InitialMatch(hungary, belgium);
-        let match5 = new InitialMatch(germany, slovakia);
-        let match6 = new InitialMatch(italy, spain);
-        let match7 = new InitialMatch(france, ireland);
-        let match8 = new InitialMatch(england, iceland);
+        let match1 = new Match(switzerland, poland);
+        let match2 = new Match(croatia, portugal);
+        let match3 = new Match(wales, northernIreland);
+        let match4 = new Match(hungary, belgium);
+        let match5 = new Match(germany, slovakia);
+        let match6 = new Match(italy, spain);
+        let match7 = new Match(france, ireland);
+        let match8 = new Match(england, iceland);
 
-        let match9 = new EvaluatedMatch(match1, match2);
-        let match10 = new EvaluatedMatch(match3, match4);
-        let match11 = new EvaluatedMatch(match5, match6);
-        let match12 = new EvaluatedMatch(match7, match8);
+        let match9 = new Match(unknown, unknown);
+        let match10 = new Match(unknown, unknown);
+        let match11 = new Match(unknown, unknown);
+        let match12 = new Match(unknown, unknown);
 
-        let match13 = new EvaluatedMatch(match9, match10);
-        let match14 = new EvaluatedMatch(match11, match12);
+        let match13 = new Match(unknown, unknown);
+        let match14 = new Match(unknown, unknown);
 
-        let match15 = new EvaluatedMatch(match13, match14);
+        let match15 = new Match(unknown, unknown);
 
         this.add(1, match1);
         this.add(2, match2);

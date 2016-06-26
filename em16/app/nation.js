@@ -35,3 +35,4 @@ export const italy = new Nation('Italien', 'Italy-flag.png');
 export const spain = new Nation('Spanien', 'Spain-flag.png');
 export const england = new Nation('England', 'England-flag.png');
 export const iceland = new Nation('Island', 'Iceland-flag.png');
+export const unknown = new Nation('Unknown', 'Antarctica.png');
