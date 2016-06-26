@@ -1,0 +1,138 @@
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]:hover,
+input[type="number"]:focus {
+    -moz-appearance: number-input;
+}
+
+input {
+    border-radius: 4px;
+}
+
+.user {
+    text-align: center;
+    background: #144965;
+    color: white;
+    font-size: 21px;
+    line-height: 32px;
+    padding: 12px 12px 14px 24px;
+    width: 100%;
+}
+
+.user-input {
+    line-height: 18px;
+    transition: all 0.2s ease;
+    outline: none;
+    margin-right: 4px;
+    margin-left: 27px;
+    background: none;
+    border: 2px solid transparent;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+}
+
+.user-input:focus {
+    border: 2px solid transparent;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+}
+
+.user-input.valid {
+    border: 2px solid transparent;
+    background: none;
+}
+
+*::-webkit-input-placeholder {
+    color: #1a658b;
+}
+
+*:-moz-placeholder {
+    color: #1a658b;
+    opacity: 1;
+}
+
+*::-moz-placeholder {
+    color: #1a658b;
+    opacity: 1;
+}
+
+*:-ms-input-placeholder {
+    color: #1a658b;
+}
+
+.tournament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.round {
+    flex: 1;
+    flex-grow: 0;
+    margin-right: 20px;
+}
+
+.match {
+    width: 168px;
+    height: 80px;
+    padding: 8px 12px 8px 14px;
+    border-radius: 5px;
+    background: #e8e8e8;
+    border: 1px solid #dddddd;
+    border-right-color: #b8b8b8;
+    border-bottom-color: #b8b8b8;
+    margin-top: 10px;
+    margin-left: 24px;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.match-input {
+    border: 1px solid #bababa;
+    padding-left: 4px;
+    margin-top: 3px;
+    margin-right: -22px;
+    transition: all 0.4s ease;
+}
+
+.match-input.invalid {
+    background: #ffcccc;
+    border: 1px solid #ff9999;
+}
+
+.match-input {
+    float: right;
+    width: 32px;
+    outline: none;
+}
+
+.nation {
+    display: inline-block;
+    padding-top: 3px;
+}
+
+.nation-img {
+    padding-right: 12px;
+}
+
+.example-enter {
+    opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+    opacity: 1;
+    transition: opacity 400ms ease-in;
+}
+
+.example-leave {
+    opacity: 1;
+}
+
+.example-leave.example-leave-active {
+    opacity: 0.01;
+    transition: opacity 400ms ease-in;
+}
