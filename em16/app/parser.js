@@ -17,7 +17,6 @@ class Parser {
 
             user.name = splitData[0];
             this._parseTips(splitData[1]);
-
         }
     }
 

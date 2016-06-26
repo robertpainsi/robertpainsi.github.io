@@ -1,6 +1,7 @@
 'use strict';
 
 import userTournament from "./userTournament";
+import hash from "./hash";
 
 class User {
     constructor() {
@@ -14,6 +15,7 @@ class User {
 
     set name(name) {
         this._name = name;
+        hash.name = this._name;
     }
 
     get tournament() {
