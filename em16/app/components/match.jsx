@@ -52,10 +52,10 @@ class Match extends React.Component {
         };
 
         let overlay;
-        let contentClasses = [];
+        let matchClasses = ['match'];
         if (match.firstNation === unknown || match.secondNation === unknown) {
             overlay = <div className="locked-overlay"></div>;
-            contentClasses.push('locked');
+            matchClasses.push('locked');
 
             let lockedMatch = {
                 match: unknown,
@@ -67,9 +67,9 @@ class Match extends React.Component {
         }
 
         return (
-            <div className="match">
+            <div className={matchClasses.join(' ')}>
                 {overlay}
-                <table className={contentClasses.join(' ')} style={{'width': '100%'}}>
+                <table style={{'width': '100%'}}>
                     <tbody>
                     <tr>
                         <td><Nation nation={match.firstNation}/></td>

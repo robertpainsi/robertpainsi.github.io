@@ -89,12 +89,11 @@ input {
 }
 
 .locked {
-    opacity: 0.4;
+    opacity: 0.6;
 }
 
 .locked-overlay {
     position: absolute;
-    opacity: 0.95;
     top: 0;
     left: 0;
     z-index: 1000;
