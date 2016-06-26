@@ -4,6 +4,7 @@ import React from "react";
 import Nation from "./nation.jsx";
 import {unknown} from "../nation";
 import hash from "../hash";
+import {getMatchScore} from "../score";
 
 class MatchInput extends React.Component {
     render() {
@@ -15,8 +16,12 @@ class MatchInput extends React.Component {
         }
 
         let classes = ['match-input'];
-        if (match !== unknown && ((score !== 0 && !score) || match.firstScore == match.secondScore)) {
-            classes.push('invalid');
+        if (score !== '' && score >= 0 && score <= 9) {
+            if (match.firstScore === match.secondScore) {
+                classes.push('invalid');
+            } else {
+                classes.push('valid');
+            }
         }
         let onChange = function (e) {
             let goals = parseInt(e.target.value, 10);
@@ -24,17 +29,18 @@ class MatchInput extends React.Component {
             data.setScore(goals);
             hash.update();
         };
-        return (
-            <div>
-                <input className={classes.join(' ')} type="number" min="0" max="9" value={score} onChange={onChange}/>
-            </div>
-        );
+        return <input className={classes.join(' ')} type="number" min="0" max="9" value={score} onChange={onChange}
+                      placeholder="?"/>;
     }
 }
 
 class Match extends React.Component {
     render() {
         let match = this.props.match;
+        let actualMatch = this.props.actualMatch;
+        let actualFirstScore = actualMatch.firstScore;
+        let actualSecondScore = actualMatch.secondScore;
+        let points = getMatchScore(match, actualMatch);
 
         let firstMatch = {
             match,
@@ -51,10 +57,10 @@ class Match extends React.Component {
             }
         };
 
-        let overlay;
+        let lockOverlay;
         let matchClasses = ['match'];
         if (match.firstNation === unknown || match.secondNation === unknown) {
-            overlay = <div className="locked-overlay"></div>;
+            lockOverlay = <div className="locked-overlay"></div>;
             matchClasses.push('locked');
 
             let lockedMatch = {
@@ -66,21 +72,29 @@ class Match extends React.Component {
             secondMatch = lockedMatch;
         }
 
+        let actualScoreVisibilityClass;
+        if (actualMatch.firstScore === undefined || actualMatch.secondScore === undefined) {
+            actualScoreVisibilityClass = 'invisible';
+        }
+
         return (
-            <div className={matchClasses.join(' ')}>
-                {overlay}
-                <table style={{'width': '100%'}}>
-                    <tbody>
-                    <tr>
-                        <td><Nation nation={match.firstNation}/></td>
-                        <td><MatchInput data={firstMatch}/></td>
-                    </tr>
-                    <tr>
-                        <td><Nation nation={match.secondNation}/></td>
-                        <td><MatchInput data={secondMatch}/></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div>
+                <div className="match">
+                    {lockOverlay}
+                    <Nation nation={match.firstNation}/>
+                    <div className="score">
+                        <div>
+                            <MatchInput data={firstMatch}/>
+                            <span className="match-separator">-</span>
+                            <MatchInput data={secondMatch}/>
+                        </div>
+                        <div className={actualScoreVisibilityClass}>
+                            <span style={{'verticalAlign': 'text-top'}}>({actualFirstScore} - {actualSecondScore}) +{points} </span>
+                            <img src="img/star.png" width="16px" height="16px"/>
+                        </div>
+                    </div>
+                    <Nation nation={match.secondNation} reverse={true}/>
+                </div>
             </div>
         );
     }

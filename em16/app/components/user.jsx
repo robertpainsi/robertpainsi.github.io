@@ -5,7 +5,7 @@ import user from "../user";
 import hash from "../hash";
 import userTournament from "../userTournament";
 import tournamentResult from "../tournamentResult";
-import calculateScore from "../score";
+import {getTournamentScore} from "../score";
 
 class User extends React.Component {
     constructor() {
@@ -23,7 +23,7 @@ class User extends React.Component {
     }
 
     render() {
-        let score = calculateScore(userTournament, tournamentResult);
+        let score = getTournamentScore(userTournament, tournamentResult);
         if (user.name === 'Jenny' && !score) {
             score = 1;
         }

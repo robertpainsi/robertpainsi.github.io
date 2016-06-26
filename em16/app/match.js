@@ -1,9 +1,10 @@
 'use strict';
 
 class Match {
-    constructor(firstNation, secondNation) {
+    constructor(firstNation, secondNation, type) {
         this._firstNation = firstNation;
         this._secondNation = secondNation;
+        this._type = type;
     }
 
     get firstNation() {
@@ -30,14 +31,15 @@ class Match {
         this._secondScore = score;
     }
 
-    // get winner() {
-    //     if (this._firstScore > this._secondScore) {
-    //         return this.firstNation;
-    //     } else if (this._secondScore > this.firstScore) {
-    //         return this.secondNation;
-    //     }
-    //     return null;
-    // }
+    get type() {
+        return this._type;
+    }
 }
+
+export const TypeEighthFinal = Symbol('EighthFinal');
+export const TypeQuarterFinal = Symbol('QuarterFinal');
+export const TypeSemiFinal = Symbol('SemiFinal');
+export const TypeFinal = Symbol('Final');
+export const TypePetiteFinal = Symbol('PetiteFinal');
 
 export default Match;
