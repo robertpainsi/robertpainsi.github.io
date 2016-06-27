@@ -1,7 +1,6 @@
 'use strict';
 
 import React from "react";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import Nation from "./nation.jsx";
 import {unknown} from "../nation";
 import hash from "../hash";
@@ -84,34 +83,28 @@ class Match extends React.Component {
             matchClasses.push('over');
         }
 
-        let matchParentClasses = ['match-parent'];
         if (this.props.last) {
-            matchParentClasses.push('last');
+            matchClasses.push('last');
         }
 
         return (
-            <ReactCSSTransitionGroup transitionName="nation" transitionAppear={true}
-                                     transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-            <div className={matchParentClasses.join(' ')}>
-                <div className={matchClasses.join(' ')}>
-                    {lockOverlay}
-                    <Nation nation={match.firstNation}/>
-                    <div className="score">
-                        <div>
-                            <MatchInput data={firstMatch}/>
-                            <span className="match-separator">-</span>
-                            <MatchInput data={secondMatch}/>
-                        </div>
-                        <div className={actualScoreVisibilityClass}>
+            <div className={matchClasses.join(' ')}>
+                {lockOverlay}
+                <Nation nation={match.firstNation}/>
+                <div className="score">
+                    <div>
+                        <MatchInput data={firstMatch}/>
+                        <span className="match-separator">-</span>
+                        <MatchInput data={secondMatch}/>
+                    </div>
+                    <div className={actualScoreVisibilityClass}>
                             <span style={{'verticalAlign': 'text-top'}}>({actualFirstScore}
                                 - {actualSecondScore}) +{points} </span>
-                            <img src="img/star.png" width="16px" height="16px"/>
-                        </div>
+                        <img src="img/star.png" width="16px" height="16px"/>
                     </div>
-                    <Nation nation={match.secondNation} reverse={true}/>
                 </div>
+                <Nation nation={match.secondNation} reverse={true}/>
             </div>
-            </ReactCSSTransitionGroup>
         );
     }
 }
