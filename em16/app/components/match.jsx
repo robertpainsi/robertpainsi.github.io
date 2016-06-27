@@ -10,6 +10,8 @@ class MatchInput extends React.Component {
     render() {
         let data = this.props.data;
         let match = data.match;
+        let actualMatch = data.actualMatch;
+        let actualMatchOver = actualMatch.firstScore || actualMatch.secondScore;
         let score = data.getScore();
         if (!(score >= 0 && score <= 10)) {
             score = '';
@@ -29,8 +31,8 @@ class MatchInput extends React.Component {
             data.setScore(goals);
             hash.update();
         };
-        return <input className={classes.join(' ')} type="number" min="0" max="9" value={score} onChange={onChange}
-                      placeholder="?"/>;
+        return <input className={classes.join(' ')} type="number" min="0" max="9" value={score} placeholder="?"
+                      disabled={actualMatchOver} onChange={onChange}/>;
     }
 }
 
@@ -44,6 +46,7 @@ class Match extends React.Component {
 
         let firstMatch = {
             match,
+            actualMatch,
             getScore: () => match.firstScore,
             setScore: (score) => {
                 match.firstScore = score;
@@ -51,6 +54,7 @@ class Match extends React.Component {
         };
         let secondMatch = {
             match,
+            actualMatch,
             getScore: () => match.secondScore,
             setScore: (score) => {
                 match.secondScore = score;
@@ -79,7 +83,7 @@ class Match extends React.Component {
             matchClasses.push('over');
         }
 
-        let matchParentClasses =['match-parent'];
+        let matchParentClasses = ['match-parent'];
         if (this.props.last) {
             matchParentClasses.push('last');
         }
@@ -96,7 +100,8 @@ class Match extends React.Component {
                             <MatchInput data={secondMatch}/>
                         </div>
                         <div className={actualScoreVisibilityClass}>
-                            <span style={{'verticalAlign': 'text-top'}}>({actualFirstScore} - {actualSecondScore}) +{points} </span>
+                            <span style={{'verticalAlign': 'text-top'}}>({actualFirstScore}
+                                - {actualSecondScore}) +{points} </span>
                             <img src="img/star.png" width="16px" height="16px"/>
                         </div>
                     </div>

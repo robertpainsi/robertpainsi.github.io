@@ -162,6 +162,10 @@ input::-webkit-inner-spin-button {
     background: #ec645b;
 }
 
+.match-input:disabled {
+    background: white;
+}
+
 .match-separator {
     font-size: 24px;
     font-weight: bold;
