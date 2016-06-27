@@ -22,7 +22,7 @@ gulp.task('scripts', function () {
             .pipe(gulp.dest('./'))
             .on('finish', function () {
                 if (successfullyBuild) {
-                    gutil.log('Finished rebuild');
+                    gutil.log('Finished rebuild', new Date().toISOString());
                 }
                 successfullyBuild = true;
             })
