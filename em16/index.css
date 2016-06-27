@@ -133,7 +133,7 @@ input::-webkit-inner-spin-button {
     text-align: left;
     border-bottom: 1px solid #cecece;
     padding-left: 24px;
-    padding-bottom: 10px;
+    padding-bottom: 9px;
 }
 
 .tournament-round-header-content > h1 {
