@@ -142,7 +142,7 @@ input::-webkit-inner-spin-button {
 }
 
 .match {
-    width: 656px;
+    width: 630px;
     margin-top: 16px;
     margin-left: auto;
     margin-right: auto;
@@ -164,6 +164,7 @@ input::-webkit-inner-spin-button {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
+    width: 46px;
     border: none;
     border-bottom: 1px solid #424242;
     border-radius: 0;
@@ -210,14 +211,17 @@ input::-webkit-inner-spin-button {
 
 .nation.left {
     text-align: right;
+    margin-right: 10px;
 }
 
 .nation.right {
     text-align: left;
+    margin-left: 10px;
 }
 
 .nation-name {
     font-weight: normal;
+    vertical-align: middle;
 }
 
 .nation-img {
