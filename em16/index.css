@@ -136,6 +136,11 @@ input::-webkit-inner-spin-button {
     padding-bottom: 10px;
 }
 
+.tournament-round-header-content > h1 {
+    font-weight: bold;
+    font-size: 22px;
+}
+
 .match {
     width: 656px;
     margin-top: 16px;
@@ -209,6 +214,10 @@ input::-webkit-inner-spin-button {
 
 .nation.right {
     text-align: left;
+}
+
+.nation-name {
+    font-weight: normal;
 }
 
 .nation-img {
