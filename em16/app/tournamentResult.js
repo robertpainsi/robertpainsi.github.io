@@ -28,7 +28,7 @@ result.setScore(croatia, 0, portugal, 1);
 result.setScore(france, 2, ireland, 1);
 result.setScore(germany, 3, slovakia, 0);
 result.setScore(hungary, 0, belgium, 4);
-// result.setScore(italy, 0, spain, 0);
+result.setScore(italy, 2, spain, 0);
 // result.setScore(england, 0, iceland, 0);
 
 export default result;
