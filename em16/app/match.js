@@ -34,6 +34,14 @@ class Match {
     get type() {
         return this._type;
     }
+
+    firstNationWins() {
+        return this.firstScore > this.secondScore;
+    }
+
+    secondNationWins() {
+        return this.secondScore > this.firstScore;
+    }
 }
 
 export const TypeEighthFinal = Symbol('EighthFinal');

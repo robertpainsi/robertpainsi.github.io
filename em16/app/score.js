@@ -2,7 +2,7 @@
 
 import {TypeEighthFinal, TypeQuarterFinal, TypeSemiFinal} from "./match";
 
-export const getMatchScore = function(userMatch, actualMatch) {
+export const getMatchScore = function (userMatch, actualMatch) {
     let score = 0;
     if (!Number.isInteger(userMatch.firstScore)
         || !Number.isInteger(userMatch.secondScore)
@@ -12,10 +12,8 @@ export const getMatchScore = function(userMatch, actualMatch) {
     if (userMatch.firstScore == actualMatch.firstScore && userMatch.secondScore == actualMatch.secondScore) {
         score += 8;
     } else {
-        if (userMatch.firstScore < userMatch.secondScore && actualMatch.firstScore < actualMatch.secondScore) {
-            score += 3;
-        } else if (userMatch.firstScore > userMatch.secondScore && actualMatch.firstScore > actualMatch.secondScore) {
-            score += 3;
+        if (userMatch.firstNationWins() && actualMatch.firstNationWins() || userMatch.secondNationWins() && actualMatch.secondNationWins()) {
+            score += 4;
         }
 
         if (userMatch.firstScore == actualMatch.firstScore || userMatch.secondScore == actualMatch.secondScore) {
@@ -36,7 +34,7 @@ export const getMatchScore = function(userMatch, actualMatch) {
     return score;
 };
 
-export const getTournamentScore = function(userTournament, actualTournament) {
+export const getTournamentScore = function (userTournament, actualTournament) {
     let score = 0;
     for (let i = 1; i <= 15; i++) {
         score += getMatchScore(userTournament.get(i), actualTournament.get(i));
