@@ -80,7 +80,7 @@ class Match extends React.Component {
         }
 
         return (
-            <div>
+            <div className="match-parent">
                 <div className={matchClasses.join(' ')}>
                     {lockOverlay}
                     <Nation nation={match.firstNation}/>

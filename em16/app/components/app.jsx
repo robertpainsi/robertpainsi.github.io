@@ -17,16 +17,21 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="app-header">
-                    <User/>
+                    <div className="app-header-content">
+                        <div style={{'display': 'inline-block', 'marginRight': '20px'}}>
+                            <img src="img/em16.png"/>
+                        </div>
+                        <User/>
+                    </div>
                 </div>
                 <div className="app-content">
                     <Match match={user.tournament.get(1)} actualMatch={tournamentResult.get(1)}/>
-                    <Match match={user.tournament.get(2)} actualMatch={tournamentResult.get(2)}/>
                     <Match match={user.tournament.get(3)} actualMatch={tournamentResult.get(3)}/>
-                    <Match match={user.tournament.get(4)} actualMatch={tournamentResult.get(4)}/>
-                    <Match match={user.tournament.get(5)} actualMatch={tournamentResult.get(5)}/>
-                    <Match match={user.tournament.get(6)} actualMatch={tournamentResult.get(6)}/>
+                    <Match match={user.tournament.get(2)} actualMatch={tournamentResult.get(2)}/>
                     <Match match={user.tournament.get(7)} actualMatch={tournamentResult.get(7)}/>
+                    <Match match={user.tournament.get(5)} actualMatch={tournamentResult.get(5)}/>
+                    <Match match={user.tournament.get(4)} actualMatch={tournamentResult.get(4)}/>
+                    <Match match={user.tournament.get(6)} actualMatch={tournamentResult.get(6)}/>
                     <Match match={user.tournament.get(8)} actualMatch={tournamentResult.get(8)}/>
                 </div>
             </div>

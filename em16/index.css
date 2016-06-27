@@ -26,12 +26,30 @@ body {
 
 .app-header {
     flex: 0 0 auto;
+    text-align: center;
+    background: #144965;
+    color: white;
+    font-size: 21px;
+    line-height: 32px;
+    padding: 12px 12px 14px 24px;
+    width: 100%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    z-index: 1000;
+}
+
+.app-header-content {
+    width: 700px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .app-content {
     flex: 1 1 auto;
     position: relative;
     overflow-y: auto;
+    background: #eee;
 }
 
 input[type="number"] {
@@ -55,13 +73,7 @@ input::-webkit-inner-spin-button {
 }
 
 .user {
-    text-align: center;
-    background: #144965;
-    color: white;
-    font-size: 21px;
-    line-height: 32px;
-    padding: 12px 12px 14px 24px;
-    width: 100%;
+    display: inline-block;
 }
 
 .user-input {
@@ -105,14 +117,20 @@ input::-webkit-inner-spin-button {
     color: #1a658b;
 }
 
-.match {
+.match-parent {
     text-align: center;
     border-bottom: 1px solid #c2c2c2;
     padding-bottom: 8px;
+    padding-top: 8px;
     margin-top: 32px;
     margin-left: auto;
     margin-right: auto;
-    width: 640px;
+    width: 700px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.match {
 }
 
 .match.over {
