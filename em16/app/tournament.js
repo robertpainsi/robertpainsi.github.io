@@ -35,10 +35,10 @@ class Tournament {
         let match7 = new Match(france, ireland, TypeEighthFinal);
         let match8 = new Match(england, iceland, TypeEighthFinal);
 
-        let match9 = new Match(unknown, unknown, TypeQuarterFinal);
-        let match10 = new Match(unknown, unknown, TypeQuarterFinal);
-        let match11 = new Match(unknown, unknown, TypeQuarterFinal);
-        let match12 = new Match(unknown, unknown, TypeQuarterFinal);
+        let match9 = new Match(poland, portugal, TypeQuarterFinal);
+        let match10 = new Match(wales, belgium, TypeQuarterFinal);
+        let match11 = new Match(germany, italy, TypeQuarterFinal);
+        let match12 = new Match(france, iceland, TypeQuarterFinal);
 
         let match13 = new Match(unknown, unknown, TypeSemiFinal);
         let match14 = new Match(unknown, unknown, TypeSemiFinal);
