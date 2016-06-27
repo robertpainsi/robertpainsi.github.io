@@ -152,14 +152,17 @@ input::-webkit-inner-spin-button {
     transition: all 0.4s ease;
 }
 
+.match-input:focus {
+    border-bottom: 1px solid #424242 !important;
+}
+
 .match-input.valid {
-    border: none;
+    border-bottom: 1px solid transparent;
 }
 
 .match-input.invalid {
     border: none;
-    border-radius: 8px;
-    background: #ec645b;
+    border-bottom: 1px solid #ec645b !important;
 }
 
 .match-input:disabled {
