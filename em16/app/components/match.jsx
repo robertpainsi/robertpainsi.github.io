@@ -1,6 +1,7 @@
 'use strict';
 
 import React from "react";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import Nation from "./nation.jsx";
 import {unknown} from "../nation";
 import hash from "../hash";
@@ -89,6 +90,8 @@ class Match extends React.Component {
         }
 
         return (
+            <ReactCSSTransitionGroup transitionName="nation" transitionAppear={true}
+                                     transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
             <div className={matchParentClasses.join(' ')}>
                 <div className={matchClasses.join(' ')}>
                     {lockOverlay}
@@ -108,6 +111,7 @@ class Match extends React.Component {
                     <Nation nation={match.secondNation} reverse={true}/>
                 </div>
             </div>
+            </ReactCSSTransitionGroup>
         );
     }
 }

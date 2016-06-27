@@ -19,12 +19,12 @@ class App extends React.Component {
             let lastMatch = document.getElementsByClassName("match-parent last")[0];
 
             let lastMatchRect = lastMatch.getBoundingClientRect();
-            let contentRect = lastMatch.parentElement.getBoundingClientRect();
+            let contentRect = lastMatch.parentElement.parentElement.getBoundingClientRect();
             let scrollToPosition;
 
             scrollToPosition = (lastMatchRect.bottom - contentRect.bottom) + 32;
-            scrollTo(appContent, scrollToPosition, 1000)
-        }, 1000);
+            scrollTo(appContent, scrollToPosition, 1200)
+        }, 100);
     }
 
     render() {
