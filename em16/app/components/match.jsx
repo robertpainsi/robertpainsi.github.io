@@ -79,8 +79,13 @@ class Match extends React.Component {
             matchClasses.push('over');
         }
 
+        let matchParentClasses =['match-parent'];
+        if (this.props.last) {
+            matchParentClasses.push('last');
+        }
+
         return (
-            <div className="match-parent">
+            <div className={matchParentClasses.join(' ')}>
                 <div className={matchClasses.join(' ')}>
                     {lockOverlay}
                     <Nation nation={match.firstNation}/>
