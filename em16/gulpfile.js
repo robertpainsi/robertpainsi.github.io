@@ -9,17 +9,23 @@ var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
 
 var successfullyBuild = true;
-gulp.task('scripts', function () {
-    var bundler = watchify(browserify({entries: ['./app/index.jsx'], debug: true, cache: {}, packageCache: {}}))
+function scripts(deploy) {
+    var bundler = browserify({entries: ['./app/index.jsx'], debug: true, cache: {}, packageCache: {}})
         .transform(babelify, {presets: ['es2015', 'react']});
+    if (!deploy) {
+        bundler = watchify(bundler);
+    }
 
     var bundle = function (bundler) {
-        bundler.bundle()
+        var x = bundler.bundle()
             .on('error', showErrorNotification)
             .pipe(source('index.js'))
-            .pipe(buffer())
-            .pipe(uglify())
-            .pipe(gulp.dest('./'))
+            .pipe(buffer());
+
+        if (deploy) {
+            x = x.pipe(uglify());
+        }
+        x.pipe(gulp.dest('./'))
             .on('finish', function () {
                 if (successfullyBuild) {
                     gutil.log('Finished rebuild', new Date().toISOString());
@@ -35,16 +41,15 @@ gulp.task('scripts', function () {
     bundler.on('update', function () {
         bundle(bundler);
     });
+}
+
+gulp.task('default', function () {
+    scripts();
 });
 
-gulp.task('copy-index-html', function () {
-    // gulp.src('./app/index.html')
-    //     .pipe(gulp.dest('./'));
+gulp.task('deploy', function () {
+    scripts(true);
 });
-
-gulp.task('build', ['copy-index-html', 'scripts']);
-
-gulp.task('default', ['build']);
 
 function showErrorNotification() {
     successfullyBuild = false;
