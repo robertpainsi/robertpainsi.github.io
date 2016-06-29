@@ -234,4 +234,6 @@ input::-webkit-inner-spin-button {
 .nation-img {
     margin-left: 16px;
     margin-right: 16px;
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
 }
