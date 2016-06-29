@@ -44,7 +44,7 @@ class App extends React.Component {
                     <div className="tournament">
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
-                                <h1>🏆 EIGHTH FINAL</h1>
+                                <img src="img/trophy.png"/><h1>EIGHTH FINAL</h1>
                             </div>
                             <Match match={user.tournament.get(1)} actualMatch={tournamentResult.get(1)}/>
                             <Match match={user.tournament.get(3)} actualMatch={tournamentResult.get(3)}/>
@@ -59,7 +59,7 @@ class App extends React.Component {
                     <div className="tournament scroll-to-element">
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
-                                <h1>🏆 FOURTH FINAL</h1>
+                                <img src="img/trophy.png"/><h1>FOURTH FINAL</h1>
                             </div>
                             <Match match={user.tournament.get(9)} actualMatch={tournamentResult.get(9)}/>
                             <Match match={user.tournament.get(10)} actualMatch={tournamentResult.get(10)}/>
