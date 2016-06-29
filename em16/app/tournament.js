@@ -99,6 +99,7 @@ class Tournament {
 
         let hash = '';
         for (var [id, match] of this.matchs) {
+            if (!Number.isInteger(match.firstScore) && !(Number.isInteger(match.secondScore))) continue;
             hash += id + '#' + goalsToHash(match.firstScore) + ':' + goalsToHash(match.secondScore) + ';';
         }
         return hash;
