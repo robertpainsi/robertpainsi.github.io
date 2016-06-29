@@ -85,6 +85,13 @@ class Tournament {
         return false;
     }
 
+    clear() {
+        for (var [id, match] of this.matchs) {
+            match.firstScore = undefined;
+            match.secondScore = undefined;
+        }
+    }
+
     toHash() {
         let goalsToHash = function (goals) {
             return (Number.isInteger(goals)) ? goals : '';

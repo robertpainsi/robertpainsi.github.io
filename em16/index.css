@@ -32,7 +32,7 @@ body {
     color: white;
     font-size: 21px;
     line-height: 32px;
-    padding: 12px 12px 14px 24px;
+    padding: 12px 12px 8px 24px;
     width: 100%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     z-index: 1000;
@@ -116,6 +116,22 @@ input::-webkit-inner-spin-button {
 
 .user-input:-ms-input-placeholder {
     color: #1a658b;
+}
+
+.user-tab {
+    color: #337ab7;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-decoration: none !important;
+}
+
+.user-tab:hover {
+    color: #419deb;
+}
+
+.user-tab.active {
+    color: #419deb;
+    border-bottom: 2px solid #419deb;
 }
 
 .tournament-round {

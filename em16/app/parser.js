@@ -23,6 +23,7 @@ class Parser {
     _parseTips(tips) {
         if (tips.indexOf(';') === -1) return;
 
+        user.tournament.clear();
         tips.split(';').forEach(function (tip) {
             if (tip === '') return;
             let splitTip = tip.split('#');
@@ -37,7 +38,6 @@ class Parser {
             if (splitScore[1] >= 0) {
                 match.secondScore = parseInt(splitScore[1], 10);
             }
-
         });
     }
 }
