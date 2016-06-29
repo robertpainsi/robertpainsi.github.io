@@ -76,7 +76,7 @@ class App extends React.Component {
                     <div className="tournament scroll-to-element">
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
-                                <img src="img/trophy.png"/><h1>FOURTH FINAL</h1>
+                                <img src="img/trophy.png"/><h1>QUARTER FINAL</h1>
                             </div>
                             <Match match={user.tournament.get(9)} actualMatch={tournamentResult.get(9)}/>
                             <Match match={user.tournament.get(10)} actualMatch={tournamentResult.get(10)}/>
