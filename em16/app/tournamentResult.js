@@ -22,7 +22,7 @@ import {
 
 const result = new Tournament();
 
-result.setScore(switzerland, 4, poland, 5);
+result.setScore(switzerland, 5, poland, 6);
 result.setScore(wales, 1, northernIreland, 0);
 result.setScore(croatia, 0, portugal, 1);
 result.setScore(france, 2, ireland, 1);
