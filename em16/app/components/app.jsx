@@ -52,7 +52,8 @@ class App extends React.Component {
                                 if (player.name === user.name) {
                                     classes.push('active');
                                 }
-                                return <a key={player.name} href={player.hash} className={classes.join(' ')}>{player.name}</a>
+                                return <a key={player.name} href={player.hash}
+                                          className={classes.join(' ')}>{player.name}</a>
                             })
                         }
                     </div>
@@ -62,6 +63,7 @@ class App extends React.Component {
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
                                 <img src="img/trophy.png"/><h1>EIGHTH FINAL</h1>
+                                <h5 className="bonus">12.5% BONUS</h5>
                             </div>
                             <Match match={user.tournament.get(1)} actualMatch={tournamentResult.get(1)}/>
                             <Match match={user.tournament.get(3)} actualMatch={tournamentResult.get(3)}/>
@@ -77,6 +79,7 @@ class App extends React.Component {
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
                                 <img src="img/trophy.png"/><h1>QUARTER FINAL</h1>
+                                <h5 className="bonus">25% BONUS</h5>
                             </div>
                             <Match match={user.tournament.get(9)} actualMatch={tournamentResult.get(9)}/>
                             <Match match={user.tournament.get(10)} actualMatch={tournamentResult.get(10)}/>
