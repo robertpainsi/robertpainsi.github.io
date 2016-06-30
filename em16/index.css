@@ -173,7 +173,6 @@ input::-webkit-inner-spin-button {
 
 .match {
     width: 630px;
-    margin-top: 16px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 8px;
@@ -188,6 +187,10 @@ input::-webkit-inner-spin-button {
     border-bottom: 1px transparent;
     padding-bottom: 0;
     margin-bottom: 0;
+}
+
+.match.over.last {
+    margin-bottom: 8px;
 }
 
 .match-input {
@@ -228,7 +231,8 @@ input::-webkit-inner-spin-button {
 
 .score {
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: middle;
+    padding-top: 21px;
 }
 
 .nation {
@@ -237,6 +241,7 @@ input::-webkit-inner-spin-button {
     font-weight: bold;
     width: 244px;
     margin-bottom: 10px;
+    margin-top: 24px;
 }
 
 .nation.left {
