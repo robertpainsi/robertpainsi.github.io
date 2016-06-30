@@ -1,6 +1,6 @@
 'use strict';
 
-import {TypeEighthFinal, TypeQuarterFinal, TypeSemiFinal} from "./match";
+import {TypeQuarterFinal, TypeSemiFinal, TypePetiteFinal, TypeFinal} from "./match";
 
 export const getMatchScore = function (userMatch, actualMatch) {
     let score = 0;
@@ -21,16 +21,14 @@ export const getMatchScore = function (userMatch, actualMatch) {
         }
     }
 
-    let factor = 1000;
-    if (userMatch.type === TypeEighthFinal) {
-        factor *= (1 / 8);
-    } else if (userMatch.type === TypeQuarterFinal) {
-        factor *= (1 / 4);
+    score *= 125;
+    if (userMatch.type === TypeQuarterFinal) {
+        score *= 1.25;
     } else if (userMatch.type === TypeSemiFinal) {
-        factor *= (1 / 2);
+        score *= 1.5;
+    } else if (userMatch.type === TypeFinal || userMatch.type === TypePetiteFinal) {
+        score *= 2;
     }
-    score *= factor;
-
     return score;
 };
 

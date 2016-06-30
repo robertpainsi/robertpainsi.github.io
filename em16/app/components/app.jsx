@@ -63,7 +63,7 @@ class App extends React.Component {
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
                                 <img src="img/trophy.png"/><h1>EIGHTH FINAL</h1>
-                                <h5 className="bonus">12.5% BONUS</h5>
+                                <h5 className="bonus">0% BONUS</h5>
                             </div>
                             <Match match={user.tournament.get(1)} actualMatch={tournamentResult.get(1)}/>
                             <Match match={user.tournament.get(3)} actualMatch={tournamentResult.get(3)}/>
