@@ -79,12 +79,42 @@ class App extends React.Component {
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
                                 <img src="img/trophy.png"/><h1>QUARTER FINAL</h1>
-                                <h5 className="bonus">25% BONUS</h5>
+                                <h5 className="bonus">20% BONUS</h5>
                             </div>
                             <Match match={user.tournament.get(9)} actualMatch={tournamentResult.get(9)}/>
                             <Match match={user.tournament.get(10)} actualMatch={tournamentResult.get(10)}/>
                             <Match match={user.tournament.get(11)} actualMatch={tournamentResult.get(11)}/>
                             <Match match={user.tournament.get(12)} actualMatch={tournamentResult.get(12)} last={true}/>
+                        </div>
+                    </div>
+                    <div className="tournament not-started">
+                        <div className="tournament-round">
+                            <div className="tournament-round-header-content">
+                                <img src="img/trophy.png"/><h1>SEMI FINAL</h1>
+                                <h5 className="bonus">50% BONUS</h5>
+                            </div>
+                            <Match match={user.tournament.get(13)} actualMatch={tournamentResult.get(13)}/>
+                            <Match match={user.tournament.get(14)} actualMatch={tournamentResult.get(14)} last={true}/>
+                        </div>
+                    </div>
+
+                    <div className="tournament not-started">
+                        <div className="tournament-round">
+                            <div className="tournament-round-header-content">
+                                <img src="img/trophy.png"/><h1>PETITE FINAL</h1>
+                                <h5 className="bonus">100% BONUS</h5>
+                            </div>
+                            <Match match={user.tournament.get(15)} actualMatch={tournamentResult.get(15)} last={true}/>
+                        </div>
+                    </div>
+
+                    <div className="tournament not-started">
+                        <div className="tournament-round">
+                            <div className="tournament-round-header-content">
+                                <img src="img/trophy.png"/><h1>FINAL</h1>
+                                <h5 className="bonus">100% BONUS</h5>
+                            </div>
+                            <Match match={user.tournament.get(16)} actualMatch={tournamentResult.get(16)} last={true}/>
                         </div>
                     </div>
                 </div>

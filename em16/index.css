@@ -134,6 +134,10 @@ input::-webkit-inner-spin-button {
     border-bottom: 2px solid #419deb;
 }
 
+.tournament.not-started {
+    opacity: 0.3 !important;
+}
+
 .tournament-round {
     width: 700px;
     background: white;

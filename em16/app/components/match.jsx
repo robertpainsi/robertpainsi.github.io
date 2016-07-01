@@ -11,7 +11,7 @@ class MatchInput extends React.Component {
         let data = this.props.data;
         let match = data.match;
         let actualMatch = data.actualMatch;
-        let actualMatchOver = actualMatch.firstScore || actualMatch.secondScore;
+        let actualMatchOver = !actualMatch || actualMatch.firstScore || actualMatch.secondScore;
         let score = data.getScore();
         if (!(score >= 0 && score <= 10)) {
             score = '';

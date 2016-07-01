@@ -1,7 +1,7 @@
 'use strict';
 
 import Match from "./match";
-import {TypeEighthFinal, TypeQuarterFinal, TypeSemiFinal, TypeFinal} from "./match";
+import {TypeEighthFinal, TypeQuarterFinal, TypeSemiFinal, TypePetiteFinal, TypeFinal} from "./match";
 import {
     belgium,
     croatia,
@@ -43,7 +43,8 @@ class Tournament {
         let match13 = new Match(unknown, unknown, TypeSemiFinal);
         let match14 = new Match(unknown, unknown, TypeSemiFinal);
 
-        let match15 = new Match(unknown, unknown, TypeFinal);
+        let match15 = new Match(unknown, unknown, TypePetiteFinal);
+        let match16 = new Match(unknown, unknown, TypeFinal);
 
         this.add(1, match1);
         this.add(2, match2);
@@ -60,6 +61,7 @@ class Tournament {
         this.add(13, match13);
         this.add(14, match14);
         this.add(15, match15);
+        this.add(16, match16);
     }
 
     add(id, match) {

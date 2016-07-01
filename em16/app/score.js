@@ -10,20 +10,19 @@ export const getMatchScore = function (userMatch, actualMatch) {
         || !Number.isInteger(actualMatch.secondScore)) return 0;
 
     if (userMatch.firstScore == actualMatch.firstScore && userMatch.secondScore == actualMatch.secondScore) {
-        score += 8;
+        score += 1000;
     } else {
         if (userMatch.firstNationWins() && actualMatch.firstNationWins() || userMatch.secondNationWins() && actualMatch.secondNationWins()) {
-            score += 4;
+            score += 500;
         }
 
         if (userMatch.firstScore == actualMatch.firstScore || userMatch.secondScore == actualMatch.secondScore) {
-            score += 1;
+            score += 150;
         }
     }
 
-    score *= 125;
     if (userMatch.type === TypeQuarterFinal) {
-        score *= 1.25;
+        score *= 1.2;
     } else if (userMatch.type === TypeSemiFinal) {
         score *= 1.5;
     } else if (userMatch.type === TypeFinal || userMatch.type === TypePetiteFinal) {
@@ -34,7 +33,7 @@ export const getMatchScore = function (userMatch, actualMatch) {
 
 export const getTournamentScore = function (userTournament, actualTournament) {
     let score = 0;
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 16; i++) {
         score += getMatchScore(userTournament.get(i), actualTournament.get(i));
     }
     return score;
