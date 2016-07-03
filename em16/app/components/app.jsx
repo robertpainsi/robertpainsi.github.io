@@ -75,7 +75,7 @@ class App extends React.Component {
                             <Match match={user.tournament.get(8)} actualMatch={tournamentResult.get(8)} last={true}/>
                         </div>
                     </div>
-                    <div className="tournament scroll-to-element">
+                    <div className="tournament">
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
                                 <img src="img/trophy.png"/><h1>QUARTER FINAL</h1>
@@ -87,7 +87,7 @@ class App extends React.Component {
                             <Match match={user.tournament.get(12)} actualMatch={tournamentResult.get(12)} last={true}/>
                         </div>
                     </div>
-                    <div className="tournament not-started">
+                    <div className="tournament scroll-to-element">
                         <div className="tournament-round">
                             <div className="tournament-round-header-content">
                                 <img src="img/trophy.png"/><h1>SEMI FINAL</h1>
