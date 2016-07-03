@@ -33,7 +33,7 @@ result.setScore(england, 1, iceland, 2);
 
 result.setScore(poland, 3, portugal, 5);
 result.setScore(wales, 3, belgium, 1);
-// result.setScore(germany, 0, italy, 0);
+result.setScore(germany, 6, italy, 5);
 // result.setScore(france, 0, iceland, 0);
 
 export default result;
