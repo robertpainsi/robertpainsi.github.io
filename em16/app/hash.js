@@ -1,20 +1,14 @@
 'use strict';
 
 class Hash {
-    constructor() {
-        this._name = '';
-    }
-
-    set name(name) {
-        this._name = name;
-    }
-
-    set tournament(tournament) {
-        this._tournament = tournament;
+    set user(user) {
+        this._user = user;
     }
 
     update() {
-        location.hash = '#' + this._name + '/' + this._tournament.toHash();
+        var name = this._user.name || '';
+        var tournament = (this._user._tournament) ? this._user._tournament.toHash() : '';
+        location.hash = '#' + name + '/' + tournament;
     }
 }
 

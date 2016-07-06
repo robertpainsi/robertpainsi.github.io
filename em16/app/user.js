@@ -1,12 +1,11 @@
 'use strict';
 
-import userTournament from "./userTournament";
 import hash from "./hash";
 
 class User {
     constructor() {
         this._name = '';
-        this._tournament = userTournament;
+        hash.user = this;
     }
 
     get name() {
@@ -15,11 +14,22 @@ class User {
 
     set name(name) {
         this._name = name;
-        hash.name = this._name;
+        hash.update();
     }
 
     get tournament() {
         return this._tournament;
+    }
+
+    set tournament(tournament) {
+        this._tournament = tournament;
+        hash.update();
+    }
+
+    set(name, tournament) {
+        this._name = name;
+        this._tournament = tournament;
+        hash.update();
     }
 }
 

@@ -3,7 +3,6 @@
 import React from "react";
 import user from "../user";
 import hash from "../hash";
-import userTournament from "../userTournament";
 import tournamentResult from "../tournamentResult";
 import {getTournamentScore} from "../score";
 
@@ -16,14 +15,11 @@ class User extends React.Component {
     enterName(e) {
         let name = e.target.value;
         if (name.indexOf('/') >= 0) return;
-
         user.name = name;
-        hash.name = user.name;
-        hash.update();
     }
 
     render() {
-        let score = getTournamentScore(userTournament, tournamentResult);
+        let score = getTournamentScore(user.tournament, tournamentResult);
         if (user.name === 'Jenny' && !score) {
             score = 1;
         }

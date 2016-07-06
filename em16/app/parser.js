@@ -1,36 +1,40 @@
 'use strict';
 
+import Tournament from "./tournament";
 import {normalizeHash} from "./utils";
-import user from "./user";
 
 class Parser {
     constructor() {
     }
 
     parseHash(hash) {
-        this._parseData(normalizeHash(hash));
+        return this._parseData(normalizeHash(hash));
     }
 
     _parseData(data) {
         if (data.indexOf('/') >= 0) {
             let splitData = data.split('/');
-
-            user.name = splitData[0];
-            this._parseTips(splitData[1]);
+            return {
+                name: splitData[0],
+                tournament: this._parseTips(splitData[1])
+            };
+        } else {
+            return {
+                name: '',
+                tournament: new Tournament()
+            };
         }
     }
 
     _parseTips(tips) {
-        if (tips.indexOf(';') === -1) return;
-
-        user.tournament.clear();
+        let tournament = new Tournament();
         tips.split(';').forEach(function (tip) {
             if (tip === '') return;
             let splitTip = tip.split('#');
             let splitScore = splitTip[1].split(':');
 
             let matchId = parseInt(splitTip[0], 10);
-            let match = user.tournament.get(matchId);
+            let match = tournament.get(matchId);
             if (splitScore[0] >= 0) {
                 match.firstScore = parseInt(splitScore[0], 10);
             }
@@ -39,6 +43,7 @@ class Parser {
                 match.secondScore = parseInt(splitScore[1], 10);
             }
         });
+        return tournament;
     }
 }
 

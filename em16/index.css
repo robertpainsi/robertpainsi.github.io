@@ -134,10 +134,6 @@ input::-webkit-inner-spin-button {
     border-bottom: 2px solid #419deb;
 }
 
-.tournament.not-started {
-    opacity: 0.3 !important;
-}
-
 .tournament-round {
     width: 700px;
     background: white;
@@ -147,6 +143,10 @@ input::-webkit-inner-spin-button {
     padding-bottom: 4px;
     padding-top: 1px;
     margin: 32px auto;
+}
+
+.tournament-round.not-started {
+    opacity: 0.3;
 }
 
 .tournament-round-header-content {
@@ -268,4 +268,8 @@ input::-webkit-inner-spin-button {
     margin-right: 16px;
     border: 1px solid #dcdcdc;
     border-radius: 12px;
+}
+
+.scoreboard {
+    font-size: 20px;
 }
