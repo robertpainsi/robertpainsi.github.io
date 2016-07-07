@@ -69,14 +69,11 @@ class App extends React.Component {
                                           }}>{player.name}</a>
                             })
                         }
-                        <a href="#" style={{'float': 'right'}} onClick={function() {
-                            user.set('', new TournamentClass());
-                        }}>Score</a>
                     </div>
                 </div>
                 <div id="app-content" className="app-content">
-                    <Tournament/>
                     <Scoreboard players={players}/>
+                    <Tournament/>
                 </div>
             </div>
         );

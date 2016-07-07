@@ -4,40 +4,51 @@ import React from "react";
 
 class Scoreboard extends React.Component {
     render() {
-        let scoreboard = this.props.players
-            .sort(function (player1, player2) {
-                return player1.score - player2.score;
-            });
-        scoreboard.forEach(function (player, index, players) {
-            if (index == 0) {
-                player.rank = 1;
-            } else {
-                let previousPlayer = players[index - 1];
-                if (player.score === previousPlayer.score) {
-                    player.rank = previousPlayer.rank;
-                } else {
-                    player.rank = previousPlayer.rank + 1;
-                }
-            }
-        });
-        console.log(scoreboard);
         return (
             <div className="scoreboard">
-                <table>
-                    <tbody>
-                    {
-                        scoreboard.map(function (player) {
-                                return (
-                                    <tr key={'scoreboard-' + player.name}>
-                                        <td>{player.rank}</td>
-                                        <td>{player.score}</td>
-                                        <td>{player.name}</td>
-                                    </tr>
-                                );
-                            })
-                    }
-                    </tbody>
-                </table>
+                <div className="a">
+                    <table>
+                        <tbody>
+                        {
+                            this.props.players
+                                .sort(function (player1, player2) {
+                                    return player2.score - player1.score;
+                                })
+                                .map(function (player, index, players) {
+                                    let name = player.name;
+                                    let rank = index + 1;
+                                    let score = player.score;
+                                    let rankClasses = ['scoreboard-text'];
+
+                                    if (index > 0) {
+                                        let previousPlayer = players[index - 1];
+                                        if (player.score === previousPlayer.score) {
+                                            rankClasses.push('hide');
+                                        }
+                                    }
+                                    var classes = ['scoreboard-line'];
+                                    return (
+                                        <tr key={'scoreboard-' + name} className={classes.join(' ')}>
+                                            <td className="scoreboard-rank">
+                                                <span className={rankClasses.join(' ')}>{rank}.</span>
+                                            </td>
+                                            <td className="scoreboard-name">
+                                                <span className="scoreboard-text">{name}</span>
+                                            </td>
+                                            <td className="scoreboard-score">
+                                                <img src="img/star.png" className="scoreboard-score-star"/>
+                                                <span className="scoreboard-text">{Math.round(score).toLocaleString()}</span>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                <div className="scoreboard-arrow">
+                    <img src="img/arrow_right.png"/>
+                </div>
             </div>
         );
     }
