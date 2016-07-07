@@ -43,8 +43,8 @@ class Tournament {
         let match13 = new Match(portugal, wales, TypeSemiFinal);
         let match14 = new Match(germany, france, TypeSemiFinal);
 
-        let match15 = new Match(unknown, unknown, TypePetiteFinal);
-        let match16 = new Match(unknown, unknown, TypeFinal);
+        let match15 = new Match(wales, germany, TypePetiteFinal);
+        let match16 = new Match(portugal, france, TypeFinal);
 
         this.add(1, match1);
         this.add(2, match2);
