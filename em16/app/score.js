@@ -33,7 +33,7 @@ export const getMatchScore = function (userMatch, actualMatch) {
 
 export const getTournamentScore = function (userTournament, actualTournament) {
     let score = 0;
-    for (let i = 1; i <= 16; i++) {
+    for (let i = 1; i <= 15; i++) {
         score += getMatchScore(userTournament.get(i), actualTournament.get(i));
     }
     return score;

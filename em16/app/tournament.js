@@ -43,8 +43,7 @@ class Tournament {
         let match13 = new Match(portugal, wales, TypeSemiFinal);
         let match14 = new Match(germany, france, TypeSemiFinal);
 
-        let match15 = new Match(wales, germany, TypePetiteFinal);
-        let match16 = new Match(portugal, france, TypeFinal);
+        let match15 = new Match(portugal, france, TypeFinal);
 
         this.add(1, match1);
         this.add(2, match2);
@@ -61,7 +60,6 @@ class Tournament {
         this.add(13, match13);
         this.add(14, match14);
         this.add(15, match15);
-        this.add(16, match16);
     }
 
     add(id, match) {
