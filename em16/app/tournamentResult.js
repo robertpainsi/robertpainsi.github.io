@@ -39,6 +39,6 @@ result.setScore(france, 5, iceland, 2);
 result.setScore(portugal, 2, wales, 0);
 result.setScore(germany, 0, france, 2);
 
-// result.setScore(portugal, 0, france, 0);
+result.setScore(portugal, 1, france, 0);
 
 export default result;
