@@ -1,0 +1,66 @@
+<div class="page"></div>
+<script>
+    menu.registerMenu('Participants Per Pull Request', '#link-chart-participants-per-pull-request', function() {
+        var chartElement = addChartTemplate();
+        $.getCachedJSON('./charts/data/participants-per-changes.json').then(function(data) {
+            var merges = [];
+            var rejects = [];
+            data.forEach(function(details) {
+                var p = {
+                    x: details.changes,
+                    y: details.participants
+                };
+                if (details.merged) {
+                    merges.push(p);
+                } else {
+                    rejects.push(p);
+                }
+            });
+
+            var maxChanges = maxX(merges.concat(rejects));
+            var chart = createChart(chartElement.querySelector('.chart'), {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Merged',
+                        data: merges,
+                        backgroundColor: colors.merges
+                    }, {
+                        label: 'Rejected',
+                        data: rejects,
+                        backgroundColor: colors.rejects
+                    }]
+                },
+                options: {
+                    tooltips: {enabled: false},
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                minRotation: 45,
+                                maxRotation: 45
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Changes'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Participants'
+                            }
+                        }]
+                    }
+                }
+            });
+            createSlider(chartElement.querySelector('.x-slider'), {
+                range: true,
+                min: 0,
+                step: 100,
+                max: maxChanges,
+                value: [0, maxChanges]
+            }).on("slide", updateXAxes(chart));
+        });
+    });
+</script>

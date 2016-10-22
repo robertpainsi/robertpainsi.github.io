@@ -1,0 +1,55 @@
+<div class="page"></div>
+<script>
+    menu.registerMenu('Top Commenters', '#link-chart-top-commenters', function() {
+        var chartElement = addChartTemplate();
+        chartElement.querySelector('.chart').height = 240;
+        $.getCachedJSON('./charts/data/top-commenters.json').then(function(data) {
+            var users = [];
+            var issues = [];
+            var reviews = [];
+            data.filter(function(commentInfo) {
+                return commentInfo.comments >= 10 && commentInfo.user !== 'catrobatjenkins';
+            }).forEach(function(commentInfo) {
+                users.push(commentInfo.user);
+                issues.push(commentInfo.issues);
+                reviews.push(commentInfo.reviews);
+            });
+
+            createChart(chartElement.querySelector('.chart'), {
+                type: 'horizontalBar',
+                data: {
+                    labels: users,
+                    datasets: [{
+                        label: '#review comments',
+                        data: reviews,
+                        backgroundColor: colors.red
+                    }, {
+                        label: '#issue comments',
+                        data: issues,
+                        backgroundColor: colors.green
+                    }]
+                },
+                options: {
+                    tooltips: {enabled: false},
+                    scales: {
+                        xAxes: [{
+                            position: 'top',
+                            stacked: true,
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 50
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Comments'
+                            }
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+        });
+    });
+</script>

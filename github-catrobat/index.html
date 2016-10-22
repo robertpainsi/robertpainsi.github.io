@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catroid Github Statistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.3.0/css/bootstrap-slider.min.css"
+          integrity="sha256-5CPCPkIEqAQPBWSQ9R4Qo6lMEoZ3GIggaVsQmtB0Kpg=" crossorigin="anonymous"/>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.3.0/bootstrap-slider.min.js"
+            integrity="sha256-WQ11JL7U13ZAhL9o6iJQCRLAHNg5NUyIVZRLYqxUexY=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"
+            integrity="sha256-w8BXa9KXx+nmhO9N4hupvlLy+cAtqEarnB40DVJx2xA=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="index.css">
+
+    <script src="utils.js"></script>
+    <script src="extend-chart.js"></script>
+    <script src="colors.js"></script>
+    <script src="data.js"></script>
+    <script src="menu.js"></script>
+
+    <link rel="import" id="link-chart-merged-after-probability" href="charts/merged-after-probability.html">
+    <link rel="import" id="link-chart-handled-after" href="charts/handled-after.html">
+    <link rel="import" id="link-chart-participants-per-pull-request" href="charts/participants-per-changes.html">
+    <link rel="import" id="link-chart-pull-request-changes" href="charts/pull-request-changes.html">
+    <link rel="import" id="link-chart-top-commenters" href="charts/top-commenters.html">
+    <link rel="import" id="link-chart-time-until-merge" href="charts/time-until-merge.html">
+</head>
+<body>
+<div id="chart-template" style="display: none">
+    <div class="chart-content">
+        <div style="display: flex; align-items: center">
+            <div style="flex-grow: 0; flex-shrink: 0">
+                <input class="y-slider hidden"/>
+            </div>
+            <div style="flex-grow: 1; flex-shrink: 1; width: calc(100% - 20px)">
+                <canvas class="chart" height="200px"></canvas>
+            </div>
+        </div>
+        <div>
+            <input class="x-slider hidden"/>
+        </div>
+    </div>
+</div>
+
+<div class="body-container">
+    <div class="menu-container">
+        <ul id="menu" class="nav nav-pills nav-stacked"></ul>
+    </div>
+    <div class="content-container">
+        <div id="content"></div>
+    </div>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>

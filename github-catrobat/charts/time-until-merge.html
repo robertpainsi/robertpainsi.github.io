@@ -1,0 +1,78 @@
+<div class="page"></div>
+<script>
+    menu.registerMenu('Time Until Merge', '#link-chart-time-until-merge', function() {
+        var chartElement = addChartTemplate();
+        $.getCachedJSON('./charts/data/time-until-merge.json').then(function(data) {
+            var merges = [];
+            var rejects = [];
+            data.forEach(function(details) {
+                var p = {
+                    y: details.changes,
+                    x: details.duration
+                };
+                if (details.merged) {
+                    merges.push(p);
+                } else {
+                    rejects.push(p);
+                }
+            });
+
+            var max = maxValues(merges.concat(rejects));
+            var currentDuration = Math.min(max.x, 60);
+            var chart = createChart(chartElement.querySelector('.chart'), {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Merges',
+                        data: merges,
+                        backgroundColor: colors.merges
+                    }, {
+                        label: 'Rejects',
+                        data: rejects,
+                        backgroundColor: colors.rejects
+                    }]
+                },
+                options: {
+                    tooltips: {enabled: false},
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                max: currentDuration,
+                                minRotation: 45,
+                                maxRotation: 45
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Days'
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                max: max.y,
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Changes'
+                            }
+                        }]
+                    }
+                }
+            });
+            createSlider(chartElement.querySelector('.x-slider'), {
+                min: 0,
+                step: 1,
+                max: max.x,
+                value: [0, currentDuration]
+            }).on("slide", updateXAxes(chart));
+            createSlider(chartElement.querySelector('.y-slider'), {
+                reversed: true,
+                orientation: 'vertical',
+                min: 0,
+                max: max.y,
+                value: [0, max.y],
+                step: 50,
+            }).on("slide", updateYAxes(chart));
+        });
+    });
+</script>

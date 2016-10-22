@@ -1,0 +1,50 @@
+<div class="page"></div>
+<script>
+    menu.registerMenu('Pull Request Changes', '#link-chart-pull-request-changes', function() {
+        var chartElement = addChartTemplate();
+        chartElement.querySelector('.chart').height = 8000;
+        $.getCachedJSON('./charts/data/pull-request-changes.json').then(function(data) {
+            var chartData = combineKeys(data);
+            createChart(chartElement.querySelector('.chart'), {
+                type: 'horizontalBar',
+                data: {
+                    labels: chartData.number,
+                    datasets: [{
+                        label: 'Additions',
+                        data: chartData.additions,
+                        backgroundColor: colors.addition
+                    }, {
+                        label: 'Deletions',
+                        data: chartData.deletions,
+                        backgroundColor: colors.deletion
+                    }]
+                },
+                options: {
+                    tooltips: {enabled: false},
+                    scales: {
+                        xAxes: [{
+                            position: 'top',
+                            stacked: true,
+                            ticks: {
+                                beginAtZero: true,
+                                max: Math.ceil(chartData.changes[0] / 1000) * 1000
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Changes'
+                            }
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '#' + value;
+                                }
+                            }
+                        }]
+                    },
+                }
+            });
+        });
+    });
+</script>

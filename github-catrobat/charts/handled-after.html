@@ -1,0 +1,74 @@
+<div class="page"></div>
+<script>
+    menu.registerMenu('Pull Request Handled', '#link-chart-handled-after', function() {
+        var chartElement = addChartTemplate();
+        $.getCachedJSON('./charts/data/merged-after.json').then(function(data) {
+            var allData = [];
+            var mergesData = [];
+            var rejectsData = [];
+            data.forEach(function(details) {
+                allData.push({x: details.duration, y: details.all});
+                mergesData.push({x: details.duration, y: details.merges});
+                rejectsData.push({x: details.duration, y: details.rejects});
+            });
+            var maxDuration = maxX([].concat(allData, mergesData, rejectsData));
+            var currentDuration = Math.min(maxDuration, 30);
+            var chart = createChart(chartElement.querySelector('.chart'), {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Rejected Pull Requests',
+                        data: rejectsData,
+                        backgroundColor: colors.rejects
+                    }, {
+                        label: 'Merged Pull Requests',
+                        data: mergesData,
+                        backgroundColor: colors.merges
+                    }, {
+                        label: 'Pull Requests',
+                        data: allData,
+                        backgroundColor: colors.all
+                    }]
+                },
+                options: {
+                    elements: {point: {radius: 0}},
+                    tooltips: {enabled: false},
+                    scales: {
+                        xAxes: [{
+                            type: 'linear',
+                            position: 'bottom',
+                            ticks: {
+                                beginAtZero: true,
+                                max: currentDuration,
+                                minRotation: 30,
+                                maxRotation: 30
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Days',
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                max: 1,
+                                callback: toPercentLabel
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: '% handled'
+                            }
+                        }]
+                    }
+                }
+            });
+            createSlider(chartElement.querySelector('.x-slider'), {
+                range: true,
+                min: 0,
+                max: maxDuration,
+                value: [0, currentDuration]
+            }).on("slide", updateXAxes(chart));
+        });
+    })
+    ;
+</script>
