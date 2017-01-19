@@ -18,6 +18,7 @@
                 });
 
                 var blocks = [];
+                var total = 0;
                 categories.forEach(function(category) {
                     category.children.forEach(function(block) {
                         block.category = category;
@@ -27,6 +28,7 @@
                                 .replace('@turnLeft', '↺')
                                 .replace('@greenFlag', '⚑')
                         ;
+                        total += block.count;
                     });
                     blocks = blocks.concat(category.children);
                 });
@@ -39,10 +41,11 @@
                     var $chart = $('#chart');
                     var rows = []
                     blocks.forEach(function(block) {
+                        block.percent = block.count / total;
                         var name = block.name;
                         var color = block.color;
-                        var percent = Math.round(block.percent * 100 * 10) / 10;
-                        var relativePercent = block.percent * 100 / blocks[0].percent;
+                        var percent = Math.round(block.percent * 100 * 100) / 100;
+                        var relativePercent = (block.percent / blocks[0].percent) * 100;
                         var count = block.count;
                         rows.push(`<tr align="right">
                                 <td class="shrink" style="color: #${color}; white-space: nowrap">${name}</td>
