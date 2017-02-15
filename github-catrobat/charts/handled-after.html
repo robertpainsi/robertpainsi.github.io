@@ -2,7 +2,7 @@
 <script>
     menu.registerMenu('Pull Request Handled', '#link-chart-handled-after', function() {
         var chartElement = addChartTemplate();
-        $.getCachedJSON('./charts/data/merged-after.json').then(function(data) {
+        $.getCachedJSON('./charts/output/merged-after.json').then(function(data) {
             var allData = [];
             var mergesData = [];
             var rejectsData = [];
@@ -62,8 +62,9 @@
                     }
                 }
             });
-            createSlider(chartElement.querySelector('.x-slider'), {
+            createSlider(chartElement.querySelector('.x-slider-bottom'), {
                 range: true,
+                scale: 'logarithmic',
                 min: 0,
                 max: maxDuration,
                 value: [0, currentDuration]

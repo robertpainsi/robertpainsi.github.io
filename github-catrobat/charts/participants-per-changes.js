@@ -1,8 +1,8 @@
 "use strict";
 
 import snutils from "snutils";
-import utils from "../data-generator/utils";
-import github from "../data-generator/github";
+import utils from "./utils";
+import github from "./github";
 
 const repo = github.Users.$Catrobat.Repositories.$Catroid;
 
@@ -15,18 +15,18 @@ for (let pull of repo.PullRequests) {
     p.add(pull.User.login);
 
     for (let comment of pull.Comments) {
-        let commentter = comment.User.login;
-        if (commentter === utils.JENKINS) continue;
-        p.add(commentter);
+        let commenter = comment.User.login;
+        if (commenter === utils.JENKINS) continue;
+        p.add(commenter);
     }
 
     for (let event of pull.Events) {
-        let commentter = event.User.login;
-        if (commentter === utils.JENKINS || ignoreEvents.has(event.event)) continue;
-        p.add(commentter);
+        let commenter = event.User.login;
+        if (commenter === utils.JENKINS || ignoreEvents.has(event.event)) continue;
+        p.add(commenter);
     }
-    participants.set(pull.number, {participants: p.size, merged: pull.merged});
+    participants.set(pull.number, {number: pull.number, participants: p.size, merged: pull.merged});
 }
 let data = snutils.map.mergeObjects(participants, utils.getAllChanges(repo.PullRequests));
 
-snutils.io.writeJsonSync('./data/participants-per-changes.json', [...data.values()]);
+snutils.io.writeJsonSync('./output/participants-per-changes.json', [...data.values()]);

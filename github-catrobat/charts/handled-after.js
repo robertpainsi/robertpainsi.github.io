@@ -1,7 +1,7 @@
 "use strict";
 
 import snutils from "snutils";
-import github from "../data-generator/github";
+import github from "./github";
 
 const {MINUTE, DAY} = snutils.time;
 
@@ -32,4 +32,4 @@ for (let pull of pulls) {
     })
 }
 
-snutils.io.writeJsonSync('./data/merged-after.json', [...map.values()]);
+snutils.io.writeJsonSync('./output/merged-after.json', [...map.values()]);

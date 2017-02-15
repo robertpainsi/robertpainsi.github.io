@@ -2,13 +2,14 @@
 <script>
     menu.registerMenu('Participants Per Pull Request', '#link-chart-participants-per-pull-request', function() {
         var chartElement = addChartTemplate();
-        $.getCachedJSON('./charts/data/participants-per-changes.json').then(function(data) {
+        $.getCachedJSON('./charts/output/participants-per-changes.json').then(function(data) {
             var merges = [];
             var rejects = [];
             data.forEach(function(details) {
                 var p = {
                     x: details.changes,
-                    y: details.participants
+                    y: details.participants,
+                    label: '#' + details.number
                 };
                 if (details.merged) {
                     merges.push(p);
@@ -18,6 +19,7 @@
             });
 
             var maxChanges = maxX(merges.concat(rejects));
+            var currentChanges = 10000;
             var chart = createChart(chartElement.querySelector('.chart'), {
                 type: 'bubble',
                 data: {
@@ -32,11 +34,18 @@
                     }]
                 },
                 options: {
-                    tooltips: {enabled: false},
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].label;
+                            }
+                        }
+                    },
                     scales: {
                         xAxes: [{
                             ticks: {
                                 beginAtZero: true,
+                                max: currentChanges,
                                 minRotation: 45,
                                 maxRotation: 45
                             },
@@ -54,12 +63,12 @@
                     }
                 }
             });
-            createSlider(chartElement.querySelector('.x-slider'), {
+            createSlider(chartElement.querySelector('.x-slider-bottom'), {
                 range: true,
                 min: 0,
-                step: 100,
+                scale: 'logarithmic',
                 max: maxChanges,
-                value: [0, maxChanges]
+                value: [0, currentChanges]
             }).on("slide", updateXAxes(chart));
         });
     });

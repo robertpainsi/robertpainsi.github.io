@@ -1,8 +1,8 @@
 "use strict";
 
 import snutils from "snutils";
-import utils from "../data-generator/utils";
-import github from "../data-generator/github";
+import utils from "./utils";
+import github from "./github";
 
 const {DAY} = snutils.time;
 
@@ -14,7 +14,7 @@ let x = [...snutils.map.mergeObjects(
     utils.getAllChanges(pulls),
     new Map(pulls.map((pull) => [pull.number, {merged: pull.merged}])))
 ].map(function([number, {duration, changes, merged}]) {
-    return {duration: duration / DAY, changes, merged};
+    return {number, duration: duration / DAY, changes, merged};
 });
 
-snutils.io.writeJsonSync('./data/time-until-merge.json', x);
+snutils.io.writeJsonSync('./output/time-until-merge.json', x);

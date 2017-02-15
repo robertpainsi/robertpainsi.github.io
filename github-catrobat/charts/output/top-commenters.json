@@ -1,9 +1,9 @@
 [
  {
   "user": "robertpainsi",
-  "comments": 631,
-  "issues": 273,
-  "reviews": 358
+  "comments": 762,
+  "issues": 309,
+  "reviews": 453
  },
  {
   "user": "aried3r",
@@ -12,10 +12,22 @@
   "reviews": 405
  },
  {
+  "user": "thmq",
+  "comments": 285,
+  "issues": 224,
+  "reviews": 61
+ },
+ {
   "user": "catrobatjenkins",
-  "comments": 268,
-  "issues": 268,
+  "comments": 282,
+  "issues": 282,
   "reviews": 0
+ },
+ {
+  "user": "sjaindl",
+  "comments": 268,
+  "issues": 105,
+  "reviews": 163
  },
  {
   "user": "obusher",
@@ -30,18 +42,6 @@
   "reviews": 60
  },
  {
-  "user": "thmq",
-  "comments": 232,
-  "issues": 174,
-  "reviews": 58
- },
- {
-  "user": "sjaindl",
-  "comments": 219,
-  "issues": 94,
-  "reviews": 125
- },
- {
   "user": "SimonStefan",
   "comments": 217,
   "issues": 80,
@@ -49,9 +49,9 @@
  },
  {
   "user": "loibi93",
-  "comments": 177,
+  "comments": 181,
   "issues": 77,
-  "reviews": 100
+  "reviews": 104
  },
  {
   "user": "kaufi",
@@ -61,21 +61,27 @@
  },
  {
   "user": "p4p4",
-  "comments": 108,
-  "issues": 40,
-  "reviews": 68
- },
- {
-  "user": "Gorphi",
-  "comments": 73,
-  "issues": 21,
-  "reviews": 52
+  "comments": 113,
+  "issues": 43,
+  "reviews": 70
  },
  {
   "user": "thomasmauerhofer",
-  "comments": 70,
+  "comments": 105,
   "issues": 6,
-  "reviews": 64
+  "reviews": 99
+ },
+ {
+  "user": "cheidenreich",
+  "comments": 100,
+  "issues": 45,
+  "reviews": 55
+ },
+ {
+  "user": "Gorphi",
+  "comments": 74,
+  "issues": 22,
+  "reviews": 52
  },
  {
   "user": "fwinkelbauer",
@@ -120,10 +126,10 @@
   "reviews": 13
  },
  {
-  "user": "cheidenreich",
-  "comments": 41,
-  "issues": 31,
-  "reviews": 10
+  "user": "84n4n4",
+  "comments": 35,
+  "issues": 23,
+  "reviews": 12
  },
  {
   "user": "patkoch",
@@ -132,10 +138,22 @@
   "reviews": 31
  },
  {
+  "user": "bernadettespieler",
+  "comments": 34,
+  "issues": 31,
+  "reviews": 3
+ },
+ {
   "user": "manuelpolzhofer",
   "comments": 33,
   "issues": 26,
   "reviews": 7
+ },
+ {
+  "user": "FlorianWeissensteiner",
+  "comments": 31,
+  "issues": 1,
+  "reviews": 30
  },
  {
   "user": "nikwen",
@@ -144,22 +162,16 @@
   "reviews": 0
  },
  {
-  "user": "84n4n4",
-  "comments": 29,
-  "issues": 17,
-  "reviews": 12
- },
- {
   "user": "ForestJ",
   "comments": 28,
   "issues": 26,
   "reviews": 2
  },
  {
-  "user": "FlorianWeissensteiner",
-  "comments": 28,
-  "issues": 1,
-  "reviews": 27
+  "user": "robertriedl",
+  "comments": 26,
+  "issues": 6,
+  "reviews": 20
  },
  {
   "user": "mj7007",
@@ -168,10 +180,16 @@
   "reviews": 6
  },
  {
-  "user": "robertriedl",
+  "user": "jobermue",
   "comments": 24,
-  "issues": 6,
-  "reviews": 18
+  "issues": 10,
+  "reviews": 14
+ },
+ {
+  "user": "krellsebastian",
+  "comments": 21,
+  "issues": 9,
+  "reviews": 12
  },
  {
   "user": "StefanBuerscher",
@@ -180,10 +198,10 @@
   "reviews": 4
  },
  {
-  "user": "bernadettespieler",
-  "comments": 20,
-  "issues": 17,
-  "reviews": 3
+  "user": "Bioxar",
+  "comments": 19,
+  "issues": 19,
+  "reviews": 0
  },
  {
   "user": "tafphil",
@@ -195,6 +213,24 @@
   "user": "linsm",
   "comments": 17,
   "issues": 17,
+  "reviews": 0
+ },
+ {
+  "user": "KohlThomas",
+  "comments": 16,
+  "issues": 15,
+  "reviews": 1
+ },
+ {
+  "user": "rsamer",
+  "comments": 16,
+  "issues": 5,
+  "reviews": 11
+ },
+ {
+  "user": "Manthan-R-Sheth",
+  "comments": 16,
+  "issues": 16,
   "reviews": 0
  },
  {
@@ -210,33 +246,9 @@
   "reviews": 11
  },
  {
-  "user": "KohlThomas",
-  "comments": 16,
-  "issues": 15,
-  "reviews": 1
- },
- {
-  "user": "Manthan-R-Sheth",
-  "comments": 16,
-  "issues": 16,
-  "reviews": 0
- },
- {
   "user": "anddman",
   "comments": 14,
   "issues": 3,
-  "reviews": 11
- },
- {
-  "user": "MarkusHobisch",
-  "comments": 13,
-  "issues": 9,
-  "reviews": 4
- },
- {
-  "user": "rsamer",
-  "comments": 13,
-  "issues": 2,
   "reviews": 11
  },
  {
@@ -246,22 +258,22 @@
   "reviews": 4
  },
  {
-  "user": "threesn",
-  "comments": 11,
-  "issues": 5,
-  "reviews": 6
+  "user": "MarkusHobisch",
+  "comments": 13,
+  "issues": 9,
+  "reviews": 4
  },
  {
   "user": "jonny911",
-  "comments": 11,
-  "issues": 4,
+  "comments": 12,
+  "issues": 5,
   "reviews": 7
  },
  {
-  "user": "krellsebastian",
-  "comments": 11,
+  "user": "MightyMendor",
+  "comments": 12,
   "issues": 8,
-  "reviews": 3
+  "reviews": 4
  },
  {
   "user": "xorrizon",
@@ -270,16 +282,16 @@
   "reviews": 2
  },
  {
-  "user": "martinbu",
-  "comments": 10,
-  "issues": 7,
-  "reviews": 3
+  "user": "threesn",
+  "comments": 11,
+  "issues": 5,
+  "reviews": 6
  },
  {
-  "user": "jobermue",
+  "user": "joseffilzmaier",
   "comments": 10,
-  "issues": 5,
-  "reviews": 5
+  "issues": 6,
+  "reviews": 4
  },
  {
   "user": "qianlvable",
@@ -288,10 +300,22 @@
   "reviews": 0
  },
  {
+  "user": "martinbu",
+  "comments": 10,
+  "issues": 7,
+  "reviews": 3
+ },
+ {
   "user": "mfellner",
   "comments": 9,
   "issues": 5,
   "reviews": 4
+ },
+ {
+  "user": "michael-fischl",
+  "comments": 9,
+  "issues": 6,
+  "reviews": 3
  },
  {
   "user": "KKcorps",
@@ -300,9 +324,15 @@
   "reviews": 0
  },
  {
-  "user": "MightyMendor",
-  "comments": 9,
-  "issues": 6,
+  "user": "X4mp",
+  "comments": 8,
+  "issues": 7,
+  "reviews": 1
+ },
+ {
+  "user": "singhalok641",
+  "comments": 8,
+  "issues": 5,
   "reviews": 3
  },
  {
@@ -312,33 +342,9 @@
   "reviews": 2
  },
  {
-  "user": "X4mp",
-  "comments": 8,
-  "issues": 7,
-  "reviews": 1
- },
- {
-  "user": "Bioxar",
-  "comments": 8,
-  "issues": 8,
-  "reviews": 0
- },
- {
-  "user": "joseffilzmaier",
-  "comments": 8,
-  "issues": 4,
-  "reviews": 4
- },
- {
   "user": "BerndBaumann",
   "comments": 7,
   "issues": 7,
-  "reviews": 0
- },
- {
-  "user": "meiserm",
-  "comments": 6,
-  "issues": 6,
   "reviews": 0
  },
  {
@@ -348,19 +354,19 @@
   "reviews": 1
  },
  {
-  "user": "stefanreichenauer",
-  "comments": 5,
-  "issues": 1,
-  "reviews": 4
+  "user": "meiserm",
+  "comments": 6,
+  "issues": 6,
+  "reviews": 0
  },
  {
-  "user": "iboyko",
+  "user": "mhobl",
   "comments": 5,
   "issues": 5,
   "reviews": 0
  },
  {
-  "user": "mhobl",
+  "user": "Manu91",
   "comments": 5,
   "issues": 5,
   "reviews": 0
@@ -372,22 +378,22 @@
   "reviews": 4
  },
  {
+  "user": "iboyko",
+  "comments": 5,
+  "issues": 5,
+  "reviews": 0
+ },
+ {
+  "user": "stefanreichenauer",
+  "comments": 5,
+  "issues": 1,
+  "reviews": 4
+ },
+ {
   "user": "atermenji",
   "comments": 4,
   "issues": 3,
   "reviews": 1
- },
- {
-  "user": "bernhardsp",
-  "comments": 4,
-  "issues": 2,
-  "reviews": 2
- },
- {
-  "user": "cstrobbe",
-  "comments": 4,
-  "issues": 4,
-  "reviews": 0
  },
  {
   "user": "prasaduma",
@@ -396,7 +402,7 @@
   "reviews": 0
  },
  {
-  "user": "sebheid",
+  "user": "cstrobbe",
   "comments": 4,
   "issues": 4,
   "reviews": 0
@@ -408,25 +414,31 @@
   "reviews": 0
  },
  {
-  "user": "michael-fischl",
-  "comments": 3,
-  "issues": 3,
+  "user": "bernhardsp",
+  "comments": 4,
+  "issues": 2,
+  "reviews": 2
+ },
+ {
+  "user": "sebheid",
+  "comments": 4,
+  "issues": 4,
   "reviews": 0
  },
  {
-  "user": "JohannesKuehnel",
+  "user": "rohmab06",
   "comments": 3,
-  "issues": 3,
-  "reviews": 0
- },
- {
-  "user": "Manu91",
-  "comments": 3,
-  "issues": 3,
-  "reviews": 0
+  "issues": 0,
+  "reviews": 3
  },
  {
   "user": "fritzsche91",
+  "comments": 3,
+  "issues": 3,
+  "reviews": 0
+ },
+ {
+  "user": "mounikarudra",
   "comments": 3,
   "issues": 3,
   "reviews": 0
@@ -438,10 +450,10 @@
   "reviews": 0
  },
  {
-  "user": "phaust",
+  "user": "comeclarity",
   "comments": 3,
-  "issues": 3,
-  "reviews": 0
+  "issues": 2,
+  "reviews": 1
  },
  {
   "user": "AdrianSch",
@@ -450,19 +462,25 @@
   "reviews": 0
  },
  {
-  "user": "MichaelStessl",
-  "comments": 2,
-  "issues": 0,
-  "reviews": 2
+  "user": "phaust",
+  "comments": 3,
+  "issues": 3,
+  "reviews": 0
  },
  {
-  "user": "HCrane",
-  "comments": 2,
-  "issues": 0,
-  "reviews": 2
+  "user": "JohannesKuehnel",
+  "comments": 3,
+  "issues": 3,
+  "reviews": 0
  },
  {
-  "user": "matpojer",
+  "user": "StefanTischler",
+  "comments": 2,
+  "issues": 2,
+  "reviews": 0
+ },
+ {
+  "user": "tfuchs",
   "comments": 2,
   "issues": 2,
   "reviews": 0
@@ -474,10 +492,22 @@
   "reviews": 1
  },
  {
-  "user": "tfuchs",
+  "user": "JoachimLesser",
+  "comments": 2,
+  "issues": 1,
+  "reviews": 1
+ },
+ {
+  "user": "matpojer",
   "comments": 2,
   "issues": 2,
   "reviews": 0
+ },
+ {
+  "user": "MichaelStessl",
+  "comments": 2,
+  "issues": 0,
+  "reviews": 2
  },
  {
   "user": "RoxaneKoitz",
@@ -486,10 +516,10 @@
   "reviews": 0
  },
  {
-  "user": "StefanTischler",
+  "user": "HCrane",
   "comments": 2,
-  "issues": 2,
-  "reviews": 0
+  "issues": 0,
+  "reviews": 2
  },
  {
   "user": "Fasusu",
@@ -504,22 +534,16 @@
   "reviews": 1
  },
  {
-  "user": "rohmab06",
-  "comments": 1,
+  "user": "Chypsylon",
+  "comments": 2,
   "issues": 0,
-  "reviews": 1
+  "reviews": 2
  },
  {
-  "user": "Danielneuhold",
+  "user": "florianKomposch",
   "comments": 1,
-  "issues": 0,
-  "reviews": 1
- },
- {
-  "user": "JoachimLesser",
-  "comments": 1,
-  "issues": 0,
-  "reviews": 1
+  "issues": 1,
+  "reviews": 0
  },
  {
   "user": "markini",
@@ -528,22 +552,28 @@
   "reviews": 0
  },
  {
-  "user": "paggerbua",
-  "comments": 1,
-  "issues": 0,
-  "reviews": 1
- },
- {
-  "user": "Chypsylon",
-  "comments": 1,
-  "issues": 0,
-  "reviews": 1
- },
- {
   "user": "anderth88",
   "comments": 1,
   "issues": 1,
   "reviews": 0
+ },
+ {
+  "user": "Deepak-Avadhya",
+  "comments": 1,
+  "issues": 1,
+  "reviews": 0
+ },
+ {
+  "user": "bteufl",
+  "comments": 1,
+  "issues": 0,
+  "reviews": 1
+ },
+ {
+  "user": "paggerbua",
+  "comments": 1,
+  "issues": 0,
+  "reviews": 1
  },
  {
   "user": "mowies",
@@ -552,7 +582,13 @@
   "reviews": 1
  },
  {
-  "user": "davidmarogy",
+  "user": "wintersw",
+  "comments": 1,
+  "issues": 1,
+  "reviews": 0
+ },
+ {
+  "user": "oliewa92",
   "comments": 1,
   "issues": 1,
   "reviews": 0
@@ -564,22 +600,22 @@
   "reviews": 1
  },
  {
-  "user": "florianKomposch",
-  "comments": 1,
-  "issues": 1,
-  "reviews": 0
- },
- {
-  "user": "wintersw",
-  "comments": 1,
-  "issues": 1,
-  "reviews": 0
- },
- {
-  "user": "bteufl",
+  "user": "sheryl31",
   "comments": 1,
   "issues": 0,
   "reviews": 1
+ },
+ {
+  "user": "Danielneuhold",
+  "comments": 1,
+  "issues": 0,
+  "reviews": 1
+ },
+ {
+  "user": "davidmarogy",
+  "comments": 1,
+  "issues": 1,
+  "reviews": 0
  },
  {
   "user": "sercanakpolat",

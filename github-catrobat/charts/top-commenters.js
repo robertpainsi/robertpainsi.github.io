@@ -1,7 +1,7 @@
 "use strict";
 
 import snutils from "snutils";
-import github from "../data-generator/github";
+import github from "./github";
 
 const repo = github.Users.$Catrobat.Repositories.$Catroid;
 
@@ -36,4 +36,4 @@ let sortedCommenters = [...commenters].sort(function([_1, commentsInfo1], [_2, c
     }
 });
 
-snutils.io.writeJsonSync('./data/top-commenters.json', sortedCommenters);
+snutils.io.writeJsonSync('./output/top-commenters.json', sortedCommenters);

@@ -3,9 +3,10 @@
     menu.registerMenu('Pull Request Changes', '#link-chart-pull-request-changes', function() {
         var chartElement = addChartTemplate();
         chartElement.querySelector('.chart').height = 8000;
-        $.getCachedJSON('./charts/data/pull-request-changes.json').then(function(data) {
+        $.getCachedJSON('./charts/output/pull-request-changes.json').then(function(data) {
             var chartData = combineKeys(data);
-            createChart(chartElement.querySelector('.chart'), {
+            var maxChanges = Math.max.apply(null, chartData.changes);
+            var chart = createChart(chartElement.querySelector('.chart'), {
                 type: 'horizontalBar',
                 data: {
                     labels: chartData.number,
@@ -45,6 +46,31 @@
                     },
                 }
             });
+            createSlider(chartElement.querySelector('.x-slider-top'), {
+                range: false,
+                scale: 'logarithmic',
+                min: 0,
+                max: maxChanges,
+                value: maxChanges
+            }).on("slide", updateXAxes(chart))
+                    .on("slide", function(value) {
+                        const isInRange = (v) => v <= value;
+
+                        const newLabels = [];
+                        const newAdditions = [];
+                        const newDeletions = [];
+                        for (let i = 0; i < chartData.additions.length; i++) {
+                            if (isInRange(chartData.additions[i] + chartData.deletions[i])) {
+                                newLabels.push(chartData.number[i]);
+                                newAdditions.push(chartData.additions[i]);
+                                newDeletions.push(chartData.deletions[i]);
+                            }
+                        }
+                        chart.data.labels = newLabels;
+                        chart.data.datasets[0].data = newAdditions;
+                        chart.data.datasets[1].data = newDeletions;
+                        chart.update();
+                    });
         });
     });
 </script>

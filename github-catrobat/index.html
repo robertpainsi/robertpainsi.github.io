@@ -21,8 +21,8 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.3.0/bootstrap-slider.min.js"
             integrity="sha256-WQ11JL7U13ZAhL9o6iJQCRLAHNg5NUyIVZRLYqxUexY=" crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"
-            integrity="sha256-aUydBd3D3p3+5tVJXERlqMtoCej+p4tdD+dkJgeRWNU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"
+            integrity="sha256-GcknncGKzlKm69d+sp+k3A2NyQE+jnu43aBl6rrDN2I=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="index.css">
 
@@ -42,6 +42,9 @@
 <body>
 <div id="chart-template" style="display: none">
     <div class="chart-content">
+        <div>
+            <input class="x-slider-top hidden"/>
+        </div>
         <div style="display: flex; align-items: center">
             <div style="flex-grow: 0; flex-shrink: 0">
                 <input class="y-slider hidden"/>
@@ -51,7 +54,7 @@
             </div>
         </div>
         <div>
-            <input class="x-slider hidden"/>
+            <input class="x-slider-bottom hidden"/>
         </div>
     </div>
 </div>

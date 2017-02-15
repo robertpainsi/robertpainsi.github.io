@@ -2,13 +2,14 @@
 <script>
     menu.registerMenu('Time Until Merge', '#link-chart-time-until-merge', function() {
         var chartElement = addChartTemplate();
-        $.getCachedJSON('./charts/data/time-until-merge.json').then(function(data) {
+        $.getCachedJSON('./charts/output/time-until-merge.json').then(function(data) {
             var merges = [];
             var rejects = [];
             data.forEach(function(details) {
                 var p = {
                     y: details.changes,
-                    x: details.duration
+                    x: details.duration,
+                    label: '#' + details.number
                 };
                 if (details.merged) {
                     merges.push(p);
@@ -19,6 +20,7 @@
 
             var max = maxValues(merges.concat(rejects));
             var currentDuration = Math.min(max.x, 60);
+            var currentChanges = 1000;
             var chart = createChart(chartElement.querySelector('.chart'), {
                 type: 'bubble',
                 data: {
@@ -33,7 +35,13 @@
                     }]
                 },
                 options: {
-                    tooltips: {enabled: false},
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].label;
+                            }
+                        }
+                    },
                     scales: {
                         xAxes: [{
                             ticks: {
@@ -49,7 +57,7 @@
                         }],
                         yAxes: [{
                             ticks: {
-                                max: max.y,
+                                max: currentChanges,
                             },
                             scaleLabel: {
                                 display: true,
@@ -59,7 +67,7 @@
                     }
                 }
             });
-            createSlider(chartElement.querySelector('.x-slider'), {
+            createSlider(chartElement.querySelector('.x-slider-bottom'), {
                 min: 0,
                 step: 1,
                 max: max.x,
@@ -68,10 +76,10 @@
             createSlider(chartElement.querySelector('.y-slider'), {
                 reversed: true,
                 orientation: 'vertical',
+                scale: 'logarithmic',
                 min: 0,
                 max: max.y,
-                value: [0, max.y],
-                step: 50,
+                value: [0, currentChanges],
             }).on("slide", updateYAxes(chart));
         });
     });

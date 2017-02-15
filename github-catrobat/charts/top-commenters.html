@@ -3,7 +3,7 @@
     menu.registerMenu('Top Commenters', '#link-chart-top-commenters', function() {
         var chartElement = addChartTemplate();
         chartElement.querySelector('.chart').height = 240;
-        $.getCachedJSON('./charts/data/top-commenters.json').then(function(data) {
+        $.getCachedJSON('./charts/output/top-commenters.json').then(function(data) {
             var users = [];
             var issues = [];
             var reviews = [];

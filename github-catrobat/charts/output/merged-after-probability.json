@@ -1,0 +1,1023 @@
+{
+ "points": [
+  {
+   "duration": 0,
+   "mergeProbability": 0.6583427922814983
+  },
+  {
+   "duration": 1,
+   "mergeProbability": 0.6317880794701987
+  },
+  {
+   "duration": 2,
+   "mergeProbability": 0.6174298375184638
+  },
+  {
+   "duration": 3,
+   "mergeProbability": 0.5925925925925926
+  },
+  {
+   "duration": 4,
+   "mergeProbability": 0.5688729874776386
+  },
+  {
+   "duration": 5,
+   "mergeProbability": 0.5447316103379721
+  },
+  {
+   "duration": 6,
+   "mergeProbability": 0.5207373271889401
+  },
+  {
+   "duration": 7,
+   "mergeProbability": 0.5088161209068011
+  },
+  {
+   "duration": 8,
+   "mergeProbability": 0.5025906735751295
+  },
+  {
+   "duration": 9,
+   "mergeProbability": 0.4959349593495935
+  },
+  {
+   "duration": 10,
+   "mergeProbability": 0.49714285714285716
+  },
+  {
+   "duration": 11,
+   "mergeProbability": 0.49117647058823527
+  },
+  {
+   "duration": 12,
+   "mergeProbability": 0.48757763975155277
+  },
+  {
+   "duration": 13,
+   "mergeProbability": 0.4786885245901639
+  },
+  {
+   "duration": 14,
+   "mergeProbability": 0.47766323024054985
+  },
+  {
+   "duration": 15,
+   "mergeProbability": 0.4787234042553192
+  },
+  {
+   "duration": 16,
+   "mergeProbability": 0.475
+  },
+  {
+   "duration": 17,
+   "mergeProbability": 0.4666666666666667
+  },
+  {
+   "duration": 18,
+   "mergeProbability": 0.46332046332046334
+  },
+  {
+   "duration": 19,
+   "mergeProbability": 0.4634146341463415
+  },
+  {
+   "duration": 20,
+   "mergeProbability": 0.4595744680851064
+  },
+  {
+   "duration": 21,
+   "mergeProbability": 0.45
+  },
+  {
+   "duration": 22,
+   "mergeProbability": 0.4439252336448598
+  },
+  {
+   "duration": 23,
+   "mergeProbability": 0.4449760765550239
+  },
+  {
+   "duration": 24,
+   "mergeProbability": 0.43842364532019706
+  },
+  {
+   "duration": 25,
+   "mergeProbability": 0.4292929292929293
+  },
+  {
+   "duration": 26,
+   "mergeProbability": 0.422680412371134
+  },
+  {
+   "duration": 27,
+   "mergeProbability": 0.41935483870967744
+  },
+  {
+   "duration": 28,
+   "mergeProbability": 0.4111111111111111
+  },
+  {
+   "duration": 29,
+   "mergeProbability": 0.4114285714285714
+  },
+  {
+   "duration": 30,
+   "mergeProbability": 0.40588235294117647
+  },
+  {
+   "duration": 31,
+   "mergeProbability": 0.40963855421686746
+  },
+  {
+   "duration": 32,
+   "mergeProbability": 0.4121212121212121
+  },
+  {
+   "duration": 33,
+   "mergeProbability": 0.4110429447852761
+  },
+  {
+   "duration": 34,
+   "mergeProbability": 0.391025641025641
+  },
+  {
+   "duration": 35,
+   "mergeProbability": 0.38311688311688313
+  },
+  {
+   "duration": 36,
+   "mergeProbability": 0.3815789473684211
+  },
+  {
+   "duration": 37,
+   "mergeProbability": 0.38926174496644295
+  },
+  {
+   "duration": 38,
+   "mergeProbability": 0.3931034482758621
+  },
+  {
+   "duration": 39,
+   "mergeProbability": 0.3888888888888889
+  },
+  {
+   "duration": 40,
+   "mergeProbability": 0.38461538461538464
+  },
+  {
+   "duration": 41,
+   "mergeProbability": 0.381294964028777
+  },
+  {
+   "duration": 42,
+   "mergeProbability": 0.3722627737226277
+  },
+  {
+   "duration": 43,
+   "mergeProbability": 0.3656716417910448
+  },
+  {
+   "duration": 44,
+   "mergeProbability": 0.35877862595419846
+  },
+  {
+   "duration": 45,
+   "mergeProbability": 0.3515625
+  },
+  {
+   "duration": 46,
+   "mergeProbability": 0.3442622950819672
+  },
+  {
+   "duration": 47,
+   "mergeProbability": 0.3305084745762712
+  },
+  {
+   "duration": 48,
+   "mergeProbability": 0.32142857142857145
+  },
+  {
+   "duration": 50,
+   "mergeProbability": 0.32432432432432434
+  },
+  {
+   "duration": 51,
+   "mergeProbability": 0.3302752293577982
+  },
+  {
+   "duration": 53,
+   "mergeProbability": 0.3238095238095238
+  },
+  {
+   "duration": 54,
+   "mergeProbability": 0.32038834951456313
+  },
+  {
+   "duration": 55,
+   "mergeProbability": 0.32
+  },
+  {
+   "duration": 56,
+   "mergeProbability": 0.3333333333333333
+  },
+  {
+   "duration": 57,
+   "mergeProbability": 0.3263157894736842
+  },
+  {
+   "duration": 58,
+   "mergeProbability": 0.3191489361702128
+  },
+  {
+   "duration": 60,
+   "mergeProbability": 0.3118279569892473
+  },
+  {
+   "duration": 61,
+   "mergeProbability": 0.3111111111111111
+  },
+  {
+   "duration": 62,
+   "mergeProbability": 0.30337078651685395
+  },
+  {
+   "duration": 63,
+   "mergeProbability": 0.29069767441860467
+  },
+  {
+   "duration": 64,
+   "mergeProbability": 0.2857142857142857
+  },
+  {
+   "duration": 66,
+   "mergeProbability": 0.2926829268292683
+  },
+  {
+   "duration": 67,
+   "mergeProbability": 0.2839506172839506
+  },
+  {
+   "duration": 68,
+   "mergeProbability": 0.27848101265822783
+  },
+  {
+   "duration": 69,
+   "mergeProbability": 0.27631578947368424
+  },
+  {
+   "duration": 70,
+   "mergeProbability": 0.2702702702702703
+  },
+  {
+   "duration": 71,
+   "mergeProbability": 0.2602739726027397
+  },
+  {
+   "duration": 72,
+   "mergeProbability": 0.25
+  },
+  {
+   "duration": 74,
+   "mergeProbability": 0.2571428571428571
+  },
+  {
+   "duration": 76,
+   "mergeProbability": 0.2608695652173913
+  },
+  {
+   "duration": 77,
+   "mergeProbability": 0.26865671641791045
+  },
+  {
+   "duration": 78,
+   "mergeProbability": 0.2727272727272727
+  },
+  {
+   "duration": 80,
+   "mergeProbability": 0.26153846153846155
+  },
+  {
+   "duration": 81,
+   "mergeProbability": 0.265625
+  },
+  {
+   "duration": 82,
+   "mergeProbability": 0.24193548387096775
+  },
+  {
+   "duration": 83,
+   "mergeProbability": 0.23333333333333334
+  },
+  {
+   "duration": 85,
+   "mergeProbability": 0.23728813559322035
+  },
+  {
+   "duration": 87,
+   "mergeProbability": 0.21052631578947367
+  },
+  {
+   "duration": 88,
+   "mergeProbability": 0.21428571428571427
+  },
+  {
+   "duration": 89,
+   "mergeProbability": 0.2222222222222222
+  },
+  {
+   "duration": 90,
+   "mergeProbability": 0.22641509433962265
+  },
+  {
+   "duration": 91,
+   "mergeProbability": 0.23076923076923078
+  },
+  {
+   "duration": 95,
+   "mergeProbability": 0.22448979591836735
+  },
+  {
+   "duration": 101,
+   "mergeProbability": 0.20833333333333334
+  },
+  {
+   "duration": 103,
+   "mergeProbability": 0.2
+  },
+  {
+   "duration": 105,
+   "mergeProbability": 0.20454545454545456
+  },
+  {
+   "duration": 109,
+   "mergeProbability": 0.18604651162790697
+  },
+  {
+   "duration": 110,
+   "mergeProbability": 0.16666666666666666
+  },
+  {
+   "duration": 111,
+   "mergeProbability": 0.17073170731707318
+  },
+  {
+   "duration": 116,
+   "mergeProbability": 0.175
+  },
+  {
+   "duration": 118,
+   "mergeProbability": 0.18421052631578946
+  },
+  {
+   "duration": 121,
+   "mergeProbability": 0.1891891891891892
+  },
+  {
+   "duration": 124,
+   "mergeProbability": 0.19444444444444445
+  },
+  {
+   "duration": 126,
+   "mergeProbability": 0.17142857142857143
+  },
+  {
+   "duration": 127,
+   "mergeProbability": 0.17647058823529413
+  },
+  {
+   "duration": 129,
+   "mergeProbability": 0.18181818181818182
+  },
+  {
+   "duration": 132,
+   "mergeProbability": 0.15625
+  },
+  {
+   "duration": 134,
+   "mergeProbability": 0.16666666666666666
+  },
+  {
+   "duration": 136,
+   "mergeProbability": 0.1724137931034483
+  },
+  {
+   "duration": 139,
+   "mergeProbability": 0.14285714285714285
+  },
+  {
+   "duration": 148,
+   "mergeProbability": 0.14814814814814814
+  },
+  {
+   "duration": 149,
+   "mergeProbability": 0.11538461538461539
+  },
+  {
+   "duration": 154,
+   "mergeProbability": 0.08
+  },
+  {
+   "duration": 162,
+   "mergeProbability": 0.08333333333333333
+  },
+  {
+   "duration": 167,
+   "mergeProbability": 0.08695652173913043
+  },
+  {
+   "duration": 176,
+   "mergeProbability": 0.09090909090909091
+  },
+  {
+   "duration": 191,
+   "mergeProbability": 0.09523809523809523
+  },
+  {
+   "duration": 195,
+   "mergeProbability": 0.1
+  },
+  {
+   "duration": 196,
+   "mergeProbability": 0.10526315789473684
+  },
+  {
+   "duration": 204,
+   "mergeProbability": 0.05555555555555555
+  },
+  {
+   "duration": 212,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 214,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 216,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 235,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 237,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 238,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 239,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 287,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 309,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 323,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 331,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 332,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 334,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 363,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 366,
+   "mergeProbability": 0
+  },
+  {
+   "duration": 510,
+   "mergeProbability": 0
+  }
+ ],
+ "approximatedPoints": [
+  {
+   "duration": 0,
+   "mergeProbability": 0.8526876969733084
+  },
+  {
+   "duration": 1,
+   "mergeProbability": 0.7552651871465992
+  },
+  {
+   "duration": 2,
+   "mergeProbability": 0.6982766721718359
+  },
+  {
+   "duration": 3,
+   "mergeProbability": 0.6578426773198899
+  },
+  {
+   "duration": 4,
+   "mergeProbability": 0.6264796343322321
+  },
+  {
+   "duration": 5,
+   "mergeProbability": 0.6008541623451267
+  },
+  {
+   "duration": 6,
+   "mergeProbability": 0.5791881344920908
+  },
+  {
+   "duration": 7,
+   "mergeProbability": 0.5604201674931807
+  },
+  {
+   "duration": 8,
+   "mergeProbability": 0.5438656473703634
+  },
+  {
+   "duration": 9,
+   "mergeProbability": 0.5290571245055228
+  },
+  {
+   "duration": 10,
+   "mergeProbability": 0.5156611861117877
+  },
+  {
+   "duration": 11,
+   "mergeProbability": 0.5034316525184174
+  },
+  {
+   "duration": 12,
+   "mergeProbability": 0.49218157216956265
+  },
+  {
+   "duration": 13,
+   "mergeProbability": 0.48176562466538164
+  },
+  {
+   "duration": 14,
+   "mergeProbability": 0.4720686095307596
+  },
+  {
+   "duration": 15,
+   "mergeProbability": 0.46299765766647144
+  },
+  {
+   "duration": 16,
+   "mergeProbability": 0.4544768081552883
+  },
+  {
+   "duration": 17,
+   "mergeProbability": 0.44644313754365417
+  },
+  {
+   "duration": 18,
+   "mergeProbability": 0.43884393705170216
+  },
+  {
+   "duration": 19,
+   "mergeProbability": 0.4316346146788136
+  },
+  {
+   "duration": 20,
+   "mergeProbability": 0.4247771096906184
+  },
+  {
+   "duration": 21,
+   "mergeProbability": 0.4182386762850783
+  },
+  {
+   "duration": 22,
+   "mergeProbability": 0.411990937857616
+  },
+  {
+   "duration": 23,
+   "mergeProbability": 0.4060091426917081
+  },
+  {
+   "duration": 24,
+   "mergeProbability": 0.40027157169115574
+  },
+  {
+   "duration": 25,
+   "mergeProbability": 0.3947590623428534
+  },
+  {
+   "duration": 26,
+   "mergeProbability": 0.3894546225688909
+  },
+  {
+   "duration": 27,
+   "mergeProbability": 0.3843431148386724
+  },
+  {
+   "duration": 28,
+   "mergeProbability": 0.37941099573752574
+  },
+  {
+   "duration": 29,
+   "mergeProbability": 0.3746460997040503
+  },
+  {
+   "duration": 30,
+   "mergeProbability": 0.3700374582411963
+  },
+  {
+   "duration": 31,
+   "mergeProbability": 0.36557514783976214
+  },
+  {
+   "duration": 32,
+   "mergeProbability": 0.3612501613103151
+  },
+  {
+   "duration": 33,
+   "mergeProbability": 0.35705429832857905
+  },
+  {
+   "duration": 34,
+   "mergeProbability": 0.35298007185101454
+  },
+  {
+   "duration": 35,
+   "mergeProbability": 0.34902062771694486
+  },
+  {
+   "duration": 36,
+   "mergeProbability": 0.3451696752685385
+  },
+  {
+   "duration": 37,
+   "mergeProbability": 0.3414214272249929
+  },
+  {
+   "duration": 38,
+   "mergeProbability": 0.3377705473680902
+  },
+  {
+   "duration": 39,
+   "mergeProbability": 0.3342121048521043
+  },
+  {
+   "duration": 40,
+   "mergeProbability": 0.33074153415629726
+  },
+  {
+   "duration": 41,
+   "mergeProbability": 0.32735459986390913
+  },
+  {
+   "duration": 42,
+   "mergeProbability": 0.3240473655860172
+  },
+  {
+   "duration": 43,
+   "mergeProbability": 0.3208161664583692
+  },
+  {
+   "duration": 44,
+   "mergeProbability": 0.31765758472928707
+  },
+  {
+   "duration": 45,
+   "mergeProbability": 0.3145684280309067
+  },
+  {
+   "duration": 46,
+   "mergeProbability": 0.31154570998741415
+  },
+  {
+   "duration": 47,
+   "mergeProbability": 0.3085866328649989
+  },
+  {
+   "duration": 48,
+   "mergeProbability": 0.3056885720108734
+  },
+  {
+   "duration": 50,
+   "mergeProbability": 0.30006578335381584
+  },
+  {
+   "duration": 51,
+   "mergeProbability": 0.2973365525161441
+  },
+  {
+   "duration": 53,
+   "mergeProbability": 0.29203211274218166
+  },
+  {
+   "duration": 54,
+   "mergeProbability": 0.2894531234707113
+  },
+  {
+   "duration": 55,
+   "mergeProbability": 0.28692060501196304
+  },
+  {
+   "duration": 56,
+   "mergeProbability": 0.2844329122502296
+  },
+  {
+   "duration": 57,
+   "mergeProbability": 0.2819884859108165
+  },
+  {
+   "duration": 58,
+   "mergeProbability": 0.27958584668983155
+  },
+  {
+   "duration": 60,
+   "mergeProbability": 0.2749003804249567
+  },
+  {
+   "duration": 61,
+   "mergeProbability": 0.2726149484144871
+  },
+  {
+   "duration": 62,
+   "mergeProbability": 0.27036608488914593
+  },
+  {
+   "duration": 63,
+   "mergeProbability": 0.268152638013053
+  },
+  {
+   "duration": 64,
+   "mergeProbability": 0.2659735095284863
+  },
+  {
+   "duration": 66,
+   "mergeProbability": 0.26171406320624135
+  },
+  {
+   "duration": 67,
+   "mergeProbability": 0.25963178850186974
+  },
+  {
+   "duration": 68,
+   "mergeProbability": 0.25757991305614336
+  },
+  {
+   "duration": 69,
+   "mergeProbability": 0.25555756202430524
+  },
+  {
+   "duration": 70,
+   "mergeProbability": 0.2535638977915866
+  },
+  {
+   "duration": 71,
+   "mergeProbability": 0.2515981178902357
+  },
+  {
+   "duration": 72,
+   "mergeProbability": 0.24965945306021375
+  },
+  {
+   "duration": 74,
+   "mergeProbability": 0.24586054688968328
+  },
+  {
+   "duration": 76,
+   "mergeProbability": 0.24216162363057003
+  },
+  {
+   "duration": 77,
+   "mergeProbability": 0.2403480375413809
+  },
+  {
+   "duration": 78,
+   "mergeProbability": 0.238557555088604
+  },
+  {
+   "duration": 80,
+   "mergeProbability": 0.23504359776741834
+  },
+  {
+   "duration": 81,
+   "mergeProbability": 0.23331902432958807
+  },
+  {
+   "duration": 82,
+   "mergeProbability": 0.23161535532725364
+  },
+  {
+   "duration": 83,
+   "mergeProbability": 0.22993209003719994
+  },
+  {
+   "duration": 85,
+   "mergeProbability": 0.22662485575930802
+  },
+  {
+   "duration": 87,
+   "mergeProbability": 0.2233936566316599
+  },
+  {
+   "duration": 88,
+   "mergeProbability": 0.221805493159835
+  },
+  {
+   "duration": 89,
+   "mergeProbability": 0.22023507490257777
+  },
+  {
+   "duration": 90,
+   "mergeProbability": 0.21868200968834517
+  },
+  {
+   "duration": 91,
+   "mergeProbability": 0.21714591820419749
+  },
+  {
+   "duration": 95,
+   "mergeProbability": 0.21116412303828969
+  },
+  {
+   "duration": 101,
+   "mergeProbability": 0.20264327352710665
+  },
+  {
+   "duration": 103,
+   "mergeProbability": 0.1999140426894349
+  },
+  {
+   "duration": 105,
+   "mergeProbability": 0.197236800375307
+  },
+  {
+   "duration": 109,
+   "mergeProbability": 0.19203061364400198
+  },
+  {
+   "duration": 110,
+   "mergeProbability": 0.19075865046706597
+  },
+  {
+   "duration": 111,
+   "mergeProbability": 0.18949809518525396
+  },
+  {
+   "duration": 116,
+   "mergeProbability": 0.18335952256661758
+  },
+  {
+   "duration": 118,
+   "mergeProbability": 0.1809772456740708
+  },
+  {
+   "duration": 121,
+   "mergeProbability": 0.17747787059824738
+  },
+  {
+   "duration": 124,
+   "mergeProbability": 0.17406350905007928
+  },
+  {
+   "duration": 126,
+   "mergeProbability": 0.17183249440047466
+  },
+  {
+   "duration": 127,
+   "mergeProbability": 0.1707301281863437
+  },
+  {
+   "duration": 129,
+   "mergeProbability": 0.16855099970177712
+  },
+  {
+   "duration": 132,
+   "mergeProbability": 0.16534437457048456
+  },
+  {
+   "duration": 134,
+   "mergeProbability": 0.16324655992781456
+  },
+  {
+   "duration": 136,
+   "mergeProbability": 0.16117959662078896
+  },
+  {
+   "duration": 139,
+   "mergeProbability": 0.15813505219759616
+  },
+  {
+   "duration": 148,
+   "mergeProbability": 0.14937818084791343
+  },
+  {
+   "duration": 149,
+   "mergeProbability": 0.14843803706297398
+  },
+  {
+   "duration": 154,
+   "mergeProbability": 0.14382939560011998
+  },
+  {
+   "duration": 162,
+   "mergeProbability": 0.13675615615391634
+  },
+  {
+   "duration": 167,
+   "mergeProbability": 0.13250958021049064
+  },
+  {
+   "duration": 176,
+   "mergeProbability": 0.12517482188835916
+  },
+  {
+   "duration": 191,
+   "mergeProbability": 0.11374161321158038
+  },
+  {
+   "duration": 195,
+   "mergeProbability": 0.11084355235745491
+  },
+  {
+   "duration": 196,
+   "mergeProbability": 0.11012827869263253
+  },
+  {
+   "duration": 204,
+   "mergeProbability": 0.10453347151522097
+  },
+  {
+   "duration": 212,
+   "mergeProbability": 0.0991528729901141
+  },
+  {
+   "duration": 214,
+   "mergeProbability": 0.09783930294494092
+  },
+  {
+   "duration": 216,
+   "mergeProbability": 0.09653789575997884
+  },
+  {
+   "duration": 235,
+   "mergeProbability": 0.08474082703641306
+  },
+  {
+   "duration": 237,
+   "mergeProbability": 0.0835547358473615
+  },
+  {
+   "duration": 238,
+   "mergeProbability": 0.082965422733283
+  },
+  {
+   "duration": 239,
+   "mergeProbability": 0.08237857022392259
+  },
+  {
+   "duration": 287,
+   "mergeProbability": 0.05675309823681718
+  },
+  {
+   "duration": 309,
+   "mergeProbability": 0.04640688577341079
+  },
+  {
+   "duration": 323,
+   "mergeProbability": 0.04019857811399996
+  },
+  {
+   "duration": 331,
+   "mergeProbability": 0.03677033567383525
+  },
+  {
+   "duration": 332,
+   "mergeProbability": 0.036347625665593464
+  },
+  {
+   "duration": 334,
+   "mergeProbability": 0.03550600056516506
+  },
+  {
+   "duration": 363,
+   "mergeProbability": 0.023836990034926675
+  },
+  {
+   "duration": 366,
+   "mergeProbability": 0.02268335041070213
+  },
+  {
+   "duration": 510,
+   "mergeProbability": -0.023840109421003786
+  }
+ ],
+ "fiftyPercentX": 11.296594635331097
+}

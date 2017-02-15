@@ -2,35 +2,46 @@
 <script>
     menu.registerMenu('Pull Request Merged After', '#link-chart-merged-after-probability', function() {
         var chartElement = addChartTemplate();
-        $.getCachedJSON('./charts/data/merged-after-probability.json').then(function(data) {
-            var chartData = data.map(function(details) {
+        $.getCachedJSON('./charts/output/merged-after-probability.json').then(function(data) {
+            var toPoint = function(details) {
                 return {
                     x: details.duration,
                     y: details.mergeProbability
                 }
-            });
-            var maxDuration = maxX(chartData);
+            };
+            var approximatedData = data.approximatedPoints.map(toPoint);
+            var chartData = data.points.map(toPoint);
+            var maxDuration = maxX(approximatedData);
             var currentDuration = Math.min(maxDuration, 60);
             var chart = createChart(chartElement.querySelector('.chart'), {
                 type: 'line',
                 data: {
                     datasets: [{
+                        type: 'bubble',
                         label: 'Probability if it will be merged',
                         data: chartData,
-                        backgroundColor: colors.merges
+                        backgroundColor: colors.black,
+                        hoverBorderWidth: 1,
+                        hoverRadius: 1
+                    }, {
+                        label: 'Approximated probability if it will be merged',
+                        data: approximatedData,
+                        backgroundColor: colors.merges,
+                        pointRadius: 0
                     }, {
                         label: '',
                         data: [
                             {x: 0, y: 1},
                             {x: maxDuration * 2, y: 1}
                         ],
-                        backgroundColor: colors.rejects
+                        backgroundColor: colors.rejects,
+                        pointRadius: 0
                     }],
-                    verticalLines: [chartData[chartData.findIndex((p) => p.y < 0.5) - 1].x],
+                    verticalLines: [data.fiftyPercentX],
                     horizontalLines: [0.5]
                 },
                 options: {
-                    elements: {point: {radius: 0}},
+                    elements: {point: {radius: 1}},
                     tooltips: {enabled: false},
                     scales: {
                         xAxes: [{
@@ -44,12 +55,13 @@
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Days',
+                                labelString: 'Days'
                             }
                         }],
                         yAxes: [{
                             ticks: {
                                 beginAtZero: true,
+                                min: 0,
                                 max: 1,
                                 callback: toPercentLabel
                             },
@@ -61,13 +73,13 @@
                     }
                 }
             });
-            createSlider(chartElement.querySelector('.x-slider'), {
+            createSlider(chartElement.querySelector('.x-slider-bottom'), {
                 range: true,
+                scale: 'logarithmic',
                 min: 0,
                 max: maxDuration,
                 value: [0, currentDuration]
             }).on("slide", updateXAxes(chart));
         });
-    })
-    ;
+    });
 </script>
