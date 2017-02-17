@@ -1,0 +1,33 @@
+<link rel="import" href="resource-bundle.html">
+
+<template id="t">
+    <div class="w-root-menu">
+        <a href="/test/gmail" class="w-root-menu-btn btn btn-lg btn-block">gmail</a>
+        <a href="/test/google-plus" class="w-root-menu-btn btn btn-lg btn-block">google+</a>
+    </div>
+</template>
+
+<script>
+    webcomponentsUtils.importScope(function(importDocument) {
+        webcomponentsUtils.registerElement('root-menu', function() {
+            var template = importDocument.getElementById('t');
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(template);
+
+                var buttons = clone.querySelectorAll('.w-root-menu-btn');
+                for (var i = 0; i < buttons.length; i++) {
+                    var button = buttons[i];
+                    var buttonClass;
+                    if (window.location.href.startsWith(buttons[i].href)) {
+                        buttonClass = 'btn-primary';
+                    } else {
+                        buttonClass = 'btn-secondary';
+                    }
+                    button.classList.add(buttonClass);
+                }
+
+                this.appendChild(clone);
+            };
+        });
+    });
+</script>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            border: 1px dotted #2b2b2b;
+        }
+
+        .main {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        .article {
+            max-width: 640px;
+        }
+
+        .menu-left {
+            max-width: 320px;
+        }
+
+        @media (min-width: 1300px) {
+            .menu-right {
+                width: 320px;
+            }
+        }
+
+        @media (max-width: 1300px) {
+            .menu-right {
+                max-width: 320px;
+                margin-right: auto;
+            }
+        }
+
+        .menu-content {
+            top: 0;
+            position: sticky;
+        }
+
+        .menu {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1>HEADER MENU</h1>
+</header>
+<main class="main">
+    <div class="menu menu-left">
+        <div class="menu-content">
+            <ul>
+                <li>Examples</li>
+                <li>
+                    <ul>
+                        <li>Find an object in an array by one of its properties</li>
+                        <li>Find a prime number in an array</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="article"></div>
+    <div class="menu menu-right"></div>
+</main>
+
+<script>
+    var article = document.querySelector('.article');
+    for (var i = 0; i < 10; i++) {
+        var p = document.createElement('p');
+        p.innerHTML = `
+Nunc lacinia nunc accumsan, pharetra purus vitae, euismod leo. Sed posuere euismod dolor, a
+ullamcorper mauris fringilla ac. Praesent egestas elementum sapien, quis volutpat arcu convallis at.
+Vestibulum eu nisl velit. In sit amet ligula non purus laoreet posuere at eget sem. Phasellus ante
+ex, rhoncus id rhoncus at, ultrices eu elit. Donec vehicula eleifend ante. Nulla facilisi. Vivamus
+efficitur ligula velit, in mollis nibh porta sit amet. Proin varius magna velit. Donec at quam
+placerat, malesuada dolor sed, vulputate dui. Nulla facilisi. Cras lacus mauris, semper eget euismod
+id, viverra vel tellus. Vestibulum vel nunc vitae nisl varius aliquet sed ac nulla. Vivamus non sem
+imperdiet, lacinia urna eu, malesuada ex. Nam semper egestas augue sit amet tristique.
+`;
+        article.appendChild(p);
+    }
+</script>
+</body>
+</html>

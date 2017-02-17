@@ -1,0 +1,65 @@
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+
+<!-- Themes -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+<!-- Icons -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css"
+      integrity="sha256-pNGG0948CVwfHxxS8lVkUKftaSsMBzFSUknrKr2utfY=" crossorigin="anonymous"/>
+
+<script>
+    webcomponentsUtils = {
+        importScope: function(callback) {
+            callback(document._currentScript.ownerDocument);
+        },
+        registerElement: function(tagName, registerCallbacks) {
+            var proto = Object.create(HTMLElement.prototype);
+            registerCallbacks.call(proto);
+            document.registerElement(tagName, {prototype: proto});
+        },
+        addTemplate: function(element, template) {
+            element.appendChild(webcomponentsUtils.cloneTemplate(template));
+            return element.lastElementChild;
+        },
+        cloneTemplate: function(template) {
+            return document.importNode(template.content, true);
+        },
+        appendChildren: function(children, newParent) {
+            for (var child of [...children]) {
+                newParent.appendChild(child);
+            }
+        },
+        /**
+         *
+         * @param from, either HTMLElement or an Array of Attributes
+         * @param to, either HTMLElement or an Array of HTMLElement
+         */
+        passAllAttributes: function(from, to) {
+            if (to.constructor === HTMLCollection) {
+                for (var e of to) {
+                    webcomponentsUtils.passAllAttributes(from, e);
+                }
+            } else {
+                for (var attribute of from.attributes) {
+                    to.setAttribute(attribute.name, attribute.value);
+                }
+            }
+        }
+    };
+</script>

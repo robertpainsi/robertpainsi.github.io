@@ -1,0 +1,103 @@
+<link rel="import" href="resource-bundle.html">
+
+<style>
+    .w-github-btn-label {
+        font-weight: bold;
+        vertical-align: text-top;
+    }
+</style>
+
+<template id="t">
+    <a href="javascript:;" class="w-github-btn btn btn-default">
+        <span class="w-github-btn-icon octicon"></span>
+        <span class="w-github-btn-label small"></span>
+    </a>
+</template>
+
+<template id="t-all">
+    <github-follow></github-follow>
+    <github-star></github-star>
+    <github-issue></github-issue>
+</template>
+
+<script>
+    webcomponentsUtils.importScope(function(importDocument) {
+        var githubConfig = {
+            tags: [
+                {
+                    tagName: 'github-follow',
+                    text: 'Follow @{{USER}}',
+                    link: 'https://github.com/{{USER}}',
+                    icon: 'octicon-mark-github'
+                },
+                {
+                    tagName: 'github-watch',
+                    text: 'Watch',
+                    link: 'https://github.com/{{USER}}/{{REPO}}/subscription',
+                    icon: 'octicon-eye'
+                },
+                {
+                    tagName: 'github-star',
+                    text: 'Star',
+                    link: 'https://github.com/{{USER}}/{{REPO}}/stargazers',
+                    icon: 'octicon-star'
+                },
+                {
+                    tagName: 'github-fork',
+                    text: 'Fork',
+                    link: 'https://github.com/{{USER}}/{{REPO}}/fork',
+                    icon: 'octicon-repo-forked'
+                },
+                {
+                    tagName: 'github-issue',
+                    text: 'Issue',
+                    link: 'https://github.com/{{USER}}/{{REPO}}/issues',
+                    icon: 'octicon-issue-opened'
+                },
+                {
+                    tagName: 'github-download',
+                    text: 'Download',
+                    link: 'https://github.com/{{USER}}/{{REPO}}/archive/%BRANCH%.zip',
+                    icon: 'octicon-cloud-download'
+                }
+            ]
+        };
+
+        var fillTemplateWithData = function(template, data) {
+            return template
+                    .replace(/\{\{USER\}\}/g, data.user)
+                    .replace(/\{\{REPO\}\}/g, data.repository)
+                    .replace(/\{\{BRANCH\}\}/g, data.branch);
+        };
+
+        var template = importDocument.getElementById('t');
+        githubConfig.tags.forEach(function(config) {
+            webcomponentsUtils.registerElement(config.tagName, function() {
+                this.attachedCallback = function() {
+                    var data = {
+                        user: this.getAttribute('user'),
+                        repository: this.getAttribute('repository'),
+                        branch: this.getAttribute('branch') || 'master'
+                    };
+
+                    var clone = webcomponentsUtils.cloneTemplate(template);
+                    clone.querySelector('.w-github-btn').href = fillTemplateWithData(config.link, data);
+                    clone.querySelector('.w-github-btn-icon').classList.add(config.icon);
+                    clone.querySelector('.w-github-btn-label').innerText = fillTemplateWithData(config.text, data);
+                    this.appendChild(clone);
+                };
+            });
+        });
+
+        var allTemplate = importDocument.getElementById('t-all');
+        webcomponentsUtils.registerElement('github-all', function() {
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(allTemplate);
+                for (var share of clone.children) {
+                    webcomponentsUtils.passAllAttributes(this, share);
+                }
+                this.appendChild(clone);
+            };
+        });
+    });
+</script>
