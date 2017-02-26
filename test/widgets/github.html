@@ -1,6 +1,11 @@
 <link rel="import" href="resource-bundle.html">
 
 <style>
+    .w-github-btn,
+    .w-github-btn-icon {
+        text-decoration: none !important;
+    }
+
     .w-github-btn-label {
         font-weight: bold;
         vertical-align: text-top;
@@ -17,7 +22,7 @@
 <template id="t-all">
     <github-follow></github-follow>
     <github-star></github-star>
-    <github-issue></github-issue>
+    <github-issues></github-issues>
 </template>
 
 <script>
@@ -49,10 +54,22 @@
                     icon: 'octicon-repo-forked'
                 },
                 {
-                    tagName: 'github-issue',
-                    text: 'Issue',
+                    tagName: 'github-issues',
+                    text: 'Issues',
                     link: 'https://github.com/{{USER}}/{{REPO}}/issues',
                     icon: 'octicon-issue-opened'
+                },
+                {
+                    tagName: 'github-issue',
+                    text: 'Issue#{{NUMBER}}',
+                    link: 'https://github.com/{{USER}}/{{REPO}}/issue/{{NUMBER}}',
+                    icon: 'octicon-issue-opened'
+                },
+                {
+                    tagName: 'github-discussion',
+                    text: 'Discussion',
+                    link: 'https://github.com/{{USER}}/{{REPO}}/issue{{NUMBER}}',
+                    icon: 'octicon-comment-discussion'
                 },
                 {
                     tagName: 'github-download',
@@ -67,7 +84,8 @@
             return template
                     .replace(/\{\{USER\}\}/g, data.user)
                     .replace(/\{\{REPO\}\}/g, data.repository)
-                    .replace(/\{\{BRANCH\}\}/g, data.branch);
+                    .replace(/\{\{BRANCH\}\}/g, data.branch)
+                    .replace(/\{\{NUMBER\}\}/g, data.number);
         };
 
         var template = importDocument.getElementById('t');

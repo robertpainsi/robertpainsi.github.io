@@ -9,6 +9,7 @@
     <link rel="import" href="/test/widgets/resource-bundle.html">
     <link rel="import" href="/test/widgets/github.html">
     <link rel="import" href="/test/widgets/social.html">
+    <link rel="import" href="/test/widgets/root-menu.html">
 
     <style>
         .octicon {
@@ -78,7 +79,6 @@
             }
 
             .foo {
-
             }
 
             .foo:after {
@@ -141,6 +141,33 @@
             padding-left: 16px;
             padding-top: 10px;
         }
+
+        .w-paper-menu-btn:after {
+            display: none;
+        }
+
+        .menu-overflow {
+            position: fixed;
+            overflow-y: auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            z-index: 2000;
+            opacity: 0;
+            transition: 0.5s ease;
+        }
+
+        .menu-overflow.hello {
+            opacity: 1;
+            height: 100%;
+            margin-right: 15px;
+        }
+
+        body.snu {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -169,14 +196,21 @@
                     </div>
                 </div>
                 <div class="btn-group" style="flex-grow: 1;">
-                    <a href="javascript:;" class="w-paper-menu-btn w-paper-menu-btn-menu btn btn-default"
-                       style="flex-grow: 1">
+                    <a href="javascript:;"
+                       class="w-paper-menu-btn w-paper-menu-btn-menu btn btn-default dropdown-toggle"
+                       style="flex-grow: 1; z-index: 3000">
                         <i class="fa fa-bars fa-fw"></i>
                     </a>
+                    <div class="menu-overflow">
+                        <div class="overflow-content" style="max-width: 640px; margin: 52px auto auto; padding: 12px">
+                            <root-menu></root-menu>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <h1 style="flex-grow: 999999; padding-right: 32px"><a href="#">#code <span
-                    class="octicon octicon-squirrel"></span></a></h1>
+            <h1 style="flex-grow: 999999; padding-right: 32px">
+                <a href="#">#code&nbsp;<span class="octicon octicon-squirrel"></span></a>
+            </h1>
         </div>
         <p class="lead">
             <i class="fa fa-male"></i>
@@ -208,7 +242,6 @@
     <div class="article">
         <h2>Lorem ipsum</h2>
         <div id="stuff"></div>
-        <a href="#">To <span class="octicon octicon-comment-discussion"></span></a>
         <div style="display: flex; flex-direction: column; text-align: center">
             <github-all></github-all>
             <social-share-all></social-share-all>
@@ -233,6 +266,17 @@
     `;
         article.appendChild(p);
     }
+
+    document.querySelector('.w-paper-menu-btn').addEventListener('click', function() {
+        document.body.classList.toggle('snu');
+        document.body.scrollTop = 0;
+        var iconElement = this.querySelector('i.fa');
+        iconElement.classList.toggle('fa-bars');
+        iconElement.classList.toggle('fa-close');
+        if (this.nextElementSibling.classList.toggle('hello')) {
+            this.nextElementSibling.scrollTop = 0;
+        }
+    });
 </script>
 </body>
 </html>

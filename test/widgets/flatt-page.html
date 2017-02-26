@@ -1,0 +1,426 @@
+<link rel="import" href="/test/widgets/resource-bundle.html">
+<link rel="import" href="/test/widgets/github.html">
+<link rel="import" href="/test/widgets/social.html">
+<link rel="import" href="/test/widgets/root-menu.html">
+
+<style>
+    .octicon {
+        font-size: inherit;
+    }
+
+    a:hover span.octicon {
+        text-decoration: underline;
+    }
+
+    .w-flatt-page-header-btn-container span.octicon {
+        text-decoration: none !important;
+    }
+
+    .w-flatt-page-header-container {
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (min-width: 975px) {
+        .w-flatt-page-header {
+            margin-bottom: 32px;
+        }
+
+        .w-flatt-page-header-container {
+            max-width: 1280px;
+        }
+    }
+
+    .w-flatt-page-header {
+        background-color: #eceeef;
+        padding-bottom: 24px;
+    }
+
+    @media (min-width: 535px) {
+        .w-flatt-page-header {
+            padding-top: 24px;
+        }
+    }
+
+    .w-flatt-page-header-title,
+    .w-flatt-page-header-description {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .w-flatt-page-header-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
+
+    .w-flatt-page-header-btn-container {
+        display: flex;
+        flex-grow: 1;
+        align-items: flex-start;
+        min-width: 220px;
+        padding: 2px;
+    }
+
+    .w-flatt-page-header-btn-container > div,
+    .w-flatt-page-header-btn-container > button,
+    .w-flatt-page-header-btn-container > a {
+        flex: 1;
+    }
+
+    .w-flatt-page-header-dropdown-menu-social {
+        min-width: inherit;
+        text-align: center;
+    }
+
+    .w-flatt-page-header-btn-overview:after {
+        display: none;
+    }
+
+    .w-flatt-page-header-title {
+        flex-grow: 99999;
+    }
+
+    @media (min-width: 300px) {
+        .w-flatt-page-header-title {
+            min-width: 300px;
+        }
+    }
+
+    .w-flatt-page-header-description {
+        width: 100%;
+    }
+
+    .w-flatt-page-main {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        padding-bottom: 0;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    @media (min-width: 975px) {
+        .w-flatt-page-main {
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+
+    .w-flatt-page-main-sidebar-left {
+        flex-grow: 1;
+        max-width: inherit;
+        min-width: 320px;
+        background-color: #eceeef;
+    }
+
+    @media (min-width: 975px) {
+        .w-flatt-page-main-sidebar-left {
+            max-width: 320px;
+            background-color: inherit;
+        }
+    }
+
+    .w-flatt-page-main-sidebar-left-container {
+        background-color: #eceeef;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-bottom: 2px;
+    }
+
+    @media (min-width: 975px) {
+        .w-flatt-page-main-sidebar-left-index {
+            padding: 0;
+        }
+
+        .w-flatt-page-main-sidebar-left-container {
+            padding: 20px 15px;
+            position: sticky;
+            top: 32px;
+        }
+    }
+
+    .w-flatt-page-main-sidebar-left-nav ol {
+        list-style-type: none;
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+
+    .w-flatt-page-main-sidebar-left-nav > ol > li {
+        padding-left: 0 !important;
+    }
+
+    .w-flatt-page-main-sidebar-left-nav ol > li {
+        padding: 10px 0 0 16px;
+    }
+
+    @media (max-width: 974px) {
+        .w-flatt-page-main-sidebar-left-nav {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .w-flatt-page-main-sidebar-left-collapse {
+            padding-bottom: 10px;
+        }
+    }
+
+    @media (min-width: 975px) {
+        .w-flatt-page-main-sidebar-left-nav ol > li {
+            font-size: 13px;
+        }
+    }
+
+    .w-flatt-page-main-sidebar-left-index {
+        display: block;
+        text-align: left
+    }
+
+    @media (max-width: 974px) {
+        .w-flatt-page-main-sidebar-left-index:after {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 0;
+            vertical-align: middle;
+            margin-left: .5em;
+
+            border-top: 0;
+            border-bottom: .3em solid;
+            border-right: .3em solid transparent;
+            border-left: .3em solid transparent;
+        }
+
+        .w-flatt-page-main-sidebar-left-index.collapsed:after {
+            border-top: .3em solid;
+            border-bottom: 0;
+            border-right: .3em solid transparent;
+            border-left: .3em solid transparent;
+        }
+    }
+
+    @media (min-width: 975px) {
+        .w-flatt-page-main-sidebar-left-index {
+            pointer-events: none;
+        }
+
+        .w-flatt-page-main-sidebar-left-collapse {
+            display: block;
+        }
+    }
+
+    .w-flatt-page-main-article {
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px 12px 15px;
+    }
+
+    @media (min-width: 975px) {
+        .w-flatt-page-main-article {
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0 20px;
+        }
+    }
+
+    .w-flatt-page-main-article-footer {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .w-flatt-page-main-sidebar-right {
+        flex-grow: 1;
+        max-width: 320px;
+    }
+</style>
+<template id="t">
+    <div class="w-flatt-page">
+        <header class="w-flatt-page-header">
+            <div class="w-flatt-page-header-container">
+                <div class="w-flatt-page-header-btn-container">
+                    <div class="btn-group">
+                        <a class="btn btn-block dropdown-toggle" href="#" data-toggle="dropdown">
+                            <span class="fa fa-fw octicon octicon-mark-github"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <github-all></github-all>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-block dropdown-toggle" href="#" data-toggle="dropdown">
+                            <i class="fa fa-share-alt fa-fw"></i>
+                        </a>
+                        <div class="w-flatt-page-header-dropdown-menu-social dropdown-menu">
+                            <social-share-all></social-share-all>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="w-flatt-page-header-btn-overview btn btn-block dropdown-toggle"
+                           data-toggle="modal" data-target=".bd-example-modal-lg">
+                            <i class="fa fa-th-large fa-fw"></i>
+                        </a>
+                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                             aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <root-menu></root-menu>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-flatt-page-header-title">
+                    <h1><a href="#">#code&nbsp;<span class="octicon octicon-squirrel"></span></a></h1>
+                </div>
+                <div class="w-flatt-page-header-description lead">
+                    <i class="fa fa-male"></i>
+                    <span><a href="#">Robert Painsi</a> •&nbsp;Open source software developer.</span>
+                </div>
+            </div>
+        </header>
+        <main class="w-flatt-page-main">
+            <div class="w-flatt-page-main-sidebar-left">
+                <div class="w-flatt-page-main-sidebar-left-container">
+                    <a href="#w-flatt-page-main-sidebar-left-index"
+                       class="w-flatt-page-main-sidebar-left-index btn collapsed" data-toggle="collapse">
+                        IN THIS ARTICLE
+                    </a>
+                    <div id="w-flatt-page-main-sidebar-left-index"
+                         class="w-flatt-page-main-sidebar-left-collapse bar collapse">
+                        <nav class="w-flatt-page-main-sidebar-left-nav"></nav>
+                    </div>
+                </div>
+            </div>
+            <article class="w-flatt-page-main-article">
+                <footer class="w-flatt-page-main-article-footer">
+                    <github-all></github-all>
+                    <social-share-all></social-share-all>
+                </footer>
+            </article>
+            <div class="w-flatt-page-main-sidebar-right"></div>
+        </main>
+    </div>
+</template>
+
+<script>
+    webcomponentsUtils.importScope(function(importDoc) {
+        history.scrollRestoration = 'manual';
+
+        var headerTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(function(e) {
+            return e.toUpperCase();
+        });
+
+        var createIndex = function() {
+            var getAllHeaders = function(startElement, result) {
+                if (!result) {
+                    result = [];
+                }
+                for (var e of startElement.children) {
+                    if (headerTags.includes(e.tagName)) {
+                        result.push(e);
+                    }
+                    if (e.children.length) {
+                        getAllHeaders(e, result);
+                    }
+                }
+                return result;
+            };
+
+            var convertHeadersToTreeStructure = function(headers) {
+                var root = createNode(null);
+                var currentRoot = root;
+                for (var h of headers) {
+                    var currentNode = createNode(h);
+                    if (!root.children.length || h.tagName > currentRoot.element.tagName) {
+                        currentRoot.add(currentNode);
+                    } else {
+                        while (currentRoot.parent && h.tagName <= currentRoot.element.tagName) {
+                            currentRoot = currentRoot.parent;
+                        }
+                        currentRoot.add(currentNode);
+                    }
+                    currentRoot = currentNode;
+                }
+                return root;
+            };
+
+            var createNode = function() {
+                function Node(element) {
+                    this.element = element;
+                    this.parent = null;
+                    this.children = [];
+                }
+
+                Node.prototype.add = function(node) {
+                    node.parent = this;
+                    this.children.push(node);
+                };
+
+                return function(node) {
+                    return new Node(node);
+                }
+            }();
+
+            var createIndexElements = function(node, parentListNode) {
+                if (!parentListNode) {
+                    var ol = document.createElement('ol');
+                    for (var c of node.children) {
+                        createIndexElements(c, ol)
+                    }
+                    return ol;
+                } else {
+                    var text = node.element.innerHTML;
+                    var id = encodeURIComponent(text.replace(/ /g, '-'));
+                    node.element.id = id;
+
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.href = '#' + id;
+                    a.innerText = text;
+                    li.appendChild(a);
+
+                    if (node.children.length) {
+                        var ol = document.createElement('ol');
+                        for (var c of node.children) {
+                            createIndexElements(c, ol);
+                        }
+                        li.appendChild(ol);
+                    }
+                    parentListNode.appendChild(li);
+                }
+            };
+
+            return function(fromElement) {
+                var headers = getAllHeaders(fromElement);
+                var root = convertHeadersToTreeStructure(headers);
+                return createIndexElements(root);
+            }
+        }();
+
+        webcomponentsUtils.registerElement('flatt-page', function() {
+            var template = importDoc.getElementById('t');
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(template);
+                clone.querySelector('.w-flatt-page-main-sidebar-left-nav').appendChild(createIndex(this));
+                webcomponentsUtils.prependChildren(this.childNodes, clone.querySelector('.w-flatt-page-main-article'));
+                this.appendChild(clone);
+
+
+                setTimeout(function() {
+                    var hash = location.hash.substring(location.hash.indexOf('#') + 1);
+                    var hashedElement = document.getElementById(hash);
+                    if (hashedElement) {
+                        hashedElement.scrollIntoView(true);
+                    }
+                }, 0);
+            };
+        });
+    });
+</script>

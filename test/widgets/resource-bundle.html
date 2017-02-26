@@ -45,6 +45,11 @@
                 newParent.appendChild(child);
             }
         },
+        prependChildren: function(children, newParent) {
+            for (var child of [...children].reverse()) {
+                newParent.insertBefore(child, newParent.firstElementChild);
+            }
+        },
         /**
          *
          * @param from, either HTMLElement or an Array of Attributes
