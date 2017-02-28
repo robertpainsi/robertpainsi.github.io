@@ -1,0 +1,53 @@
+<link rel="import" href="../../resource-bundle.html">
+
+<template id="t">
+    <ol class="w-root-menu"></ol>
+</template>
+
+<template id="t-item">
+    <li class="w-root-menu-item">
+        <img src="" alt="">
+        <span>Title</span>
+        <span>Description</span>
+    </li>
+</template>
+
+<script>
+    webcomponentsUtils.importScope(function(importDocument) {
+        var catrobatIcon = {
+            src: '/test/widgets/img/'
+        };
+
+        var menuConfig = {
+            items: [
+                {
+                    title: '',
+                    description: '',
+                    icon: ''
+                }
+            ]
+        };
+
+        webcomponentsUtils.registerElement('root-menu', function() {
+            var template = importDocument.getElementById('t');
+            this.attachedCallback = function() {
+                var clone = webcomponentsUtils.cloneTemplate(template);
+
+
+//                var buttons = clone.querySelectorAll('.w-root-menu-btn');
+//                for (var i = 0; i < buttons.length; i++) {
+//                    var button = buttons[i];
+//                    var buttonClass;
+//                    if (window.location.href.startsWith(buttons[i].href)) {
+//                        buttonClass = 'btn-primary';
+//                    } else {
+//                        buttonClass = 'btn-secondary';
+//                    }
+//                    button.classList.add(buttonClass);
+//                }
+
+                this.appendChild(clone);
+            };
+        });
+    });
+</script>

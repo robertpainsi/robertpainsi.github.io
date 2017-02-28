@@ -1,7 +1,7 @@
-<link rel="import" href="/test/widgets/resource-bundle.html">
-<link rel="import" href="/test/widgets/github.html">
-<link rel="import" href="/test/widgets/social.html">
-<link rel="import" href="/test/widgets/root-menu.html">
+<link rel="import" href="/templates/resource-bundle.html">
+<link rel="import" href="/templates/widgets/github/github.html">
+<link rel="import" href="/templates/widgets/social/social.html">
+<link rel="import" href="/templates/pages/flatt-page/menu.html">
 
 <style>
     .octicon {
@@ -75,48 +75,27 @@
         text-align: center;
     }
 
-    .w-flatt-page-header-btn-overview {
-        z-index: 3000 !important;
-    }
-
-    body.modal-open .w-flatt-page-header-btn-overview {
-        background-color: white;
-        box-shadow: 0 0 0 2px rgba(2,117,216,.25);
-    }
-
-    body.modal-open .w-flatt-page-header-btn-overview .fa:before {
-        content: "\f00d"
-    }
-
-
     .w-flatt-page-header-btn-overview:after {
         display: none;
     }
 
-    .modal-backdrop {
-        display: none;
-    }
-
-    .modal-dialog {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
     .modal-content {
-        background-color: rgba(255, 255, 255, 0.8);
-        width: 100%;
-        min-height: 100%;
-        border: 0;
-        border-radius: 0;
+        padding: 4px 12px 4px 12px;
     }
 
-    root-menu {
-        max-width: 640px;
-        margin-left: auto;
-        margin-right: auto;
+    .w-flatt-page-modal-content-btn-close {
+        float: right;
+        margin-right: -8px;
+    }
+
+    @media (min-width: 975px) {
+        .modal-content {
+            padding: 4px 16px 16px 16px;
+        }
+
+        .w-flatt-page-modal-content-btn-close {
+            margin-right: -12px;
+        }
     }
 
     .w-flatt-page-header-title {
@@ -310,6 +289,12 @@
                              aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
+                                    <div>
+                                        <a href="#" class="btn w-flatt-page-modal-content-btn-close"
+                                           data-dismiss="modal">
+                                            <i class="fa fa-times fa-fw"></i>
+                                        </a>
+                                    </div>
                                     <root-menu></root-menu>
                                 </div>
                             </div>
@@ -353,9 +338,7 @@
     webcomponentsUtils.importScope(function(importDoc) {
         history.scrollRestoration = 'manual';
 
-        var headerTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(function(e) {
-            return e.toUpperCase();
-        });
+        var headerTags = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
 
         var createIndex = function() {
             var getAllHeaders = function(startElement, result) {
