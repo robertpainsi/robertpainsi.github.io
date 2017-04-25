@@ -69,9 +69,9 @@
 
         var fillTemplateWithData = function(template, data) {
             return template
-                .replace(/\{\{URL\}\}/g, encodeURIComponent(data.url || ''))
-                .replace(/\{\{HEADER\}\}/g, encodeURIComponent(data.header || ''))
-                .replace(/\{\{DESCRIPTION\}\}/g, encodeURIComponent(data.description || ''));
+                .replace(/{{URL}}/g, encodeURIComponent(data.url || ''))
+                .replace(/{{HEADER}}/g, encodeURIComponent(data.header || ''))
+                .replace(/{{DESCRIPTION}}/g, encodeURIComponent(data.description || ''));
         };
 
         var template = importDocument.getElementById('t');

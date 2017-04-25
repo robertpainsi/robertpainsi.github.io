@@ -82,10 +82,10 @@
 
         var fillTemplateWithData = function(template, data) {
             return template
-                .replace(/\{\{USER\}\}/g, data.user)
-                .replace(/\{\{REPO\}\}/g, data.repository)
-                .replace(/\{\{BRANCH\}\}/g, data.branch)
-                .replace(/\{\{NUMBER\}\}/g, data.number);
+                .replace(/{{USER}}/g, data.user)
+                .replace(/{{REPO}}/g, data.repository)
+                .replace(/{{BRANCH}}/g, data.branch)
+                .replace(/{{NUMBER}}/g, data.number);
         };
 
         var template = importDocument.getElementById('t');
