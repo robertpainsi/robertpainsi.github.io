@@ -135,7 +135,7 @@ var colorUtils = {
         return {r: r, g: g, b: b};
     },
     hexToRGBA: function(hex, a) {
-        var rgb = hexToRGB(hex);
+        var rgb = colorUtils.hexToRGB(hex);
         rgb.a = a;
         return rgb;
     },
