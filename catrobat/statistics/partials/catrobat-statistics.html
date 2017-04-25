@@ -231,7 +231,7 @@
 
 <script>
     webcomponentsUtils.importScope(function(importDocument) {
-        var getStatisticsAjax = $.getJSON(DATA_URLS.PROGRAM_STATISTICS);
+        var getStatisticsAjax = $.getJSON(URLS.PROGRAM_STATISTICS);
         webcomponentsUtils.registerElement('catrobat-statistics', function() {
             var template = importDocument.getElementById('t-catrobat-statistics');
             this.attachedCallback = function() {
