@@ -97,6 +97,9 @@ var htmlUtils = {
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
+    },
+    prepend: function(e, container) {
+        container.insertBefore(e, container.firstChild);
     }
 };
 
