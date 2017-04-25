@@ -242,6 +242,21 @@
         }
     }
 
+    .flatt-page-main-article-header-anchor {
+        font-size: 0.6em;
+        margin-left: 4px;
+        visibility: hidden;
+    }
+
+    h1:hover .flatt-page-main-article-header-anchor,
+    h2:hover .flatt-page-main-article-header-anchor,
+    h3:hover .flatt-page-main-article-header-anchor,
+    h4:hover .flatt-page-main-article-header-anchor,
+    h5:hover .flatt-page-main-article-header-anchor,
+    h6:hover .flatt-page-main-article-header-anchor {
+        visibility: visible;
+    }
+
     /**
      * Main Footer
      */
@@ -409,9 +424,16 @@
 
                     var li = document.createElement('li');
                     var a = document.createElement('a');
-                    a.href = '#' + id;
+                    var href = '#' + id;
+                    a.href = href;
                     a.innerText = text;
                     li.appendChild(a);
+
+                    var anchor = document.createElement('a');
+                    anchor.href = href;
+                    anchor.classList.add('flatt-page-main-article-header-anchor');
+                    anchor.innerHTML = '<i class="fa fa-link" aria-hidden="true"></i>';
+                    node.element.appendChild(anchor);
 
                     if (node.children.length) {
                         var ol = document.createElement('ol');
