@@ -187,6 +187,7 @@ function createNewProgramsStatistics(e, timeline) {
         options: {
             scales: {
                 yAxes: [{
+                    stacked: true,
                     display: true,
                     ticks: {
                         beginAtZero: true
