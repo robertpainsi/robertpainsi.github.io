@@ -71,17 +71,23 @@
 
 <script>
     webcomponentsUtils.importScope(function(importDocument) {
-        var catroidIcon = {
-            src: '/templates/images/catroid-icon-39x46.png'
-        };
-
         var menuConfig = {
             items: [
                 {
                     url: '/catrobat/statistics/',
                     title: 'Catrobat statistics',
                     description: 'Statistics about programs, users and features.',
-                    icon: catroidIcon
+                    icon: {
+                        src: '/templates/images/catroid-icon-39x46.png'
+                    }
+                },
+                {
+                    url: '/catrobat/gci17/',
+                    title: "GCI'17 Catrobat statistics",
+                    description: 'Statistics about mentors, tasks and programs',
+                    icon: {
+                        src: '/templates/images/gci17-icon-46x46.png'
+                    }
                 }
             ]
         };

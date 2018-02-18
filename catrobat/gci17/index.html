@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>#code squirrel - GCI'17 Catrobat Statistics</title>
+
+    <script src="/templates/webcomponents-lite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"
+            integrity="sha256-c0m8xzX5oOBawsnLVpHnU2ieISOvxi584aNElFl2W6M=" crossorigin="anonymous"></script>
+    <link rel="import" href="/templates/resource-bundle.html">
+    <link rel="import" href="/templates/pages/flatt-page/page.html">
+
+    <style>
+        th {
+            cursor: pointer;
+        }
+
+        th i.fa {
+            margin-left: 4px;
+        }
+
+        img.mentor-response-time-chart,
+        img.task-duration-chart {
+            max-width: 760px;
+            width: 100%;
+        }
+
+        .diff-greater {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<flatt-page scroll="false">
+    <div class="main-header">
+        <h2>Google Code-in '17</h2>
+    </div>
+
+    <p>
+        This years <a href="https://codein.withgoogle.com/">Google Code-in</a> has been a real success for our
+        organisation, <a href="https://www.catrobat.org/">Catrobat</a>. 1162 Students all around the globe completed 558
+        tasks during November 28, 2017 and January 17, 2018. During this period, 3649 new programs have been uploaded to
+        our sharing platform, <a href="https://share.catrob.at">share.catrob.at</a>, which is an increase of
+        <span class="diff-greater">+20.9%</span>!
+    </p>
+    <p>
+        A big <i>Thank you!</i> to all Mentors and volunteers who are making events like these possible. I hope that all
+        of you had as much fun as I had. Also thanks to all Students and the Google Team.
+    </p>
+
+    <h3>Task duration</h3>
+    <p>
+        <img src="images/mentor-response-time.png" class="mentor-response-time-chart">
+    </p>
+
+    <h3>Mentor response time</h3>
+    <p>
+        <img src="images/task-duration.png" class="task-duration-chart">
+    </p>
+
+<!--
+    <div>
+        <h3>Partial Mentor activity list</h3>
+
+        <table id="mentor-task-statistics-table" class="table table-striped">
+            <thead>
+            <tr>
+                <th class="th-name">Name<i class="fa fa-fw"></i></th>
+                <th class="th-updates">Updates<i class="fa fa-fw"></i></th>
+                <th class="th-instances">Instances<i class="fa fa-fw"></i></th>
+                <th class="th-approved">Approved<i class="fa fa-fw"></i></th>
+                <th class="th-characters">Characters<i class="fa fa-fw"></i></th>
+                <th class="th-words">Words<i class="fa fa-fw"></i></th>
+            </tr>
+            </thead>
+            <tbody id="mentor-task-statistics"></tbody>
+        </table>
+    </div>
+    -->
+</flatt-page>
+
+<script>
+    var data = [{
+        name: 'Mentor A',
+        updates: 2260,
+        instances: 501,
+        tasks: 55,
+        approved: 191,
+        chars: 175678,
+        words: 33059
+    }, {
+        name: 'Mentor B',
+        updates: 303,
+        instances: 107,
+        tasks: 33,
+        approved: 37,
+        chars: 25491,
+        words: 4509
+    }, {
+        name: 'Mentor C',
+        updates: 451,
+        instances: 128,
+        tasks: 38,
+        approved: 40,
+        chars: 62677,
+        words: 11079
+    }, {
+        name: 'Mentor D',
+        updates: 376,
+        instances: 119,
+        tasks: 16,
+        approved: 40,
+        chars: 45466,
+        words: 8088
+    }, {
+        name: 'Mentor E',
+        updates: 266,
+        instances: 91,
+        tasks: 33,
+        approved: 54,
+        chars: 18409,
+        words: 3613
+    }, {
+        name: 'Mentor F',
+        updates: 590,
+        instances: 182,
+        tasks: 26,
+        approved: 51,
+        chars: 60761,
+        words: 10685
+    }];
+    $(function() {
+        var $table = $('#mentor-task-statistics');
+        data.forEach(function(item) {
+            $table.append([
+                '<tr>',
+                '   <td>' + item.name + '</td>',
+                '   <td>' + item.updates + '</td>',
+                '   <td>' + item.instances + '</td>',
+                '   <td>' + item.approved + '</td>',
+                '   <td>' + item.chars + '</td>',
+                '   <td>' + item.words + '</td>',
+                '</tr>'
+            ].join());
+        });
+
+        $('th').click(function() {
+            var $this = $(this);
+            var table = $this.parents('table').eq(0);
+            var rows = table.find('tr:gt(0)').toArray().sort(comparer($this.index()));
+
+            if ((this.desc === undefined || this.desc === null) && $this.hasClass('th-name')) {
+                this.desc = !this.desc;
+            }
+            this.desc = !this.desc;
+
+            $('#mentor-task-statistics-table').find('th i.fa').removeClass('fa-angle-up fa-angle-down');
+            if (this.desc) {
+                rows = rows.reverse();
+                $this.find('.fa').removeClass('fa-angle-up').addClass('fa-angle-down');
+            } else {
+                $this.find('.fa').addClass('fa-angle-up').removeClass('fa-angle-down');
+            }
+            var self = this;
+            $('th').each(function() {
+                if (self !== this) {
+                    this.desc = undefined;
+                }
+            });
+
+            for (var i = 0; i < rows.length; i++) {
+                table.append(rows[i]);
+            }
+        });
+
+        function comparer(index) {
+            return function(a, b) {
+                var valA = getCellValue(a, index), valB = getCellValue(b, index);
+                return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+            }
+        }
+
+        function getCellValue(row, index) {
+            return $(row).children('td').eq(index).text();
+        }
+
+        $('th.th-updates').trigger('click');
+    });
+</script>
+</body>
+</html>
