@@ -71,7 +71,7 @@ function createBlockUsageChart(e, blocks) {
             diff = toDiffHtml(percent, previousRelativePercent);
         }
         rows.push('<tr align="right">' +
-            '<td class="shrink" style="vertical-align: middle; color: ' + color + '; white-space: nowrap">' + name + '</td>' +
+            '<td class="shrink" style="vertical-align: middle; padding-right: 2px; color: ' + color + '; white-space: nowrap">' + name + '</td>' +
             '<td class="expand" style="vertical-align: middle; width: 99%; ' +
             'background: linear-gradient(90deg, rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.85) ' + relativePercent + '%, transparent ' + relativePercent + '%); ' +
             'padding-left: 4px; padding-right: 4px">' +
