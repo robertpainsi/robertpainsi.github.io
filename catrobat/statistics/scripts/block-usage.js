@@ -1,14 +1,14 @@
 "use strict";
 
-function createEnhancedBlockUsageChart(e, brickUsage, previousBrickUsage) {
+function createEnhancedBlockUsageChart(e, brickUsage, previousBrickUsage, display) {
     function enhanceBrickData(bricks, previousBricks) {
         var allBricks = {};
         Object.keys(bricks).forEach(function(type) {
-            var brick = bricks[type];
+            var brickDisplay = display[type];
             allBricks[type] = {
-                name: brick.name,
-                color: brick.color,
-                count: brick.count
+                name: brickDisplay.name,
+                color: brickDisplay.color,
+                count: bricks[type]
             };
 
             if (previousBricks) {
@@ -17,46 +17,20 @@ function createEnhancedBlockUsageChart(e, brickUsage, previousBrickUsage) {
         });
         if (previousBricks) {
             Object.keys(previousBricks).forEach(function(type) {
-                var brick = previousBricks[type];
-
                 if (allBricks[type]) {
-                    allBricks[type].previousCount = brick.count;
+                    allBricks[type].previousCount = previousBricks[type];
                 } else {
+                    var brickDisplay = display[type];
                     allBricks[type] = {
-                        name: brick.name,
-                        color: brick.color,
+                        name: brickDisplay.name,
+                        color: brickDisplay.color,
                         count: 0,
-                        previousCount: brick.count
+                        previousCount: previousBricks[type]
                     }
                 }
             });
         }
-
-        var result = [];
-        var mergeBricks = {
-            'IfLogicEndBrick': null,
-            'IfThenLogicEndBrick': null,
-            'LoopEndBrick': null,
-            'LoopEndlessBrick': null,
-            'VideoBrick': null,
-            'IfThenLogicBeginBrick': 'IfLogicBeginBrick',
-            'ShowVariableBrick': 'ShowTextBrick',
-            'WhenBrick': 'WhenScript'
-        };
-        Object.keys(allBricks).forEach(function(type) {
-            var brick = allBricks[type];
-            if (mergeBricks.hasOwnProperty(type)) {
-                if (mergeBricks[type]) {
-                    allBricks[mergeBricks[type]].count += brick.count;
-                    if (previousBricks) {
-                        allBricks[mergeBricks[type]].previousCount += brick.previousCount;
-                    }
-                }
-                return;
-            }
-            result.push(brick);
-        });
-        return result;
+        return Object.values(allBricks);
     }
 
     createBlockUsageChart(e, enhanceBrickData(brickUsage, previousBrickUsage));
@@ -101,8 +75,13 @@ function createBlockUsageChart(e, blocks) {
             '<td class="expand" style="vertical-align: middle; width: 99%; ' +
             'background: linear-gradient(90deg, rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.85) ' + relativePercent + '%, transparent ' + relativePercent + '%); ' +
             'padding-left: 4px; padding-right: 4px">' +
-            '<span style="float: left">' + percentValue + '% ' + diff + '</span>'
-            + '<span style="float: right">' + count + '</span></td></tr><tr><td style="height: 2px"></td></tr>'
+            '<span style="float: left">' + percentValue + '% ' + '</span>' +
+            '<span style="float: right">' + count + '</span></td>' +
+            '<td class="shrink" style="vertical-align: middle;">' +
+            diff +
+            '</td>' +
+            '</tr><tr><td style="height: 2px"></td>' +
+            '</tr>'
         );
     });
     e.innerHTML = rows.join('\n');

@@ -1,12 +1,12 @@
 "use strict";
 
-function createStatistics(updated, timeline, overall, previousOverall) {
+function createStatistics(updated, overall, previousOverall, display) {
     previousOverall = previousOverall || {};
 
     setLastUpdated($('.last_updated'), stringToDate(updated));
 
     createOverallStatistics(document.getElementById('quantities'), overall, previousOverall);
-    createNewProgramsStatistics(document.getElementById('new-and-remixed-programs-chart'), timeline);
+    createNewProgramsStatistics(document.getElementById('new-and-remixed-programs-chart'), overall.timeline);
 
     createPieWithStatistics({
         element: document.getElementById('programs-with-multiple-scenes-pie-chart'),
@@ -93,7 +93,48 @@ function createStatistics(updated, timeline, overall, previousOverall) {
         createLegend: createPieChartLegendVertical
     });
 
-    createEnhancedBlockUsageChart(document.getElementById('brick-usage-chart'), overall.brickUsage, previousOverall.brickUsage);
+    function createOverallFormulaUsage(overall) {
+        if (!overall) {
+            return overall;
+        }
+        const result = {};
+        Object.entries(overall).forEach(function(entry) {
+            var key = entry[0];
+            var value = entry[1];
+            switch (key) {
+                case 'NUMBER':
+                    return;
+            }
+            result[key] = value;
+        });
+        return result;
+    }
+
+    function createOverallFeatureUsage(overall) {
+        if (!overall) {
+            return overall;
+        }
+        const result = {};
+        Object.entries(overall).forEach(function(entry) {
+            var key = entry[0];
+            var value = entry[1];
+            switch (key) {
+                case 'hardware':
+                case 'externalHardware':
+                case 'internalHardware':
+                case 'bluetooth':
+                case 'wlan':
+                return;
+            }
+            result[key] = value;
+        });
+        return result;
+    }
+
+    createEnhancedBlockUsageChart(document.getElementById('feature-usage-chart'), createOverallFeatureUsage(overall.featureUsage), createOverallFeatureUsage(previousOverall.featureUsage), display.features);
+    createEnhancedBlockUsageChart(document.getElementById('brick-usage-chart'), overall.brickUsage, previousOverall.brickUsage, display.bricks);
+    createEnhancedBlockUsageChart(document.getElementById('formula-usage-chart'),
+        createOverallFormulaUsage(overall.formulaUsage), createOverallFormulaUsage(previousOverall.formulaUsage), display.formulas);
 }
 
 function objectToDataArray(object, previousObject) {
@@ -166,20 +207,24 @@ function createOverallStatistics(e, overall, previously) {
 }
 
 function createNewProgramsStatistics(e, timeline) {
+    const sortedTimeline = {};
+    Object.keys(timeline).sort().forEach(function(key) {
+        sortedTimeline[key] = timeline[key];
+    });
     createChart(e, {
         type: 'line',
         data: {
-            labels: Object.keys(timeline),
+            labels: Object.keys(sortedTimeline),
             datasets: [{
                 label: 'New remixed Programs',
                 backgroundColor: CHART_COLORS[1],
-                data: Object.values(timeline).map(function(v) {
+                data: Object.values(sortedTimeline).map(function(v) {
                     return v.remixes;
                 })
             }, {
                 label: 'New origin Programs',
                 backgroundColor: CHART_COLORS[0],
-                data: Object.values(timeline).map(function(v) {
+                data: Object.values(sortedTimeline).map(function(v) {
                     return v.new;
                 })
             }]

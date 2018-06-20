@@ -125,16 +125,14 @@
         <h2 class="page-title">Catrobat Statistics</h2><span class="last_updated_container">Last updated on
         <span class="last_updated">?</span></span>
     </div>
-    <p>Only Programs with Catrobat Language Version >=&nbsp;0.94 are included. If you are curious about new statistics
-        or found a bug, please let me know by creating a
+    <p>Only Programs with Catrobat Language Version >=&nbsp;0.94 are included in all stats and calculations. If you are
+        curious about new statistics or found a bug, please let me know by creating a
         <a href="https://github.com/robertpainsi/robertpainsi.github.io/issues">GitHub issue</a>.</p>
 
     <p class="catrobat-statistics-option option-yearly option-monthly">
-        The growth/decrease is calculated relatively (=&nbsp;value&nbsp;/&nbsp;#new_programs) compared to last <span
-            class="catrobat-statistics-option option-yearly">year</span><span
-            class="catrobat-statistics-option option-monthly">month</span>. So even if the number of new programs
-        increases, the percentage stays meaningful. Overall-Programs is the only percentage where absolute values are
-        compared.
+        Growth/Decrease is calculated compared to last
+        <span class="catrobat-statistics-option option-yearly">year</span>
+        <span class="catrobat-statistics-option option-monthly">month</span>.
     </p>
 
     <form action="">
@@ -223,9 +221,16 @@
         <div class="chart-statistics"></div>
     </div>
 
+    <h3>Feature usage</h3>
+    <table id="feature-usage-chart" class="usage-chart table-striped"></table>
+
     <h3>Brick usage</h3>
-    <!-- <p>You can find the Brick usage statistics for Scratch <a href="/catrobat/statistics/scratch.html">here</a>.</p> -->
     <table id="brick-usage-chart" class="usage-chart table-striped"></table>
+
+    <div style="display: flex">
+    <h3>Formula usage</h3><span style="font-size: 80%; align-self: flex-end; margin-bottom: 0.5rem">(without Number)</span>
+    </div>
+    <table id="formula-usage-chart" class="usage-chart table-striped"></table>
 </template>
 
 <script>
@@ -260,16 +265,16 @@
                                 last = {};
                                 break;
                             case 'yearly':
-                                current = statistics.overallCurrentYear;
-                                last = statistics.overallLastYear;
+                                current = statistics.currentYear;
+                                last = statistics.lastYear;
                                 break;
                             case 'monthly':
-                                current = statistics.overallCurrentMonth;
-                                last = statistics.overallLastMonth;
+                                current = statistics.currentMonth;
+                                last = statistics.lastMonth;
                                 break;
                         }
                         destroyCharts();
-                        createStatistics(statistics.updated, statistics.timeline, current, last);
+                        createStatistics(statistics.updated, current, last, statistics.display);
                     }
 
                     setPeriod(htmlUtils.getParameterByName('period', window.location.search) || 'yearly');

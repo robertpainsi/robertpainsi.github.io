@@ -73,43 +73,54 @@ function toDiffHtml(value, previousValue, options) {
         var diff = toDiffNumber(value, previousValue);
 
         var diffClass;
-        if (diff < 0) {
+        if (diff === 'discontinued' || diff === 'out') {
+            diffClass = 'diff diff-less';
+        } else if (diff === 'new') {
+            diffClass = 'diff diff-greater';
+        } else if (diff < 0) {
             diffClass = 'diff diff-less';
         } else if (diff > 0) {
             diffClass = 'diff diff-greater';
         } else {
             diffClass = 'diff diff-equals';
         }
-        return '<span class="' + diffClass + '" style="' + options.style + '">' + toDiffText(value, previousValue, options) + '</span>';
+        return '<span class="' + diffClass + '" style="' + options.style + '">' + toDiffText(value, previousValue) + '</span>';
     } else {
         return '';
     }
 }
 
-function toDiffText(value, previousValue, options) {
+function toDiffText(value, previousValue) {
     if (isNumber(value)) {
-        options = options || {};
         var diff = toDiffNumber(value, previousValue);
-        var prefix = options.prefix || '';
-        var postfix = options.postfix || '%';
+        var prefix = '';
         if (diff > 0) {
-            prefix = prefix + '+';
+            prefix = '+';
         }
-        return prefix + diff.toFixed(2) + postfix;
+
+        if (isNumber(diff)) {
+            return prefix + diff.toFixed(2) + '%';
+        } else {
+            return prefix + diff;
+        }
     } else {
         return '';
     }
 }
 
 function toDiffNumber(value, previousValue) {
-    if (isNumber(value)) {
-        if (!previousValue) {
-            return 100;
+    if (isNumber(value) && isNumber(previousValue)) {
+        if (previousValue === 0) {
+            return 'new';
         } else {
             return (value - previousValue) * 100 / previousValue;
         }
+    } else if (!isNumber(value) && isNumber(previousValue)) {
+        return 'discontinued';
+    } else if (isNumber(value) && !isNumber(previousValue)) {
+        return 'new';
     } else {
-        return Number.NaN;
+        return 'out';
     }
 }
 
