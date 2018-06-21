@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script></script>
+  <style>
+  .look-image-container {
+    border: 1px solid black;
+    margin: 2px;
+    width: 84px;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .look-image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
+
+  .reference {
+    margin: 2px;
+    width: 84px;
+    height: 84px;
+    border: 1px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  </style>
+</head>
+<body>
+
+<div class="reference">
+  <span>84x84</span>
+</div>
+
+<div id="look-images" style="display: flex"></div>
+
+<script>
+var $lookImages = $('#look-images');
+[
+  [40, 40],
+  [60, 40],
+  [40, 60],
+  [50, 100],
+  [100, 50],
+  [200, 200],
+  [200, 400],
+  [400, 200],
+].forEach(function(size) {
+  var width = size[0];
+  var height = size[1];
+
+  $lookImages.append(
+    '<div style="text-align: center">' +
+    '<div class="look-image-container"><img class="look-image" src="' + width + 'x' + height + '.png"></div>' +
+    '<span>' + width + 'x' + height + '</span>' +
+    '</div>'
+  );
+})
+</script>
+</body>
+</html>
