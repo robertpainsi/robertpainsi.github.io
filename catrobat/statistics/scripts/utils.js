@@ -1,9 +1,5 @@
 "use strict";
 
-function stringToDate(s) {
-    return new Date(Date.parse(s));
-}
-
 function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }

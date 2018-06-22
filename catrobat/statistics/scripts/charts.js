@@ -3,7 +3,7 @@
 function createStatistics(updated, overall, previousOverall, display) {
     previousOverall = previousOverall || {};
 
-    setLastUpdated($('.last_updated'), stringToDate(updated));
+    setLastUpdated($('.last_updated'), new Date(updated));
 
     createOverallStatistics(document.getElementById('quantities'), overall, previousOverall);
     createNewProgramsStatistics(document.getElementById('new-and-remixed-programs-chart'), overall.timeline);
