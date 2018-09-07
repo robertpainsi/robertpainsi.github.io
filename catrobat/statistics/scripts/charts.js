@@ -133,8 +133,11 @@ function createStatistics(updated, overall, previousOverall, display) {
 
     createEnhancedBlockUsageChart(document.getElementById('feature-usage-chart'), createOverallFeatureUsage(overall.featureUsage), createOverallFeatureUsage(previousOverall.featureUsage), display.features);
     createEnhancedBlockUsageChart(document.getElementById('brick-usage-chart'), overall.brickUsage, previousOverall.brickUsage, display.bricks);
+    createEnhancedBlockUsageChart(document.getElementById('programs-with-bricks-chart'), overall.programsUsingBricks, previousOverall.programsUsingBricks, display.bricks, overall.programs, previousOverall.programs);
     createEnhancedBlockUsageChart(document.getElementById('formula-usage-chart'),
         createOverallFormulaUsage(overall.formulaUsage), createOverallFormulaUsage(previousOverall.formulaUsage), display.formulas);
+    createEnhancedBlockUsageChart(document.getElementById('programs-with-formulas-chart'),
+        createOverallFormulaUsage(overall.programsUsingFormula), createOverallFormulaUsage(previousOverall.programsUsingFormula), display.formulas, overall.programs, previousOverall.programs);
 }
 
 function objectToDataArray(object, previousObject) {

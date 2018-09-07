@@ -1,6 +1,6 @@
 "use strict";
 
-function createEnhancedBlockUsageChart(e, brickUsage, previousBrickUsage, display) {
+function createEnhancedBlockUsageChart(e, brickUsage, previousBrickUsage, display, t1, t2) {
     function enhanceBrickData(bricks, previousBricks) {
         var allBricks = {};
         Object.keys(bricks).forEach(function(type) {
@@ -33,10 +33,10 @@ function createEnhancedBlockUsageChart(e, brickUsage, previousBrickUsage, displa
         return Object.values(allBricks);
     }
 
-    createBlockUsageChart(e, enhanceBrickData(brickUsage, previousBrickUsage));
+    createBlockUsageChart(e, enhanceBrickData(brickUsage, previousBrickUsage), t1, t2);
 }
 
-function createBlockUsageChart(e, blocks) {
+function createBlockUsageChart(e, blocks, t1, t2) {
     blocks = blocks.sort(function(a, b) {
         return b.count - a.count;
     });
@@ -44,13 +44,18 @@ function createBlockUsageChart(e, blocks) {
     var hasPrevious = false;
     var total = 0;
     var previousTotal = 0;
-    blocks.forEach(function(block) {
-        total += block.count;
-        previousTotal += block.previousCount;
-        if (block.previousCount !== undefined) {
-            hasPrevious = true;
-        }
-    });
+    if (t1 !== undefined) {
+        total = t1;
+        previousTotal = t2;
+    } else {
+        blocks.forEach(function(block) {
+            total += block.count;
+            previousTotal += block.previousCount;
+            if (block.previousCount !== undefined) {
+                hasPrevious = true;
+            }
+        });
+    }
 
     var firstPercent = null;
     var rows = [];
