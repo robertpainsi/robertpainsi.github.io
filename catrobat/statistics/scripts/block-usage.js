@@ -44,17 +44,21 @@ function createBlockUsageChart(e, blocks, t1, t2) {
     var hasPrevious = false;
     var total = 0;
     var previousTotal = 0;
-    if (t1 !== undefined) {
-        total = t1;
-        previousTotal = t2;
-    } else {
+
+    if (t1 === undefined && t2 === undefined) {
         blocks.forEach(function(block) {
             total += block.count;
             previousTotal += block.previousCount;
-            if (block.previousCount !== undefined) {
+            if (block.previousCount) {
                 hasPrevious = true;
             }
         });
+    } else {
+        total = t1;
+        previousTotal = t2;
+        if (t2 !== undefined) {
+            hasPrevious = true;
+        }
     }
 
     var firstPercent = null;
