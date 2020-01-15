@@ -6,7 +6,7 @@ function createStatistics(updated, overall, previousOverall, display) {
     setLastUpdated($('.last_updated'), new Date(updated));
 
     createOverallStatistics(document.getElementById('quantities'), overall, previousOverall);
-    createNewProgramsStatistics(document.getElementById('new-and-remixed-programs-chart'), overall.timeline);
+    createNewProgramsStatistics(document.getElementById('new-and-remixed-programs-chart'), overall.type, overall.timeline);
 
     createPieWithStatistics({
         element: document.getElementById('programs-with-multiple-scenes-pie-chart'),
@@ -209,11 +209,25 @@ function createOverallStatistics(e, overall, previously) {
     }).join('\n');
 }
 
-function createNewProgramsStatistics(e, timeline) {
+function createNewProgramsStatistics(e, type, timeline) {
     const sortedTimeline = {};
-    Object.keys(timeline).sort().forEach(function(key) {
-        sortedTimeline[key] = timeline[key];
-    });
+    if (type === 'month') {
+        Object.keys(timeline).sort(function(a, b) {
+            if (a.startsWith('01') && b.startsWith('12')) {
+            return 1;
+        } else if (a.startsWith('12') && b.startsWith('01')) {
+            return -1;
+        } else {
+            return a.localeCompare(b);
+        }
+    }).forEach(function(key) {
+            sortedTimeline[key] = timeline[key];
+        });
+    } else {
+        Object.keys(timeline).sort().forEach(function(key) {
+            sortedTimeline[key] = timeline[key];
+        });
+    }
     createChart(e, {
         type: 'line',
         data: {
