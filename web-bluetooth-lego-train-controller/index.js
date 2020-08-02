@@ -19,6 +19,7 @@ window.addEventListener('load', async () => {
 
   const values = 17; // positive, odd number
   const factor = 1; // > 0 && <= 1
+  const lowerStart = 0.45;
 
   const options = [];
   const middle = (values - 1) / 2;
@@ -40,7 +41,7 @@ window.addEventListener('load', async () => {
     }
     options.push({
       label: `${Math.round(percentage * 100)} %`,
-      value: factor * percentage,
+      value: factor * percentage / (1 + lowerStart) + lowerStart * Math.sign(distance),
       backgroundColor,
     });
   }
