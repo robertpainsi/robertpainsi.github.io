@@ -17,45 +17,61 @@ window.addEventListener('load', async () => {
   const connectButton = document.getElementById('connect-button');
   const connectErrorMessage = document.getElementById('connect-error-message');
 
-  const values = 17; // positive, odd number
-  const factor = 1; // > 0 && <= 1
-  const lowerStart = 0.45;
+  const legoTrain = document.getElementById('lego-train');
+  const legoWire = document.getElementById('lego-wire');
 
-  const options = [];
-  const middle = (values - 1) / 2;
-  for (let i = 0; i < values; i++) {
-    let distance = -(i - middle);
-    if (distance === -0) {
-      distance = 0;
-    }
-    const percentage = Math.round(distance / middle * 10000) / 10000;
-    const absPercentage = Math.abs(percentage);
-
-    let backgroundColor;
-    if (distance === 0) {
-      backgroundColor = ``;
-    } else if (distance > 0) {
-      backgroundColor = `rgba(${Math.round(absPercentage * 255)}, ${Math.round((1 - absPercentage) * 255)}, 0, 0.6)`;
-    } else {
-      backgroundColor = `rgba(0, ${Math.round((1 - absPercentage) * 255)}, ${Math.round(absPercentage * 255)}, 0.6)`;
-    }
-    options.push({
-      label: `${Math.round(percentage * 100)} %`,
-      value: factor * percentage / (1 + lowerStart) + lowerStart * Math.sign(distance),
-      backgroundColor,
-    });
+  let wireDirection = parseInt(Cookies.get('wire-direction'));
+  if (isNaN(wireDirection)) {
+    wireDirection = -1;
+  }
+  let connectorPosition = parseInt(Cookies.get('connector-position'));
+  if (isNaN(connectorPosition)) {
+    connectorPosition = -1;
   }
 
-  let currentValue = options[middle].value;
-  const slider = new Slider(document.getElementById('slider'), {options});
-  slider.addEventListener('change', (event) => {
-    currentValue = event.detail.value;
-    bluetooth.writeValue(event.detail.value);
+  function updateLegoUi() {
+    Cookies.set('wire-direction', wireDirection, {expires: 365});
+    Cookies.set('connector-position', connectorPosition, {expires: 365});
+
+    let scale = 1;
+    let translateX = 0;
+    if (wireDirection === 1 && connectorPosition === 1) {
+      translateX = 100;
+      scale = 1;
+    } else if (wireDirection === 1 && connectorPosition === -1) {
+      translateX = -35;
+      scale = 1;
+    } else if (wireDirection === -1 && connectorPosition === 1) {
+      translateX = 35;
+      scale = -1;
+    } else if (wireDirection === -1 && connectorPosition === -1) {
+      translateX = -100;
+      scale = -1;
+    }
+    legoWire.style.setProperty('transform', `translateX(${translateX}px) scaleX(${scale})`);
+    legoTrain.style.setProperty('transform', `scaleX(${connectorPosition})`);
+  }
+  updateLegoUi();
+  legoTrain.classList.add('show');
+  legoWire.classList.add('show');
+
+  legoTrain.addEventListener('click', function(event) {
+    connectorPosition *= -1;
+    updateLegoUi();
   });
 
+  legoWire.addEventListener('click', function(event) {
+    wireDirection *= -1;
+    updateLegoUi();
+  });
+
+  let slider = null;
+  let currentValue = null;
   const bluetooth = new Bluetooth();
   bluetooth.addEventListener('connect', () => {
-    slider.setValue(currentValue, true);
+    if (slider) {
+      slider.setValue(currentValue, true);
+    }
 
     sliderContainer.style.setProperty('display', '');
     connectContainer.style.setProperty('display', 'none', 'important');
@@ -85,6 +101,55 @@ window.addEventListener('load', async () => {
 
     try {
       await bluetooth.connect();
+
+      const values = 17; // positive, odd number
+      const factor = 1; // > 0 && <= 1
+      const lowerStart = 0.45;
+
+      const options = [];
+      const middle = (values - 1) / 2;
+      for (let i = 0; i < values; i++) {
+        let distance = -(i - middle);
+        if (distance === -0) {
+          distance = 0;
+        }
+        const percentage = Math.round(distance / middle * 10000) / 10000;
+        const absPercentage = Math.abs(percentage);
+
+        let value = (factor * percentage / (1 + lowerStart) + lowerStart * Math.sign(distance)) * -1;
+        if (wireDirection === 1 && connectorPosition === 1) {
+          value *= 1;
+        } else if (wireDirection === 1 && connectorPosition === -1) {
+          value *= 1;
+        } else if (wireDirection === -1 && connectorPosition === 1) {
+          value *= -1;
+        } else if (wireDirection === -1 && connectorPosition === -1) {
+          value *= -1;
+        }
+
+        let backgroundColor;
+        if (distance === 0) {
+          backgroundColor = ``;
+        } else if (distance > 0) {
+          backgroundColor = `rgba(${Math.round(absPercentage * 255)}, ${Math.round((1 - absPercentage) * 255)}, 0, 0.6)`;
+        } else {
+          backgroundColor = `rgba(0, ${Math.round((1 - absPercentage) * 255)}, ${Math.round(absPercentage * 255)}, 0.6)`;
+        }
+        options.push({
+          label: `${Math.round(percentage * 100)} %`,
+          value,
+          backgroundColor,
+        });
+      }
+
+      console.log(options);
+      currentValue = options[middle].value;
+      slider = new Slider(document.getElementById('slider'), {options});
+      slider.addEventListener('change', (event) => {
+        currentValue = event.detail.value;
+        bluetooth.writeValue(event.detail.value);
+      });
+      slider.setValue(currentValue);
     } catch (e) {
       console.error(e);
       connectErrorMessage.innerText = e.message;

@@ -7,6 +7,12 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+          crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"
+            integrity="sha512-Meww2sXqNHxI1+5Dyh/9KAtvI9RZSA4c1K2k5iL02oiPO/RH3Q30L3M1albtqMg50u4gRTYdV4EXOQqXEI336A=="
+            crossorigin="anonymous"></script>
     <style>
         html, body {
             width: 100%;
@@ -43,18 +49,87 @@
             width: 84px;
             touch-action: none;
         }
+
+        .drive-direction-container,
+        .drive-direction {
+            animation-duration: 750ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        .drive-direction {
+            color: #baff99;
+            margin: 0 6px;
+
+        }
+
+        .drive-direction-container {
+            animation-name: drive-direction-translate;
+        }
+
+        .drive-direction:first-child {
+            animation-name: drive-direction-fade-in;
+        }
+
+        .drive-direction:last-child {
+            animation-name: drive-direction-fade-out;
+        }
+
+        @keyframes drive-direction-translate {
+            0% {
+                transform: translateX(-18px);
+            }
+            100% {
+                transform: translateX(18px);
+            }
+        }
+
+        @keyframes drive-direction-fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes drive-direction-fade-out {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div id="connect-container" class="d-flex flex-column justify-content-center align-items-center w-100 h-100 p-3">
-    <div>
-        <button type="button" id="connect-button" class="btn btn-primary btn-lg">Connect to Lego device</button>
-        <div class="text-right text-muted">
-            <small>v.1.0.1</small>
+    <div class="d-flex flex-column flex-grow-1 justify-content-center">
+        <button type="button" id="connect-button" class="btn btn-primary btn-lg mx-5">Connect to Lego Train</button>
+        <div class="mt-4 text-center">
+            <div class="d-flex flex-column justify-content-center align-items-center"
+                 style="max-width: 360px">
+                <img src="lego-wire.png" id="lego-wire" class="fade" style="width: 35%; height: auto;">
+                <img src="lego-train.png" id="lego-train" class="fade" style="max-width: 60%; height: auto;">
+            </div>
+            <div>
+                <div class="drive-direction-container d-flex justify-content-center align-items-center my-3 h3 text-center">
+                    <i class="fas fa-play drive-direction"></i>
+                    <i class="fas fa-play drive-direction"></i>
+                    <i class="fas fa-play drive-direction"></i>
+                    <i class="fas fa-play drive-direction"></i>
+                    <i class="fas fa-play drive-direction"></i>
+                    <i class="fas fa-play drive-direction"></i>
+                </div>
+            </div>
+            <span id="connect-error-message" class="h5 text-danger empty mt-3"></span>
         </div>
     </div>
-    <span id="connect-error-message" class="h5 text-danger empty mt-3"></span>
+    <div class="align-self-end text-muted">
+        <small>v.1.1.0</small>
+    </div>
 </div>
 
 <div id="reconnect-container" class="d-flex flex-column justify-content-center align-items-center w-100 h-100 p-3"
