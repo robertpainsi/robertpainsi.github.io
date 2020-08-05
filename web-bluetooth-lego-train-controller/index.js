@@ -6,6 +6,10 @@ async function wait(millis) {
   });
 }
 
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+};
+
 window.addEventListener('load', async () => {
   const sliderContainer = document.getElementById('slider-container');
 
@@ -234,6 +238,12 @@ class Bluetooth {
     this.#writePromise = this.#writePromise
       .then(async () => {
         if (value === this.#latestValueToWrite && value !== this.#currentValue) {
+          if (this.#currentValue === 0) {
+            let startUpBoostValue = clamp(value * 1.5, -1, 1);
+            console.log('Sending start up boost: ' + startUpBoostValue);
+            await this.#characteristic.writeValue(new TextEncoder('utf-8').encode(startUpBoostValue));
+            await wait(10);
+          }
           console.log('Sending: ' + value);
           await this.#characteristic.writeValue(new TextEncoder('utf-8').encode(value));
           this.#currentValue = value;
