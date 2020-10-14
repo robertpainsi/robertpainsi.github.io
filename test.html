@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<form>
+    <input type="text" id="input" placeholder="test" autofocus>
+</form>
+
+<script>
+  $(function() {
+    var $input = $('#input');
+    $input.change(function() {
+      console.log('Change');
+    });
+    $input.bind('input', function() {
+      console.log('Bind');
+    });
+  });
+</script>
+
+</body>
+</html>
